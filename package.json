@@ -6,6 +6,7 @@
   "svelte": "dist/index.mjs",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository": "clbrge/svelte-web3",
   "author": {
     "name": "Christophe Le Bars",
     "email": "<clb@rouge.network>"
