@@ -1,0 +1,54 @@
+{
+  "name": "svelte-web3",
+  "version": "0.1.1",
+  "description": "web3.js as a Svelte store",
+  "module": "dist/index.mjs",
+  "svelte": "dist/index.mjs",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "repository": "clbrge/svelte-web3",
+  "author": {
+    "name": "Christophe Le Bars",
+    "email": "<clb@rouge.network>"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build",
+    "example": "npm run build && rollup -c example/rollup.config.js",
+    "dev-example": "rollup -w -c example/rollup.config.js",
+    "start-example": "sirv public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "rollup": "^1.31.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "release-it": "^12.4.3",
+    "svelte": "^3.0.0",
+    "sirv-cli": "^0.4.4",
+    "web3": "1.2.6",
+    "asn1.js": "5.2.0"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "svelte",
+    "ethereum",
+    "web3",
+    "store"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ]
+}
