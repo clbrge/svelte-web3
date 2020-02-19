@@ -10,11 +10,29 @@ export const web3utils = Web3.utils
 const connection = writable({provider: null, accounts: []})
 const state = writable({})
 
+const chain = id => {
+  if (!id) return {}
+  if (web3utils.isHexStrict(id)) id = web3utils.hexToNumber(id)
+  for (const def of chains) {
+    if (def.chainId === id) return def
+  }
+  return {}
+}
+
+const chainIdHeuristic = ({ chainId, networkVersion }) => {
+  if (chainId !== '0xNaN') return chainId;
+  return chain(networkVersion).chainId;
+}
+
 export const ethereum = {
-  setHTTPProvider: async url => {
-    //
-    // example ('https://sokol.poa.network')
-    console.log('todo using url')
+  setProvider: async provider => {
+    console.log('web3.js connection, setting provider', provider)
+    connection.set({
+      provider,
+      providerType: 'HTTP', // better self discovery
+      //chainId: chainIdHeuristic(provider),
+      accounts: [],
+    })
   },
   setBrowserProvider: async () => {
     const accounts = await window.ethereum.enable()
@@ -22,7 +40,7 @@ export const ethereum = {
     connection.set({
       provider: window.ethereum,
       providerType: 'Browser',
-      chainId: window.ethereum.chainId,
+      chainId: chainIdHeuristic(window.ethereum),
       accounts
     })
     if (window.ethereum.isMetaMask) {
@@ -42,7 +60,6 @@ export const ethereum = {
     console.log('chain had chaned to', chainId)
   },
   loadProviderState: async (instance) => {
-    console.log('loading eth blockchain status');
     instance.eth.net.getId((err, networkId) => {
       if (!err) state.update(s => ({...s, networkId}))
     })
@@ -55,20 +72,12 @@ export const ethereum = {
 export const providerType = derived(connection, $connection => $connection.providerType)
 export const chainId = derived(connection, $connection => $connection.chainId)
 
-const chain = id => {
-  if (!id) return {}
-  id = web3utils.hexToNumber(id)
-  for (const def of chains) {
-    if (def.chainId === id) return def
-  }
-  return {}
-}
-
 export const chainName = derived(connection, $connection => chain($connection.chainId).name)
 export const nativeCurrency = derived(connection, $connection => chain($connection.chainId).nativeCurrency)
 
 export const walletType = derived(connection, $connection => {
   if (!$connection.provider) return null
+  if (typeof $connection.provider === 'string') return $connection.provider
   if ($connection.provider.isMetaMask) return 'MetaMask (or compatible)'
   if ($connection.provider.isNiftyWallet) return 'Nifty'
   if ($connection.provider.isTrust) return 'Trust'
@@ -86,6 +95,7 @@ export const web3 = derived(
   $connection => {
     if (!$connection.provider) return {};
     const instance = new Web3($connection.provider)
+    console.log('web3 instance ready', instance)
     ethereum.loadProviderState(instance)
     return instance
   }

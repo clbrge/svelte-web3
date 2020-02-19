@@ -6,6 +6,7 @@ export let name
 export let tipAddres
 
 const enable = () => ethereum.setBrowserProvider()
+//const enable = () => ethereum.setProvider('https://sokol.poa.network')
 
 $: balance = whenReady($selectedAccount, a => $web3.eth.getBalance(a))
 
@@ -33,18 +34,20 @@ const sendTip = async (e) => {
   <p>Visit the <a href="https://web3js.readthedocs.io/en/">Web3.js documentation</a> to learn how to use Web3.js library.</p>
 
   <p><button on:click="{enable}">connect</button> this svelte example app to the window provider (eg Metamask) :
-
+ {$selectedAccount}
   </p>
 
   {#if $isListening}
   <p>
-    Selected account: {$selectedAccount || 'not connected'}
+    Selected account: {$selectedAccount || 'not defined'}
   </p>
+  {#if $chainName}
   <p>
     Balance on {$chainName}:
     {#await balance}<span>waiting...</span>{:then value}<span>{$web3.utils.fromWei(value)}</span>{/await} {$nativeCurrency.symbol}
   </p>
   <p><button on:click="{sendTip}">send 0.01 {$nativeCurrency.symbol} tip to {tipAddres} (author)</button></p>
+  {/if}
   {/if}
 
 </main>
