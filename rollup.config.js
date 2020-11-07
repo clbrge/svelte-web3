@@ -1,8 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import json from 'rollup-plugin-json';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+import json from '@rollup/plugin-json';
 import pkg from './package.json';
 
 const name = pkg.name
@@ -16,14 +15,19 @@ export default {
 	{ file: pkg.module, 'format': 'es' },
 	{ file: pkg.main, 'format': 'umd', name }
   ],
+  moduleContext: {
+    'node_modules/@ethersproject/properties/lib.esm/index.js': 'this'
+  },
   plugins: [
 	svelte(),
     resolve({
+      jsnext: true,
+      main: true,
       browser: true,
-      dedupe: importee => [ 'svelte', 'asn1.js' ].includes(importee) || importee
+      //preferBuiltins: false,
+      dedupe: importee => [ 'svelte', 'bn.js' ].includes(importee) || importee
     }),
     json(),
     commonjs(),
-    nodePolyfills(),
   ]
 };
