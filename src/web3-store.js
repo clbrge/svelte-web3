@@ -1,111 +1,93 @@
 
-import Web3 from 'web3'
+// rollup fails to bundle current source web3
+// import Web3 from 'web3'
+import Web3 from 'web3/dist/web3.js'
 
 import { derived, writable } from 'svelte/store'
 
 import chains from './chains.json'
 
-export const web3utils = Web3.utils
-
-const connection = writable({provider: null, accounts: []})
-const state = writable({})
-
 const chain = id => {
   if (!id) return {}
-  if (web3utils.isHexStrict(id)) id = web3utils.hexToNumber(id)
+  if (Web3.utils.isHexStrict(id)) id = Web3.utils.hexToNumber(id)
   for (const def of chains) {
     if (def.chainId === id) return def
   }
   return {}
 }
 
-const chainIdHeuristic = ({ chainId, networkVersion }) => {
-  if (chainId !== '0xNaN') return chainId;
-  return chain(networkVersion).chainId;
-}
+export const createStore = () => {
+  const { subscribe, set } = writable({
+    connected: false,
+    accounts: []
+  })
 
-export const ethereum = {
-  setProvider: async provider => {
-    console.log('web3.js connection, setting provider', provider)
-    connection.set({
+  const setProvider = async provider => {
+    const instance = new Web3(provider)
+    const chainId = await instance.eth.getChainId()
+    set({
       provider,
-      providerType: 'HTTP', // better self discovery
-      //chainId: chainIdHeuristic(provider),
-      accounts: [],
-    })
-  },
-  setBrowserProvider: async () => {
-    const accounts = await window.ethereum.enable()
-    console.log('web3.js connection, set provider using window.ethereum', window.ethereum)
-    connection.set({
-      provider: window.ethereum,
-      providerType: 'Browser',
-      chainId: chainIdHeuristic(window.ethereum),
-      accounts
-    })
-    if (window.ethereum.isMetaMask) {
-      window.ethereum.autoRefreshOnNetworkChange = false
-      window.ethereum.on('accountsChanged', ethereum.onAccountsChanged)
-      // window.ethereum.on('chainChanged', ethereum.onChainChanged)
-      window.ethereum.on('networkChanged', networkId => {
-        // handle the new networt - simulate new API
-        console.log('network has changed to', chainId)
-        ethereum.onChainChanged(web3utils.toHex(networkId));
-      })
-    }
-  },
-  onAccountsChanged: accounts => connection.update(c => ({...c, accounts})),
-  onChainChanged: chainId => {
-    connection.update(c => ({...c, chainId}))
-    console.log('chain had chaned to', chainId)
-  },
-  loadProviderState: async (instance) => {
-    instance.eth.net.getId((err, networkId) => {
-      if (!err) state.update(s => ({...s, networkId}))
-    })
-    instance.eth.net.isListening((err, isListening) => {
-      if (!err) state.update(s => ({...s, isListening}))
+      providerType: 'String',
+      connected: true,
+      chainId,
+      accounts: [null],
+      instance,
     })
   }
+
+  if (window.ethereum) window.ethereum.autoRefreshOnNetworkChange = false
+
+  const setBrowserProvider = async () => {
+    if (!window.ethereum) throw new Error('Please autorized browser extension (Metamask or similar)')
+    const res = await window.ethereum.request({ method: 'eth_requestAccounts' })
+    window.ethereum.on('accountsChanged', setBrowserProvider)
+    window.ethereum.on('chainChanged', setBrowserProvider)
+    set({
+      provider: window.ethereum,
+      providerType: 'Browser',
+      connected: true,
+      chainId: window.ethereum.chainId,
+      accounts: res,
+      instance: new Web3(window.ethereum)
+    })
+  }
+
+  return {
+    setBrowserProvider,
+    setProvider,
+    subscribe
+  }
+
 }
 
-export const providerType = derived(connection, $connection => $connection.providerType)
-export const chainId = derived(connection, $connection => $connection.chainId)
+export const ethStore = createStore()
 
-export const chainName = derived(connection, $connection => chain($connection.chainId).name)
-export const nativeCurrency = derived(connection, $connection => chain($connection.chainId).nativeCurrency)
+export const connected = derived(ethStore, $ethStore => $ethStore.connected)
 
-export const walletType = derived(connection, $connection => {
-  if (!$connection.provider) return null
-  if (typeof $connection.provider === 'string') return $connection.provider
-  if ($connection.provider.isMetaMask) return 'MetaMask (or compatible)'
-  if ($connection.provider.isNiftyWallet) return 'Nifty'
-  if ($connection.provider.isTrust) return 'Trust'
+export const selectedAccount = derived(
+  ethStore,
+  $ethStore => $ethStore.accounts.length ? $ethStore.accounts[0] : null
+)
+
+export const providerType = derived(ethStore, $ethStore => $ethStore.providerType)
+export const chainId = derived(ethStore, $ethStore => $ethStore.chainId)
+
+export const chainName = derived(ethStore, $ethStore => chain($ethStore.chainId).name)
+export const nativeCurrency = derived(ethStore, $ethStore => chain($ethStore.chainId).nativeCurrency)
+
+export const walletType = derived(ethStore, $ethStore => {
+  if (!$ethStore.provider) return null
+  if (typeof $ethStore.provider === 'string') return $ethStore.provider
+  if ($ethStore.provider.isMetaMask) return 'MetaMask (or compatible)'
+  if ($ethStore.provider.isNiftyWallet) return 'Nifty'
+  if ($ethStore.provider.isTrust) return 'Trust'
   return 'Unknown'
 });
 
-export const isListening = derived(state, $state => $state.isListening || false)
-
-export const selectedAccount = derived(
-  connection, $connection => $connection.accounts.length ? $connection.accounts[0] : null
-)
-
 export const web3 = derived(
-  connection,
-  $connection => {
-    if (!$connection.provider) return {};
-    const instance = new Web3($connection.provider)
-    console.log('web3 instance ready', instance)
-    ethereum.loadProviderState(instance)
-    return instance
+  ethStore,
+  $ethStore => {
+    if (!$ethStore.instance) return { utils: Web3.utils, version: Web3.version }
+    return $ethStore.instance
   }
 )
-
-export const whenReady = (...args) => {
-  const fn = args.pop();
-  for (const arg of args) {
-    if (!arg) return Promise.reject(new Error('not valid'))
-  }
-  /// check fn is a fn
-  return fn(...args);
-}
