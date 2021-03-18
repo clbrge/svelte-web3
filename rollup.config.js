@@ -9,25 +9,12 @@ const name = pkg.name
 	  .replace(/^\w/, m => m.toUpperCase())
 	  .replace(/-\w/g, m => m[1].toUpperCase());
 
-export default {
-  input: 'src/index.js',
-  output: [
-	{ file: pkg.module, 'format': 'es' },
-	{ file: pkg.main, 'format': 'umd', name }
-  ],
-  moduleContext: {
-    'node_modules/@ethersproject/properties/lib.esm/index.js': 'this'
+export default [
+  {
+    input: "./src/web3-store.js",
+    output: [
+      { file: "dist/index.mjs", format: "es" },
+      { file: "dist/index.js", format: "umd", name: "web3store" },
+    ]
   },
-  plugins: [
-	svelte(),
-    resolve({
-      jsnext: true,
-      main: true,
-      browser: true,
-      //preferBuiltins: false,
-      dedupe: importee => [ 'svelte', 'bn.js' ].includes(importee) || importee
-    }),
-    json(),
-    commonjs(),
-  ]
-};
+];

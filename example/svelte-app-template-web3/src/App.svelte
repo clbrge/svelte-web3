@@ -1,9 +1,9 @@
 <script>
+  import { ethStore, web3, selectedAccount, connected, chainName, nativeCurrency } from 'svelte-web3'
 
-  import { ethStore, web3, selectedAccount, connected, chainName, nativeCurrency } from '../dist/index.mjs'
+  export let name;
 
-  export let name
-  export let tipAddres
+  export let tipAddress
 
   const enable = () => ethStore.setProvider('https://sokol.poa.network')
   const enableBrowser = () => ethStore.setBrowserProvider()
@@ -17,7 +17,7 @@
       gasPrice: $web3.utils.toHex($web3.utils.toWei('5', 'gwei')),
       gasLimit: $web3.utils.toHex('21000'),
       from: $selectedAccount,
-      to: tipAddres,
+      to: tipAddress,
       value: $web3.utils.toHex($web3.utils.toWei('1', 'finney'))
     })
     console.log('Receipt from sendTip transaction', tx)
@@ -34,8 +34,12 @@
 
   <p>Visit the <a href="https://web3js.readthedocs.io/en/">Web3.js documentation</a> to learn how to use Web3.js library.</p>
 
+
+  <p>Web3 injected in window: { window.Web3 ? 'yes' : 'no' }</p>
+
   <p>Web3 version: {$web3.version} </p>
 
+  {#if $web3.version}
   <p>
     <button on:click="{enable}">connect to https://sokol.poa.network</button>
   </p>
@@ -43,6 +47,12 @@
   <p>
     <button on:click="{enableBrowser}">connect to the browser window provider </button> (eg Metamask)
   </p>
+  {:else}
+  Please check that web3 as been added in public/index.html with the line:
+  <pre>
+      &lt;script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js">&lt;/script>
+  </pre>
+  {/if}
 
   {#if $connected}
   <p>
@@ -62,7 +72,7 @@
   </p>
 
   {#if $selectedAccount}
-  <p><button on:click="{sendTip}">send 0.01 {$nativeCurrency.symbol} tip to {tipAddres} (author)</button></p>
+  <p><button on:click="{sendTip}">send 0.01 {$nativeCurrency.symbol} tip to {tipAddress} (author)</button></p>
   {/if}
 
   {/if}
@@ -70,25 +80,23 @@
 </main>
 
 <style>
+	main {
+		text-align: center;
+		padding: 1em;
+		max-width: 240px;
+		margin: 0 auto;
+	}
 
-main {
-  text-align: center;
-  padding: 1em;
-  max-width: 240px;
-  margin: 0 auto;
-}
+	h1 {
+		color: #ff3e00;
+		text-transform: uppercase;
+		font-size: 4em;
+		font-weight: 100;
+	}
 
-h1 {
-  color: #ff3e00;
-  text-transform: uppercase;
-  font-size: 4em;
-  font-weight: 100;
-}
-
-@media (min-width: 640px) {
-  main {
-	max-width: none;
-  }
-}
-
+	@media (min-width: 640px) {
+		main {
+			max-width: none;
+		}
+	}
 </style>
