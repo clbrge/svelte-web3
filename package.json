@@ -1,10 +1,10 @@
 {
   "name": "svelte-web3",
-  "version": "1.2.9",
-  "description": "web3.js as a Svelte store",
-  "module": "dist/index.mjs",
-  "svelte": "dist/index.mjs",
+  "version": "1.3.4",
+  "description": "web3.js as a store for Svelte or Sapper.",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "svelte": "src/web3-store.js",
   "license": "MIT",
   "repository": "clbrge/svelte-web3",
   "author": {
@@ -12,29 +12,23 @@
     "email": "<clb@rouge.network>"
   },
   "scripts": {
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build",
-    "example": "npm run build && rollup -c example/rollup.config.js",
-    "dev-example": "rollup -w -c example/rollup.config.js",
-    "start-example": "sirv public"
+    "build": "rollup -c"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@rollup/plugin-commonjs": "^16.0.0",
+    "@babel/core": "^7.13.10",
+    "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "@rollup/plugin-replace": "^2.3.4",
-    "bn.js": "^5.1.3",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-replace": "^2.4.1",
     "eslint-plugin-svelte3": "^2.7.3",
-    "release-it": "^14.2.1",
-    "rollup": "^2.33.1",
+    "release-it": "^14.4.1",
+    "rollup": "^2.41.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-node-polyfills": "^0.2.1",
-    "rollup-plugin-svelte": "^6.1.0",
-    "sirv-cli": "^1.0.8",
-    "svelte": "^3.29.4",
-    "web3": "1.3.0"
+    "rollup-plugin-svelte": "^7.1.0",
+    "sirv-cli": "^1.0.11",
+    "svelte": "^3.29.7",
+    "web3": "1.3.4"
   },
   "release-it": {
     "github": {
@@ -46,6 +40,7 @@
   },
   "keywords": [
     "svelte",
+    "sapper",
     "ethereum",
     "web3",
     "store"

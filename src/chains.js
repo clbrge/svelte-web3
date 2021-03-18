@@ -1,4 +1,4 @@
-[
+const chains = [
   {
     "name": "Ethereum Mainnet",
     "chainId": 1,
@@ -612,3 +612,5 @@
     "infoURL": "https://poa.network"
   }
 ]
+
+export default chains

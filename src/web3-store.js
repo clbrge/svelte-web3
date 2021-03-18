@@ -1,14 +1,37 @@
 
-// rollup fails to bundle current source web3
-// import Web3 from 'web3'
-import Web3 from 'web3/dist/web3.js'
-
 import { derived, writable } from 'svelte/store'
 
-import chains from './chains.json'
+import chains from './chains.js'
+
+const getGlobalObject = () => {
+  if (typeof globalThis !== 'undefined') { return globalThis }
+  if (typeof self !== 'undefined') { return self }
+  if (typeof window !== 'undefined') { return window }
+  if (typeof global !== 'undefined') { return global }
+  throw new Error('cannot find the global object')
+}
+
+let Web3 = {}
+
+export const loadWeb3 = () => {
+  if (Web3.version) return
+  try {
+    Web3 = getGlobalObject().Web3 || {}
+  } catch (err) {
+    console.error('no globalThis.Web3 object')
+  }
+}
+
+export const getWindowEthereum = () => {
+  try {
+    if (getGlobalObject().ethereum) return getGlobalObject().ethereum
+  } catch (err) {
+    console.error('no globalThis.ethereum object')
+  }
+}
 
 const chain = id => {
-  if (!id) return {}
+  if (!id || !Web3.utils) return {}
   if (Web3.utils.isHexStrict(id)) id = Web3.utils.hexToNumber(id)
   for (const def of chains) {
     if (def.chainId === id) return def
@@ -17,12 +40,20 @@ const chain = id => {
 }
 
 export const createStore = () => {
+
   const { subscribe, set } = writable({
     connected: false,
     accounts: []
   })
 
+  const init = () => {
+    loadWeb3()
+    if (!Web3.version) throw new Error('Cannot find Web3')
+    if (getWindowEthereum()) getWindowEthereum().autoRefreshOnNetworkChange = false
+  }
+
   const setProvider = async provider => {
+    init()
     const instance = new Web3(provider)
     const chainId = await instance.eth.getChainId()
     set({
@@ -35,20 +66,19 @@ export const createStore = () => {
     })
   }
 
-  if (window.ethereum) window.ethereum.autoRefreshOnNetworkChange = false
-
   const setBrowserProvider = async () => {
-    if (!window.ethereum) throw new Error('Please autorized browser extension (Metamask or similar)')
-    const res = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    window.ethereum.on('accountsChanged', setBrowserProvider)
-    window.ethereum.on('chainChanged', setBrowserProvider)
+    init()
+    if (!getWindowEthereum()) throw new Error('Please autorized browser extension (Metamask or similar)')
+    const res = await getWindowEthereum().request({ method: 'eth_requestAccounts' })
+    getWindowEthereum().on('accountsChanged', setBrowserProvider)
+    getWindowEthereum().on('chainChanged', setBrowserProvider)
     set({
-      provider: window.ethereum,
+      provider: getWindowEthereum(),
       providerType: 'Browser',
       connected: true,
-      chainId: window.ethereum.chainId,
+      chainId: getWindowEthereum().chainId,
       accounts: res,
-      instance: new Web3(window.ethereum)
+      instance: new Web3(getWindowEthereum())
     })
   }
 
@@ -91,3 +121,5 @@ export const web3 = derived(
     return $ethStore.instance
   }
 )
+
+loadWeb3()
