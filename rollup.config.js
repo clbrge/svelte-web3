@@ -1,6 +1,6 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
+//import svelte from 'rollup-plugin-svelte';
+//import resolve from '@rollup/plugin-node-resolve';
+//import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import pkg from './package.json';
 
@@ -15,6 +15,7 @@ export default [
     output: [
       { file: "dist/index.mjs", format: "es" },
       { file: "dist/index.js", format: "umd", name: "web3store" },
-    ]
+    ],
+    plugins: [json()]
   },
 ];

@@ -2,9 +2,11 @@
 
 # svelte-web3
 
-import web3.js as a store for Svelte or Sapper.
+Import the [web3.js library](https://web3js.readthedocs.io/) as a
+collection of [readable svelte stores](https://svelte.dev/tutorial/readable-stores)
+for Svelte, Sapper or Svelte-kit.
 
-## Svelte and Sapper installation
+## Svelte, Sapper and Svelte-kit installation
 
 1. add the `svelte-web3` package
 
@@ -12,11 +14,10 @@ import web3.js as a store for Svelte or Sapper.
 npm i svelte-web3
 ```
 
-2. add the web3.js library in the main HTML page (`public/index.html` in Svelte and `src/template.html` in Sapper)
+2. add the web3.js library in the main HTML page (`public/index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in Svelte-kit)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-
 ```
 
 ## Svelte and Sapper basic usage
@@ -24,7 +25,7 @@ npm i svelte-web3
 Import the `ethStore` main connection helper and needed derived Svelte stores (see list below):
 
 ```js
-import { ethStore, web3, selectedAccount, connected } from 'svelte-web3'
+import { ethStore, web3, selectedAccount, connected, chainData } from 'svelte-web3'
 ```
 
 To enable connection to the current window provider: 
@@ -65,20 +66,54 @@ $web3.eth.getBalance(<Ethereum address>)
 ## Derived stores
 
 * connected: true if connection to the provider was successful.
-* chainId: The current blokchain Id.
-* chainName: Name of the The current blokchain.
-* selectedAccount: current selected account.
-* nativeCurrency: currency name in the current chain.
+* selectedAccount: current selected account (if connected).
+* chainId: The current chainId (if connected).
+* chainData: The current blokchain CAIP-2 data (if connected), see below.
 
-Svelte stores are automatically updated when network or the selected account change.
+Svelte stores are automatically updated when the chain or the selected account change.
 
 Please see the file `example/App.svelte` for more usage information to start a transaction
 and concrete usage of stores.
+
+## Human readable chain CAIP-2 information
+
+`chainData` is a store returning the current JavaScript [CAIP-2 representation](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md) object.
+
+### Example of information available (vary depending on the chain)
+
+```json
+{
+  "name": "Ethereum Mainnet",
+  "chain": "ETH",
+  "network": "mainnet",
+  "rpc": [
+    "https://mainnet.infura.io/v3/${INFURA_API_KEY}",
+    "https://api.mycryptoapi.com/eth"
+  ],
+  "faucets": [],
+  "nativeCurrency": {
+    "name": "Ether",
+    "symbol": "ETH",
+    "decimals": 18
+  },
+  "infoURL": "https://ethereum.org",
+  "shortName": "eth",
+  "chainId": 1,
+  "networkId": 1,
+  "icon": "ethereum",
+  "explorers": [{
+    "name": "etherscan",
+    "url": "https://etherscan.io",
+    "icon": "etherscan",
+    "standard": "EIP3091"
+  }]
+}
+```
 
 ## Svelte example (based on rollup template)
 
 Please check `example/svelte-app-template-web3` in github.
 
-## Sapper example (ased on webpack template)
+## Sapper example (based on webpack template)
 
 Please check `example/sapper-app-template-web3` in github.

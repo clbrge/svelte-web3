@@ -1,7 +1,6 @@
 
+import chains from './chains.json'
 import { derived, writable } from 'svelte/store'
-
-import chains from './chains.js'
 
 const getGlobalObject = () => {
   if (typeof globalThis !== 'undefined') { return globalThis }
@@ -11,7 +10,7 @@ const getGlobalObject = () => {
   throw new Error('cannot find the global object')
 }
 
-let Web3 = {}
+export let Web3 = {}
 
 export const loadWeb3 = () => {
   if (Web3.version) return
@@ -30,18 +29,8 @@ export const getWindowEthereum = () => {
   }
 }
 
-const chain = id => {
-  if (!id || !Web3.utils) return {}
-  if (Web3.utils.isHexStrict(id)) id = Web3.utils.hexToNumber(id)
-  for (const def of chains) {
-    if (def.chainId === id) return def
-  }
-  return {}
-}
-
 export const createStore = () => {
-
-  const { subscribe, set } = writable({
+  const { subscribe, update, set } = writable({
     connected: false,
     accounts: []
   })
@@ -56,14 +45,20 @@ export const createStore = () => {
     init()
     const instance = new Web3(provider)
     const chainId = await instance.eth.getChainId()
-    set({
+    const accounts = await instance.eth.getAccounts()
+    if (instance._provider && instance._provider.on) {
+      instance._provider.on('accountsChanged', () => setProvider(provider))
+      instance._provider.on('chainChanged', () => setProvider(provider))
+      // instance._provider.on('networkChanged', () => setProvider(provider))
+    }
+    update(() => ({
       provider,
       providerType: 'String',
       connected: true,
       chainId,
-      accounts: [null],
+      accounts,
       instance,
-    })
+    }))
   }
 
   const setBrowserProvider = async () => {
@@ -72,38 +67,47 @@ export const createStore = () => {
     const res = await getWindowEthereum().request({ method: 'eth_requestAccounts' })
     getWindowEthereum().on('accountsChanged', setBrowserProvider)
     getWindowEthereum().on('chainChanged', setBrowserProvider)
-    set({
+    update(() => ({
       provider: getWindowEthereum(),
       providerType: 'Browser',
       connected: true,
       chainId: getWindowEthereum().chainId,
       accounts: res,
       instance: new Web3(getWindowEthereum())
-    })
+    }))
+  }
+
+  const close = async (provider) => {
+    if(provider && provider.close) {
+      await provider.close()
+    }
+    update(() => ({
+      connected: false,
+      accounts: []
+    }))
   }
 
   return {
     setBrowserProvider,
     setProvider,
+    close,
     subscribe
   }
-
 }
 
 export const ethStore = createStore()
 
 export const connected = derived(ethStore, $ethStore => $ethStore.connected)
+export const chainId = derived(ethStore, $ethStore => $ethStore.chainId)
+export const providerType = derived(ethStore, $ethStore => $ethStore.providerType)
 
 export const selectedAccount = derived(
   ethStore,
-  $ethStore => $ethStore.accounts.length ? $ethStore.accounts[0] : null
+  $ethStore => {
+    if ($ethStore.connected) return $ethStore.accounts.length ? $ethStore.accounts[0] : null
+    return null
+  }
 )
-
-export const providerType = derived(ethStore, $ethStore => $ethStore.providerType)
-export const chainId = derived(ethStore, $ethStore => $ethStore.chainId)
-
-export const chainName = derived(ethStore, $ethStore => chain($ethStore.chainId).name)
-export const nativeCurrency = derived(ethStore, $ethStore => chain($ethStore.chainId).nativeCurrency)
 
 export const walletType = derived(ethStore, $ethStore => {
   if (!$ethStore.provider) return null
@@ -112,7 +116,7 @@ export const walletType = derived(ethStore, $ethStore => {
   if ($ethStore.provider.isNiftyWallet) return 'Nifty'
   if ($ethStore.provider.isTrust) return 'Trust'
   return 'Unknown'
-});
+})
 
 export const web3 = derived(
   ethStore,
@@ -120,6 +124,21 @@ export const web3 = derived(
     if (!$ethStore.instance) return { utils: Web3.utils, version: Web3.version }
     return $ethStore.instance
   }
+)
+
+const getData = id => {
+  const noData = { rpc: [], faucets: [], nativeCurrency: {} }
+  if (!id || !Web3.utils) return noData
+  if (Web3.utils.isHexStrict(id)) id = Web3.utils.hexToNumber(id)
+  for (const data of chains) {
+    if (data.chainId === id) return data
+  }
+  return noData
+}
+
+export const chainData = derived(
+  ethStore,
+  $ethStore => $ethStore.chainId ? getData($ethStore.chainId) : {}
 )
 
 loadWeb3()

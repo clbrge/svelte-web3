@@ -2,3 +2,5 @@
 node_modules
 /dist/
 public
+example/sapper-app-template-web3/package-lock.json
+example/svelte-app-template-web3/package-lock.json

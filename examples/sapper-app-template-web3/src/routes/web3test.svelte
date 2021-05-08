@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
-  import { ethStore, web3, selectedAccount, connected, chainName, nativeCurrency } from 'svelte-web3'
+
+  import { ethStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
 
   export let message
   export let tipAddress
@@ -14,7 +15,7 @@
   const sendTip = async (e) => {
     console.log('Received move event (sendTip button)', e)
     const tx = await $web3.eth.sendTransaction({
-      gasPrice: $web3.utils.toHex($web3.utils.toWei('5', 'gwei')),
+      // gasPrice: $web3.utils.toHex($web3.utils.toWei('30', 'gwei')),
       gasLimit: $web3.utils.toHex('21000'),
       from: $selectedAccount,
       to: tipAddress,
@@ -48,6 +49,7 @@
   <p>
     <button on:click="{enable}">connect to https://sokol.poa.network</button>
   </p>
+
   <p>
     <button on:click="{enableBrowser}">connect to the browser window provider </button> (eg Metamask)
   </p>
@@ -60,23 +62,26 @@
 
   {#if $connected}
   <p>
-    Connected chain: {$chainName}
+    Connected chain: chainId = {$chainId}
+  </p>
+  <p>
+    chainData = {JSON.stringify($chainData)}
   </p>
   <p>
     Selected account: {$selectedAccount || 'not defined'}
   </p>
 
   <p>
-    {checkAccount} Balance on {$chainName}:
+    {checkAccount} Balance on {$chainData.name}:
     {#await balance}
     <span>waiting...</span>
     {:then value}
     <span>{value}</span>
-    {/await} {$nativeCurrency.symbol}
+    {/await} {$chainData.nativeCurrency?.symbol}
   </p>
 
   {#if $selectedAccount}
-  <p><button on:click="{sendTip}">send 0.01 {$nativeCurrency.symbol} tip to {tipAddress} (author)</button></p>
+  <p><button on:click="{sendTip}">send 0.01 {$chainData.nativeCurrency?.symbol} tip to {tipAddress} (author)</button></p>
   {/if}
 
   {/if}
