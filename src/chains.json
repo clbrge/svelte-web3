@@ -364,43 +364,43 @@
     "infoURL": "https://ether1.org"
   },
   {
-    "name": "NEAR MainNet",
+    "name": "Aurora MainNet",
     "chainId": 1313161554,
-    "shortName": "near",
+    "shortName": "aurora",
     "chain": "NEAR",
     "network": "mainnet",
     "networkId": 1313161554,
-    "nativeCurrency": {"name":"NEAR","symbol":"NEAR","decimals":24},
-    "rpc": [],
+    "nativeCurrency": {"name":"Ether","symbol":"aETH","decimals":18},
+    "rpc": ["https://rpc.mainnet.aurora.dev:8545"],
     "faucets": [],
     "explorers": [],
-    "infoURL": "https://near.org/"
+    "infoURL": "https://aurora.dev"
   },
   {
-    "name": "NEAR TestNet",
+    "name": "Aurora TestNet",
     "chainId": 1313161555,
-    "shortName": "neart",
+    "shortName": "aurora-testnet",
     "chain": "NEAR",
     "network": "testnet",
     "networkId": 1313161555,
-    "nativeCurrency": {"name":"NEAR","symbol":"tNEAR","decimals":24},
-    "rpc": [],
-    "faucets": ["https://wallet.testnet.near.org"],
+    "nativeCurrency": {"name":"Ether","symbol":"aETH","decimals":18},
+    "rpc": ["https://rpc.testnet.aurora.dev:8545"],
+    "faucets": [],
     "explorers": [],
-    "infoURL": "https://near.org/"
+    "infoURL": "https://aurora.dev"
   },
   {
-    "name": "NEAR BetaNet",
+    "name": "Aurora BetaNet",
     "chainId": 1313161556,
-    "shortName": "nearb",
+    "shortName": "aurora-betanet",
     "chain": "NEAR",
     "network": "betanet",
     "networkId": 1313161556,
-    "nativeCurrency": {"name":"NEAR","symbol":"bNEAR","decimals":24},
-    "rpc": [],
+    "nativeCurrency": {"name":"Ether","symbol":"aETH","decimals":18},
+    "rpc": ["https://rpc.betanet.aurora.dev:8545"],
     "faucets": [],
     "explorers": [],
-    "infoURL": "https://near.org/"
+    "infoURL": "https://aurora.dev"
   },
   {
     "name": "Xerom",
@@ -476,7 +476,7 @@
     "networkId": 16,
     "nativeCurrency": {"name":"Coston Spark","symbol":"CFLR","decimals":18},
     "rpc": [],
-    "faucets": [],
+    "faucets": ["https://faucet.towolabs.com"],
     "explorers": [],
     "infoURL": "https://github.com/flare-eng/coston"
   },
@@ -739,6 +739,19 @@
     "faucets": [],
     "explorers": [],
     "infoURL": "https://akroma.io"
+  },
+  {
+    "name": "quarkblockchain",
+    "chainId": 20181205,
+    "shortName": "qki",
+    "chain": "QKI",
+    "network": "mainnet",
+    "networkId": 20181205,
+    "nativeCurrency": {"name":"quarkblockchain Native Token","symbol":"HT","decimals":18},
+    "rpc": ["https://hz.rpc.qkiscan.cn","https://jp.rpc.qkiscan.io"],
+    "faucets": [],
+    "explorers": [],
+    "infoURL": "https://quarkblockchain.org/"
   },
   {
     "name": "420coin",
@@ -1021,10 +1034,10 @@
     "network": "testnet",
     "networkId": 322,
     "nativeCurrency": {"name":"KuCoin Testnet Token","symbol":"KCS","decimals":18},
-    "rpc": ["https://rpc-testnet.kucoin.one"],
-    "faucets": ["https://faucet-testnet.kucoin.one"],
-    "explorers": [{"name":"kcc-scan","url":"https://scan-testnet.kucoin.one","standard":"EIP3091"}],
-    "infoURL": "https://scan-testnet.kucoin.one"
+    "rpc": ["https://rpc-testnet.kcc.network"],
+    "faucets": ["https://faucet-testnet.kcc.network"],
+    "explorers": [{"name":"kcc-scan","url":"https://scan-testnet.kcc.network","standard":"EIP3091"}],
+    "infoURL": "https://scan-testnet.kcc.network"
   },
   {
     "name": "Fusion Mainnet",
@@ -1290,11 +1303,11 @@
     "name": "IoTeX Network Mainnet",
     "chainId": 4689,
     "shortName": "iotex-mainnet",
-    "chain": "IOTX",
+    "chain": "iotex.io",
     "network": "mainnet",
     "networkId": 4689,
     "nativeCurrency": {"name":"IoTeX","symbol":"IOTX","decimals":18},
-    "rpc": ["https://babel-api.mainnet.iotex.one"],
+    "rpc": ["https://babel-api.mainnet.iotex.io"],
     "faucets": [],
     "explorers": [],
     "infoURL": "https://iotex.io"
@@ -1303,12 +1316,12 @@
     "name": "IoTeX Network Testnet",
     "chainId": 4690,
     "shortName": "iotex-testnet",
-    "chain": "IOTX",
+    "chain": "iotex.io",
     "network": "testnet",
     "networkId": 4690,
     "nativeCurrency": {"name":"IoTeX","symbol":"IOTX","decimals":18},
-    "rpc": ["https://babel-api.testnet.iotex.one"],
-    "faucets": [],
+    "rpc": ["https://babel-api.testnet.iotex.io"],
+    "faucets": ["https://faucet.iotex.io/"],
     "explorers": [],
     "infoURL": "https://iotex.io"
   },
@@ -1569,7 +1582,7 @@
     "nativeCurrency": {"name":"OKExChain Global Utility Token in testnet","symbol":"OKT","decimals":18},
     "rpc": ["https://exchaintestrpc.okex.org"],
     "faucets": ["https://www.okex.com/drawdex"],
-    "explorers": [],
+    "explorers": [{"name":"OKLink","url":"https://www.oklink.com/okexchain-test","standard":"EIP3091"}],
     "infoURL": "https://www.okex.com/okexchain"
   },
   {
@@ -1582,7 +1595,7 @@
     "nativeCurrency": {"name":"OKExChain Global Utility Token","symbol":"OKT","decimals":18},
     "rpc": ["https://exchainrpc.okex.org"],
     "faucets": [],
-    "explorers": [],
+    "explorers": [{"name":"OKLink","url":"https://www.oklink.com/okexchain","standard":"EIP3091"}],
     "infoURL": "https://www.okex.com/okexchain"
   },
   {
@@ -1768,6 +1781,19 @@
     "infoURL": "https://ubiqsmart.com"
   },
   {
+    "name": "GeneChain",
+    "chainId": 80,
+    "shortName": "GeneChain",
+    "chain": "GeneChain",
+    "network": "mainnet",
+    "networkId": 80,
+    "nativeCurrency": {"name":"RNA","symbol":"RNA","decimals":18},
+    "rpc": ["https://rpc.genechain.io"],
+    "faucets": [],
+    "explorers": [{"name":"GeneChain Scan","url":"https://scan.genechain.io","standard":"EIP3091"}],
+    "infoURL": "https://scan.genechain.io/"
+  },
+  {
     "name": "Matic Testnet Mumbai",
     "chainId": 80001,
     "shortName": "maticmum",
@@ -1796,7 +1822,7 @@
   {
     "name": "GeneChain Adenine Testnet",
     "chainId": 8080,
-    "shortName": "GeneChain",
+    "shortName": "GeneChainAdn",
     "chain": "GeneChain",
     "network": "adenine",
     "networkId": 8080,
@@ -1870,6 +1896,32 @@
     "faucets": [],
     "explorers": [],
     "infoURL": "https://www.kortho.io/"
+  },
+  {
+    "name": "GateChain Testnet",
+    "chainId": 85,
+    "shortName": "GTC-T",
+    "chain": "gatechain",
+    "network": "testnet",
+    "networkId": 85,
+    "nativeCurrency": {"name":"GateToken","symbol":"GT","decimals":18},
+    "rpc": ["https://testnet.gatenode.cc"],
+    "faucets": ["https://www.gatescan.org/testnet/faucet"],
+    "explorers": [{"name":"GateScan","url":"https://www.gatescan.org/testnet","standard":"EIP3091"}],
+    "infoURL": "https://www.gatechain.io"
+  },
+  {
+    "name": "GateChain Mainnet",
+    "chainId": 86,
+    "shortName": "GTC",
+    "chain": "gatechain",
+    "network": "mainnet",
+    "networkId": 86,
+    "nativeCurrency": {"name":"GateToken","symbol":"GT","decimals":18},
+    "rpc": ["https://evm.gatenode.cc"],
+    "faucets": ["https://www.gatescan.org/faucet"],
+    "explorers": [{"name":"GateScan","url":"https://www.gatescan.org","standard":"EIP3091"}],
+    "infoURL": "https://www.gatechain.io"
   },
   {
     "name": "TomoChain",

@@ -15,17 +15,17 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.0",
+    "@babel/core": "^7.14.3",
     "@rollup/plugin-json": "^4.1.0",
     "eslint-plugin-svelte3": "^3.2.0",
-    "release-it": "^14.6.1",
-    "rollup": "^2.47.0",
+    "release-it": "^14.6.2",
+    "rollup": "^2.49.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^7.1.0",
     "sirv-cli": "^1.0.11",
     "svelte": "^3.38.2",
-    "web3": "1.3.5"
+    "web3": "1.3.6"
   },
   "release-it": {
     "github": {
@@ -36,6 +36,7 @@
     "access": "public"
   },
   "keywords": [
+    "svelte-kit",
     "svelte",
     "sapper",
     "ethereum",

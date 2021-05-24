@@ -21,7 +21,7 @@ export const loadWeb3 = () => {
   }
 }
 
-export const getWindowEthereum = () => {
+const getWindowEthereum = () => {
   try {
     if (getGlobalObject().ethereum) return getGlobalObject().ethereum
   } catch (err) {
@@ -45,20 +45,24 @@ export const createStore = () => {
     init()
     const instance = new Web3(provider)
     const chainId = await instance.eth.getChainId()
-    const accounts = await instance.eth.getAccounts()
+    // no account with ganache
+    const accounts = /127/.test(provider) ? [] : await instance.eth.getAccounts()
     if (instance._provider && instance._provider.on) {
       instance._provider.on('accountsChanged', () => setProvider(provider))
       instance._provider.on('chainChanged', () => setProvider(provider))
-      // instance._provider.on('networkChanged', () => setProvider(provider))
+      instance._provider.on('networkChanged', () => setProvider(provider))
     }
-    update(() => ({
-      provider,
-      providerType: 'String',
-      connected: true,
-      chainId,
-      accounts,
-      instance,
-    }))
+    update(previous => {
+      // TODO if (previous.instance)  unsubcribe all events
+      return {
+        provider,
+        providerType: 'String',
+        connected: true,
+        chainId,
+        accounts,
+        instance,
+      }
+    })
   }
 
   const setBrowserProvider = async () => {
@@ -95,39 +99,11 @@ export const createStore = () => {
   }
 }
 
-export const ethStore = createStore()
+const allStores = {}
 
-export const connected = derived(ethStore, $ethStore => $ethStore.connected)
-export const chainId = derived(ethStore, $ethStore => $ethStore.chainId)
-export const providerType = derived(ethStore, $ethStore => $ethStore.providerType)
-
-export const selectedAccount = derived(
-  ethStore,
-  $ethStore => {
-    if ($ethStore.connected) return $ethStore.accounts.length ? $ethStore.accounts[0] : null
-    return null
-  }
-)
-
-export const walletType = derived(ethStore, $ethStore => {
-  if (!$ethStore.provider) return null
-  if (typeof $ethStore.provider === 'string') return $ethStore.provider
-  if ($ethStore.provider.isMetaMask) return 'MetaMask (or compatible)'
-  if ($ethStore.provider.isNiftyWallet) return 'Nifty'
-  if ($ethStore.provider.isTrust) return 'Trust'
-  return 'Unknown'
-})
-
-export const web3 = derived(
-  ethStore,
-  $ethStore => {
-    if (!$ethStore.instance) return { utils: Web3.utils, version: Web3.version }
-    return $ethStore.instance
-  }
-)
+const noData = { rpc: [], faucets: [], nativeCurrency: {} }
 
 const getData = id => {
-  const noData = { rpc: [], faucets: [], nativeCurrency: {} }
   if (!id || !Web3.utils) return noData
   if (Web3.utils.isHexStrict(id)) id = Web3.utils.hexToNumber(id)
   for (const data of chains) {
@@ -136,9 +112,66 @@ const getData = id => {
   return noData
 }
 
-export const chainData = derived(
-  ethStore,
-  $ethStore => $ethStore.chainId ? getData($ethStore.chainId) : {}
+export const makeChainStore = name => {
+
+  const ethStore = allStores[name] = createStore()
+
+  allStores[name].connected = derived(ethStore, $ethStore => $ethStore.connected)
+  allStores[name].chainId = derived(ethStore, $ethStore => $ethStore.chainId)
+  allStores[name].providerType = derived(ethStore, $ethStore => $ethStore.providerType)
+  allStores[name].selectedAccount = derived(
+    ethStore,
+    $ethStore => {
+      if ($ethStore.connected) return $ethStore.accounts.length ? $ethStore.accounts[0] : null
+      return null
+    }
+  )
+
+  allStores[name].walletType = derived(ethStore, $ethStore => {
+    if (!$ethStore.provider) return null
+    if (typeof $ethStore.provider === 'string') return $ethStore.provider
+    if ($ethStore.provider.isMetaMask) return 'MetaMask (or compatible)'
+    if ($ethStore.provider.isNiftyWallet) return 'Nifty'
+    if ($ethStore.provider.isTrust) return 'Trust'
+    return 'Unknown'
+  })
+
+  allStores[name].web3 = derived(
+    ethStore,
+    $ethStore => {
+      if (!$ethStore.instance) return { utils: Web3.utils, version: Web3.version }
+      return $ethStore.instance
+    }
+  )
+
+  allStores[name].chainData = derived(
+    ethStore,
+    $ethStore => $ethStore.chainId ? getData($ethStore.chainId) : {}
+  )
+
+  return allStores[name]
+}
+
+export const contractStore = (abi, address, defaults = {}) => derived(
+  [web3, connected],
+  ([$web3, $connected]) => {
+    if ($connected && $web3.eth) {
+      return new $web3.eth.Contract(abi, address, defaults)
+    }
+    return null
+  }
 )
 
 loadWeb3()
+
+export const defaultChainStore = makeChainStore('default')
+export const connected = allStores.default.connected
+export const chainId = allStores.default.chainId
+export const providerType = allStores.default.providerType
+export const selectedAccount = allStores.default.selectedAccount
+export const walletType = allStores.default.walletType
+export const web3 = allStores.default.web3
+export const chainData = allStores.default.chainData
+
+export const ethStore = defaultChainStore
+
