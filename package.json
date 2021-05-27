@@ -1,6 +1,6 @@
 {
   "name": "svelte-web3",
-  "version": "1.3.5",
+  "version": "2.0.0",
   "description": "web3.js as a collection of stores for Svelte, Sapper or Svelte-kit.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
