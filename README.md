@@ -2,11 +2,11 @@
 
 # svelte-web3
 
-Import the [web3.js library](https://web3js.readthedocs.io/) as a
+Use the [web3.js library](https://web3js.readthedocs.io/) as a
 collection of [readable svelte stores](https://svelte.dev/tutorial/readable-stores)
 for Svelte, Sapper or Svelte-kit.
 
-## Svelte, Sapper and Svelte-kit installation
+## Installation
 
 1. add the `svelte-web3` package
 
@@ -20,64 +20,87 @@ npm i svelte-web3
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 ```
 
-## Svelte and Sapper basic usage
+## Basic usage (defaultstore connected to one chain)
 
-Import the `ethStore` main connection helper and needed derived Svelte stores (see list below):
-
-```js
-import { ethStore, web3, selectedAccount, connected, chainData } from 'svelte-web3'
-```
-
-To enable connection to the current window provider: 
+Import the `defaultChainStore` main connection helper and needed derived Svelte stores (see list below):
 
 ```js
-ethStore.setBrowserProvider()
+import { defaultChainStore, web3, selectedAccount, connected, chainData } from 'svelte-web3'
 ```
 
-To enable connection using an url string: 
+:exclamation: `defaultChainStore` was named before `ethStore`. The
+former naming still works but will be removed in later versions of
+`svelte-web3` package. Please update your code!
+
+### Connection with the browser provider (wallets like metamask)
+
+To enable a connection with the current window provider: 
 
 ```js
-ethStore.setProvider('<ws/https or http provider url>')
+defaultChainStore.setBrowserProvider()
 ```
 
-Please note that if your code is running in SSR context (like with
-Sapper), you can only call `setBrowserProvider` and `setProvider` in
-browser context for example using `onMount` or as an handler of a
-client-side event :
+Please note that your code need to be in browser context when
+`setBrowserProvider` is running. So you may want to use `onMount` when
+using Sapper or Svelte-kit. Similarly, you cannot use
+`setBrowserProvider` in SSR context.
 
 ```js
   onMount(
-    async () => {
-      console.log('Connecting to Ethereum Testnet Görli...')
-      ethStore.setProvider('https://rpc.slock.it/goerli')
-    })
+    () => {
+      // add a test to return in SSR context
+      defaultChainStore.setBrowserProvider()
+    }
+  )
 ```
 
-In SSR context, the stores are defined but no connection has been
-instanciated.
+### Connection with other providers (ws, http, Web3Modal, Walletconnect, etc)
+
+To enable connection using an url string or a valid provider object
+(as returned by web3Modal or WalletConnect for example):
+
+```js
+defaultChainStore.setProvider(<ws/https or http provider url or provider Object>)
+```
+
+### Using the Web3 instance $web3 after the connection
 
 If a connection is successful, you can access the instantiated web3.js
-with the current window provider using the `$` svelte store syntax :
+using the `$` svelte store syntax :
 
 ```js
 $web3.eth.getBalance(<Ethereum address>)
 ```
 
+The whole Web3.js API is now usable in the `<script>` section of your
+svelte files if you always use notation `$web3` and not `web3` which
+is teh default notation is in web3.js library documentation.  (using
+`svelte-web3` package, because the svelte store value should always
+start with `$`, `web3` is the Svelte store itself, not the
+instantiated library)
+
 ## Derived stores
+
+Some helpers derivated Svelte stores have been defined. They are
+automatically updated when a new connection happens, or when the chain
+or the selected account change:
 
 * connected: true if connection to the provider was successful.
 * selectedAccount: current selected account (if connected).
 * chainId: The current chainId (if connected).
 * chainData: The current blokchain CAIP-2 data (if connected), see below.
 
-Svelte stores are automatically updated when the chain or the selected account change.
 
-Please see the file `example/App.svelte` for more usage information to start a transaction
-and concrete usage of stores.
+Please see the file
+`examples/svelte-app-template-web3/src/MonoChain.svelte` for more
+usage information to start a transaction and concrete usage of derived
+stores.
+
 
 ## Human readable chain CAIP-2 information
 
 `chainData` is a store returning the current JavaScript [CAIP-2 representation](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md) object.
+
 
 ### Example of information available (vary depending on the chain)
 
@@ -110,10 +133,56 @@ and concrete usage of stores.
 }
 ```
 
+## Simultaneous multi chain usage
+
+You can also using the library to create several stores, each
+connected to different providers.  For example, you may want a
+connection to the same chain througth the browser wallet and
+simultaneously with Infura; or many stores each connected to a
+different chains at the same time.
+
+In this case, use the `makeChainStore` factory function as below :
+
+```js
+  import { makeChainStore } from 'svelte-web3'
+
+  let ethStore, web3, connected, selectedAccount, chainId, chainData
+  ({ web3, connected, selectedAccount, chainId, chainData, ...ethStore } = makeChainStore('<id>'))
+
+  ethStore.setProvider('https://rpc.slock.it/goerli')
+```
+
+`<id>` can be an arbitrary name to be able to retrieve the store with the function `getChainStore`
+without reinitializing the conection:
+
+
+```js
+  import { getChainStore } from 'svelte-web3'
+
+  let ethStore, web3, connected, selectedAccount, chainId, chainData
+  ({ web3, connected, selectedAccount, chainId, chainData, ...ethStore } = getChainStore('<id>'))
+```
+
+The `web3` store and all other derived stores will work the same way as with the default store.
+
+If you want to use the different chain stores in the same svelte file
+(not advised, it's better to use subcomponents), you may renamed the
+stores this way :
+
+```js
+  let ethStore_A, web3_A, ethStore_B, web3_B
+
+  ({ web3: web3_A, ...ethStore_A } = makeChainStore('<id_A>'))
+  ({ web3: web3_B, ...ethStore_B } = makeChainStore('<id_B>'))
+```
+
+
 ## Svelte example (based on rollup template)
 
-Please check `example/svelte-app-template-web3` in github.
+Please check `examples/svelte-app-template-web3` in github.
+
+Contain both sub-examples to use the default store and multi stores.
 
 ## Sapper example (based on webpack template)
 
-Please check `example/sapper-app-template-web3` in github.
+Please check `examples/sapper-app-template-web3` in github.

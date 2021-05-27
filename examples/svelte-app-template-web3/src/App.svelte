@@ -1,106 +1,65 @@
 <script>
-  // import { ethStore, web3, selectedAccount, connected, chainId, chainData } from '../../../dist/index.js'
-  import { ethStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  import MonoChain from './MonoChain.svelte'
+  import MultiChain from './MultiChain.svelte'
 
-  export let name;
+  export let name
 
-  export let tipAddress
-
-  const enable = () => ethStore.setProvider('https://sokol.poa.network')
-  const enableBrowser = () => ethStore.setBrowserProvider()
-
-  $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
-  $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
-
-  const sendTip = async (e) => {
-    console.log('Received move event (sendTip button)', e)
-    const tx = await $web3.eth.sendTransaction({
-      // gasPrice: $web3.utils.toHex($web3.utils.toWei('30', 'gwei')),
-      gasLimit: $web3.utils.toHex('21000'),
-      from: $selectedAccount,
-      to: tipAddress,
-      value: $web3.utils.toHex($web3.utils.toWei('1', 'finney'))
-    })
-    console.log('Receipt from sendTip transaction', tx)
-    alert('Thanks!')
-  }
+  let example = MonoChain
 
 </script>
 
-<main>
+<section class="section pb-0">
+  <div class="container">
+    <h1 class="title">
+      svelte-web3 usage example with Svelte
+    </h1>
 
-  <h1>Hello {name}!</h1>
+    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 
-  <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+    <p>Visit the <a href="https://web3js.readthedocs.io/en/">Web3.js documentation</a> to learn how to use Web3.js library.</p>
 
-  <p>Visit the <a href="https://web3js.readthedocs.io/en/">Web3.js documentation</a> to learn how to use Web3.js library.</p>
-
-
-  <p>Web3 injected in window: { window.Web3 ? 'yes' : 'no' }</p>
-
-  <p>Web3 version: {$web3.version} </p>
-
-  {#if $web3.version}
-  <p>
-    <button on:click="{enable}">connect to https://sokol.poa.network</button>
-  </p>
-
-  <p>
-    <button on:click="{enableBrowser}">connect to the browser window provider </button> (eg Metamask)
-  </p>
-  {:else}
-  Please check that web3 as been added in public/index.html with the line:
-  <pre>
+    {#if window.Web3}
+    <p>The Web3.js library has been injected in Global window Object (version: {window.Web3.version}).</p>
+    {:else}
+    <div class="notification is-warning">
+      <strong>Error! The Web3.js library has not been detected in the Global window Object.</strong>
+      Please check that Web3.js has been correctly added in <em class="is-family-code">public/index.html</em>
+      with the line:
+      <pre>
       &lt;script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js">&lt;/script>
-  </pre>
-  {/if}
+      </pre>
+    </div>
+    {/if}
+    <p>Browser wallet detected in Global Object window.ethereum : { window.ethereum ? 'yes' : 'no' }</p>
 
-  {#if $connected}
-  <p>
-    Connected chain: chainId = {$chainId}
-  </p>
-  <p>
-    chainData = {JSON.stringify($chainData)}
-  </p>
-  <p>
-    Selected account: {$selectedAccount || 'not defined'}
-  </p>
+  </div>
+</section>
 
-  <p>
-    {checkAccount} Balance on {$chainData.name}:
-    {#await balance}
-    <span>waiting...</span>
-    {:then value}
-    <span>{value}</span>
-    {/await} {$chainData.nativeCurrency?.symbol}
-  </p>
+<section class="section">
 
-  {#if $selectedAccount}
-  <p><button on:click="{sendTip}">send 0.01 {$chainData.nativeCurrency?.symbol} tip to {tipAddress} (author)</button></p>
-  {/if}
+  <div class="container">
 
-  {/if}
+    <div class="tabs is-toggle is-toggle-rounded">
+      <ul>
+        <li on:click={() => {example = MonoChain}} class:is-active={/MonoChain/.test(example.toString())}>
+          <a>
+            <span class="icon is-small"><i class="fas fa-image"></i></span>
+            <span>MonoChain</span>
+          </a>
+        </li>
+        <li on:click={() => {example = MultiChain}}  class:is-active={/MultiChain/.test(example.toString())}>
+          <a>
+            <span class="icon is-small"><i class="fas fa-music"></i></span>
+            <span>MultiChains</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-</main>
+    <svelte:component this={example} />
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+  </div>
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+
+</section>

@@ -152,6 +152,11 @@ export const makeChainStore = name => {
   return allStores[name]
 }
 
+export const getChainStore = name => {
+  if (!allStores[name]) throw new Error(`chain store ${name} does not exist`)
+  return allStores[name]
+}
+
 export const contractStore = (abi, address, defaults = {}) => derived(
   [web3, connected],
   ([$web3, $connected]) => {
