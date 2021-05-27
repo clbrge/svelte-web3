@@ -4,7 +4,7 @@
 
 Use the [web3.js library](https://web3js.readthedocs.io/) as a
 collection of [readable svelte stores](https://svelte.dev/tutorial/readable-stores)
-for Svelte, Sapper or Svelte-kit.
+for Svelte, Sapper or Sveltekit.
 
 ## Installation
 
@@ -14,7 +14,7 @@ for Svelte, Sapper or Svelte-kit.
 npm i svelte-web3
 ```
 
-2. add the web3.js library in the main HTML page (`public/index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in Svelte-kit)
+2. add the web3.js library in the main HTML page (`public/index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in Sveltekit)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
@@ -42,7 +42,7 @@ defaultChainStore.setBrowserProvider()
 
 Please note that your code need to be in browser context when
 `setBrowserProvider` is running. So you may want to use `onMount` when
-using Sapper or Svelte-kit. Similarly, you cannot use
+using Sapper or Sveltekit. Similarly, you cannot use
 `setBrowserProvider` in SSR context.
 
 ```js
@@ -74,7 +74,7 @@ $web3.eth.getBalance(<Ethereum address>)
 
 The whole Web3.js API is now usable in the `<script>` section of your
 svelte files if you always use notation `$web3` and not `web3` which
-is teh default notation is in web3.js library documentation.  (using
+is the default notation is in web3.js library documentation.  (using
 `svelte-web3` package, because the svelte store value should always
 start with `$`, `web3` is the Svelte store itself, not the
 instantiated library)
