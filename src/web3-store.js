@@ -157,7 +157,7 @@ export const getChainStore = name => {
   return allStores[name]
 }
 
-export const contractStore = (abi, address, defaults = {}) => derived(
+export const makeContractStore = (abi, address, defaults = {}) => derived(
   [web3, connected],
   ([$web3, $connected]) => {
     if ($connected && $web3.eth) {

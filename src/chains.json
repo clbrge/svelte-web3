@@ -156,6 +156,19 @@
     "infoURL": "https://web3games.org/"
   },
   {
+    "name": "Sakura",
+    "chainId": 1022,
+    "shortName": "sku",
+    "chain": "Sakura",
+    "network": "sakura",
+    "networkId": 1022,
+    "nativeCurrency": {"name":"Sakura","symbol":"SKU","decimals":18},
+    "rpc": [],
+    "faucets": [],
+    "explorers": [],
+    "infoURL": "https://clover.finance/sakura"
+  },
+  {
     "name": "Clover Testnet",
     "chainId": 1023,
     "shortName": "tclv",
@@ -481,6 +494,19 @@
     "infoURL": "https://github.com/flare-eng/coston"
   },
   {
+    "name": "Catecoin Chain Mainnet",
+    "chainId": 1618,
+    "shortName": "cate",
+    "chain": "Catechain",
+    "network": "mainnet",
+    "networkId": 1618,
+    "nativeCurrency": {"name":"Catecoin","symbol":"CATE","decimals":18},
+    "rpc": ["https://send.catechain.com"],
+    "faucets": [],
+    "explorers": [],
+    "infoURL": "https://catechain.com"
+  },
+  {
     "name": "Lightstreams Testnet",
     "chainId": 162,
     "shortName": "tpht",
@@ -747,7 +773,7 @@
     "chain": "QKI",
     "network": "mainnet",
     "networkId": 20181205,
-    "nativeCurrency": {"name":"quarkblockchain Native Token","symbol":"HT","decimals":18},
+    "nativeCurrency": {"name":"quarkblockchain Native Token","symbol":"QKI","decimals":18},
     "rpc": ["https://hz.rpc.qkiscan.cn","https://jp.rpc.qkiscan.io"],
     "faucets": [],
     "explorers": [],
@@ -866,7 +892,7 @@
     "networkId": 246,
     "nativeCurrency": {"name":"Energy Web Token","symbol":"EWT","decimals":18},
     "rpc": ["https://rpc.energyweb.org","wss://rpc.energyweb.org/ws"],
-    "faucets": [],
+    "faucets": ["https://faucet.carbonswap.exchange"],
     "explorers": [],
     "infoURL": "https://energyweb.org"
   },
@@ -1389,6 +1415,19 @@
     "faucets": [],
     "explorers": [],
     "infoURL": "https://xinfin.org"
+  },
+  {
+    "name": "EraSwap Mainnet",
+    "chainId": 5197,
+    "shortName": "es",
+    "chain": "ESN",
+    "network": "mainnet",
+    "networkId": 5197,
+    "nativeCurrency": {"name":"EraSwap","symbol":"ES","decimals":18},
+    "rpc": ["https://mainnet.eraswap.network","https://rpc-mumbai.mainnet.eraswap.network"],
+    "faucets": [],
+    "explorers": [],
+    "infoURL": "https://eraswap.info/"
   },
   {
     "name": "CoinEx Smart Chain Mainnet",
@@ -1974,6 +2013,19 @@
     "faucets": [],
     "explorers": [],
     "infoURL": "https://ethersocial.org"
+  },
+  {
+    "name": "CryptoKylin Testnet",
+    "chainId": 95,
+    "shortName": "Kylin Testnet",
+    "chain": "EOS",
+    "network": "testnet",
+    "networkId": 95,
+    "nativeCurrency": {"name":"EOS","symbol":"EOS","decimals":18},
+    "rpc": ["https://kylin.eosargentina.io"],
+    "faucets": [],
+    "explorers": [{"name":"eosq","url":"https://kylin.eosargentina.io","standard":"EIP3091"}],
+    "infoURL": "https://www.cryptokylin.io/"
   },
   {
     "name": "Binance Smart Chain Testnet",

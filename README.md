@@ -133,6 +133,20 @@ stores.
 }
 ```
 
+## Create contract stores
+
+The function `makeContractStore` allows you to create a Svelte derived
+store of a `web3.eth.Contract` object instance. It takes the same
+parameters as a ̀new web3.eth.Contract` call:
+
+```js
+makeContractStore(jsonInterface[, address][, options])
+```
+
+This store is conveniently and automatically updated after connection
+and when the account or chain change.
+
+
 ## Simultaneous multi chain usage
 
 You can also using the library to create several stores, each
