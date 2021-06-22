@@ -15,11 +15,11 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
+    "@babel/core": "^7.14.6",
     "@rollup/plugin-json": "^4.1.0",
     "eslint-plugin-svelte3": "^3.2.0",
-    "release-it": "^14.8.0",
-    "rollup": "^2.51.0",
+    "release-it": "^14.10.0",
+    "rollup": "^2.52.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^7.1.0",

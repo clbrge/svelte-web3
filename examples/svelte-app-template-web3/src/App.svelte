@@ -1,6 +1,7 @@
 <script>
   import MonoChain from './MonoChain.svelte'
   import MultiChain from './MultiChain.svelte'
+  import Web3Modal from './Web3Modal.svelte'
 
   export let name
 
@@ -45,6 +46,12 @@
           <a>
             <span class="icon is-small"><i class="fas fa-image"></i></span>
             <span>MonoChain</span>
+          </a>
+        </li>
+        <li on:click={() => {example = Web3Modal}}  class:is-active={/Web3Modal/.test(example.toString())}>
+          <a>
+            <span class="icon is-small"><i class="fas fa-music"></i></span>
+            <span>Web3Modal</span>
           </a>
         </li>
         <li on:click={() => {example = MultiChain}}  class:is-active={/MultiChain/.test(example.toString())}>
