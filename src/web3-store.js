@@ -41,28 +41,31 @@ export const createStore = () => {
     if (getWindowEthereum()) getWindowEthereum().autoRefreshOnNetworkChange = false
   }
 
-  const setProvider = async provider => {
+  const setProvider = async (provider, callback?) => {
     init()
     const instance = new Web3(provider)
     const chainId = await instance.eth.getChainId()
     // no account with ganache
     const accounts = /127/.test(provider) ? [] : await instance.eth.getAccounts()
-    if (instance._provider && instance._provider.on) {
-      instance._provider.on('accountsChanged', () => setProvider(provider))
-      instance._provider.on('chainChanged', () => setProvider(provider))
-      instance._provider.on('networkChanged', () => setProvider(provider))
-    }
-    update(previous => {
-      // TODO if (previous.instance)  unsubcribe all events
-      return {
-        provider,
-        providerType: 'String',
-        connected: true,
-        chainId,
-        accounts,
-        instance,
+    if (callback) {
+      instance._provider.removeListener('accountsChanged', () => setProvider(provider, true))
+			// instance._provider.removeListener('chainChanged', () =>  setProvider(provider, true))
+			instance._provider.removeListener('networkChanged', () => setProvider(provider, true))
+    } else {
+      if (instance._provider && instance._provider.on) {
+        instance._provider.on('accountsChanged', () => setProvider(provider, true))
+        // instance._provider.on('chainChanged', () => setProvider(provider, true))
+        instance._provider.on('networkChanged', () => setProvider(provider, true))
       }
-    })
+    }
+    update(() => ({
+      provider,
+      providerType: 'String',
+      connected: true,
+      chainId,
+      accounts,
+      instance
+    }))
   }
 
   const setBrowserProvider = async () => {
