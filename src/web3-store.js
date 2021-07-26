@@ -49,13 +49,11 @@ export const createStore = () => {
     const accounts = /127/.test(provider) ? [] : await instance.eth.getAccounts()
     if (callback) {
       instance._provider.removeListener('accountsChanged', () => setProvider(provider, true))
-      // instance._provider.removeListener('chainChanged', () =>  setProvider(provider, true))
-      instance._provider.removeListener('networkChanged', () => setProvider(provider, true))
+      instance._provider.removeListener('chainChanged', () =>  setProvider(provider, true))
     } else {
       if (instance._provider && instance._provider.on) {
         instance._provider.on('accountsChanged', () => setProvider(provider, true))
-        // instance._provider.on('chainChanged', () => setProvider(provider, true))
-        instance._provider.on('networkChanged', () => setProvider(provider, true))
+        instance._provider.on('chainChanged', () => setProvider(provider, true))
       }
     }
     update(() => ({
