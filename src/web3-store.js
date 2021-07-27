@@ -82,7 +82,7 @@ export const createStore = () => {
     }))
   }
 
-  const disconnect = async (provider) => {
+  const close = async (provider) => {
     if(provider && provider.disconnect) {
       await provider.disconnect()
     }
@@ -95,7 +95,7 @@ export const createStore = () => {
   return {
     setBrowserProvider,
     setProvider,
-    disconnect,
+    close,
     subscribe
   }
 }
