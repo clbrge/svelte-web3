@@ -66,6 +66,14 @@ defaultChainStore.setProvider(<ws/https or http provider url or provider Object>
 Please check `examples/svelte-app-template-web3/src/Web3Modal.svelte` in github.
 
 
+## Forcing a disconnect (and event subscriptions from a provider)
+
+Simply call the function `close` directly on the store. For example with the default store:
+
+```js
+defaultChainStore.close()
+```
+
 ### Using the Web3 instance $web3 after the connection
 
 If a connection is successful, you can access the instantiated web3.js
