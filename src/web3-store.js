@@ -41,7 +41,7 @@ export const createStore = () => {
     if (getWindowEthereum()) getWindowEthereum().autoRefreshOnNetworkChange = false
   }
 
-  const setProvider = async (provider, callback?) => {
+  const setProvider = async (provider, callback) => {
     init()
     const instance = new Web3(provider)
     const chainId = await instance.eth.getChainId()
