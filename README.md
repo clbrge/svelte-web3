@@ -14,7 +14,7 @@ for Svelte, Sapper or Sveltekit.
 npm i svelte-web3
 ```
 
-2. add the web3.js library in the main HTML page (`public/index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in Sveltekit)
+2. add the web3.js library in the main HTML page (`public/index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in SvelteKit)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
@@ -66,7 +66,7 @@ defaultChainStore.setProvider(<ws/https or http provider url or provider Object>
 Please check `examples/svelte-app-template-web3/src/Web3Modal.svelte` in github.
 
 
-## Forcing a disconnect (and event subscriptions from a provider)
+### Forcing a disconnect (and event subscriptions from a provider)
 
 Simply call the function `close` directly on the store. For example with the default store:
 
