@@ -7,6 +7,8 @@
 
   let example = MonoChain
 
+  $: metamaskConnected = window.ethereum ? window.ethereum.isConnected() : false
+
 </script>
 
 <section class="section pb-0">
@@ -32,6 +34,9 @@
     </div>
     {/if}
     <p>Browser wallet detected in Global Object window.ethereum : { window.ethereum ? 'yes' : 'no' }</p>
+    {#if window.ethereum}
+    <p>Browser wallet already connected to metamask : { metamaskConnected }</p>
+    {/if}
 
   </div>
 </section>

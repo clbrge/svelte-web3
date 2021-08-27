@@ -72,13 +72,15 @@ export const createStore = () => {
     const res = await getWindowEthereum().request({ method: 'eth_requestAccounts' })
     getWindowEthereum().on('accountsChanged', setBrowserProvider)
     getWindowEthereum().on('chainChanged', setBrowserProvider)
+    const instance = new Web3(getWindowEthereum())
+    const chainId = await instance.eth.getChainId()
     update(() => ({
       provider: getWindowEthereum(),
       providerType: 'Browser',
       connected: true,
-      chainId: getWindowEthereum().chainId,
+      chainId,
       accounts: res,
-      instance: new Web3(getWindowEthereum())
+      instance
     }))
   }
 
