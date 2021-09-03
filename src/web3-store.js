@@ -1,5 +1,5 @@
 
-import chains from './chains.json'
+import chains from './chains.js'
 import { derived, writable } from 'svelte/store'
 
 const getGlobalObject = () => {
