@@ -565,11 +565,7 @@ const chains = [
     name: 'Syscoin Mainnet',
     chain: 'SYS',
     network: 'mainnet',
-    rpc: [
-      'https://nevm.syscoin.org/api/eth-rpc',
-      'https://web3.syscoin.org',
-      'wss://web3.syscoin.org'
-    ],
+    rpc: [ 'https://rpc.syscoin.org', 'wss://rpc.syscoin.org/wss' ],
     faucets: [ 'https://faucet.syscoin.org' ],
     nativeCurrency: { name: 'Syscoin', symbol: 'SYS', decimals: 18 },
     infoURL: 'https://www.syscoin.org',
@@ -1297,18 +1293,25 @@ const chains = [
     name: 'High Performance Blockchain',
     chain: 'HPB',
     network: 'mainnet',
-    rpc: [ 'https://hpb.app' ],
-    faucets: [],
+    rpc: [ 'https://hpbnode.com', 'wss://ws.hpbnode.com' ],
+    faucets: [ 'https://myhpbwallet.com/' ],
     nativeCurrency: {
       name: 'High Performance Blockchain Ether',
       symbol: 'HPB',
       decimals: 18
     },
-    infoURL: 'https://hpbscan.org/',
+    infoURL: 'https://hpb.io',
     shortName: 'hpb',
     chainId: 269,
-    networkId: 100,
-    slip44: 269
+    networkId: 269,
+    slip44: 269,
+    explorers: [
+      {
+        name: 'hpbscan',
+        url: 'https://hpbscan.org/',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'KCC Mainnet',
@@ -1429,6 +1432,21 @@ const chains = [
         standard: 'EIP3091'
       }
     ]
+  },
+  {
+    name: 'PulseChain Mainnet',
+    shortName: 'pls',
+    chain: 'PLS',
+    network: 'mainnet',
+    chainId: 369,
+    networkId: 369,
+    infoURL: 'https://pulsechain.com/',
+    rpc: [
+      'https://rpc.mainnet.pulsechain.com/v1/${PULSECHAIN_API_KEY}',
+      'wss://rpc.mainnet.pulsechain.com/ws/v1/${PULSECHAIN_API_KEY}'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Pulse', symbol: 'PLS', decimals: 18 }
   },
   {
     name: 'Lisinski',
@@ -1598,6 +1616,21 @@ const chains = [
     slip44: 5718350
   },
   {
+    name: 'PulseChain Testnet',
+    shortName: 'tpls',
+    chain: 'tPLS',
+    network: 'testnet',
+    chainId: 940,
+    networkId: 940,
+    infoURL: 'https://pulsechain.com/',
+    rpc: [
+      'https://rpc.testnet.pulsechain.com/v1/${PULSECHAIN_API_KEY}',
+      'wss://rpc.testnet.pulsechain.com/ws/v1/${PULSECHAIN_API_KEY}'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Test Pulse', symbol: 'tPLS', decimals: 18 }
+  },
+  {
     name: 'Nepal Blockchain Network',
     chain: 'YETI',
     network: 'mainnet',
@@ -1741,7 +1774,7 @@ const chains = [
     networkId: 1140
   },
   {
-    name: 'Moonbeam Polkadot',
+    name: 'Moonbeam',
     chain: 'MOON',
     network: 'moonbeam',
     rpc: [],
@@ -1753,7 +1786,7 @@ const chains = [
     networkId: 1284
   },
   {
-    name: 'Moonriver Kusama',
+    name: 'Moonriver',
     chain: 'MOON',
     network: 'moonriver',
     rpc: [
@@ -1768,7 +1801,7 @@ const chains = [
     networkId: 1285
   },
   {
-    name: 'Moonrock Rococo',
+    name: 'Moonrock',
     chain: 'MOON',
     network: 'moonrock',
     rpc: [],
@@ -1780,7 +1813,7 @@ const chains = [
     networkId: 1286
   },
   {
-    name: 'Moonbeam Testnet Moonbase Alpha',
+    name: 'Moonbase Alpha',
     chain: 'MOON',
     network: 'moonbase',
     rpc: [
@@ -1795,7 +1828,7 @@ const chains = [
     networkId: 1287
   },
   {
-    name: 'Moonshadow Westend',
+    name: 'Moonshadow',
     chain: 'MOON',
     network: 'moonshadow',
     rpc: [],
@@ -1905,6 +1938,27 @@ const chains = [
     networkId: 2559
   },
   {
+    name: 'Fantom Testnet',
+    chain: 'FTM',
+    network: 'testnet',
+    rpc: [ 'https://rpc.testnet.fantom.network' ],
+    faucets: [ 'https://faucet.fantom.network' ],
+    nativeCurrency: { name: 'Fantom', symbol: 'FTM', decimals: 18 },
+    infoURL: 'https://docs.fantom.foundation/quick-start/short-guide#fantom-testnet',
+    shortName: 'tftm',
+    chainId: 4002,
+    networkId: 4002,
+    icon: 'fantom',
+    explorers: [
+      {
+        name: 'ftmscan',
+        url: 'https://testnet.ftmscan.com/',
+        icon: 'ftmscan',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'IoTeX Network Mainnet',
     chain: 'iotex.io',
     network: 'mainnet',
@@ -1962,7 +2016,7 @@ const chains = [
     name: 'Syscoin Tanenbaum Testnet',
     chain: 'SYS',
     network: 'testnet',
-    rpc: [ 'https://tanenbaum.io/api/eth-rpc' ],
+    rpc: [ 'https://rpc.tanenbaum.io', 'wss://rpc.tanenbaum.io/wss' ],
     faucets: [ 'https://faucet.tanenbaum.io' ],
     nativeCurrency: { name: 'Testnet Syscoin', symbol: 'tSYS', decimals: 18 },
     infoURL: 'https://syscoin.org',
@@ -2296,7 +2350,12 @@ const chains = [
         standard: 'EIP3091'
       }
     ],
-    infoURL: 'https://arbitrum.io'
+    infoURL: 'https://arbitrum.io',
+    parent: {
+      type: 'L2',
+      chain: 'eip155-1',
+      bridges: [ { url: 'https://bridge.arbitrum.io' } ]
+    }
   },
   {
     name: 'Celo Mainnet',
@@ -2470,105 +2529,161 @@ const chains = [
     name: 'QuarkChain Mainnet Shard 0',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39000/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39000/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s0',
     chainId: 100001,
     networkId: 100001,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/0',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 1',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39001/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39001/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s1',
     chainId: 100002,
     networkId: 100002,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/1',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 2',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39002/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39002/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s2',
     chainId: 100003,
     networkId: 100003,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/2',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 3',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39003/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39003/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s3',
     chainId: 100004,
     networkId: 100004,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/3',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 4',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39004/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39004/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s4',
     chainId: 100005,
     networkId: 100005,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/4',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 5',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39005/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39005/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s5',
     chainId: 100006,
     networkId: 100006,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/5',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 6',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39006/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39006/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s6',
     chainId: 100007,
     networkId: 100007,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/6',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Mainnet Shard 7',
     chain: 'QuarkChain',
     network: 'mainnet',
-    rpc: [ 'http://jrpc.mainnet.quarkchain.io:39007/' ],
+    rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39007/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-s7',
     chainId: 100008,
     networkId: 100008,
-    parent: { chain: 'eip155-100000', type: 'shard' }
+    parent: { chain: 'eip155-100000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-mainnet',
+        url: 'https://mainnet.quarkchain.io/7',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Root',
@@ -2586,105 +2701,161 @@ const chains = [
     name: 'QuarkChain Devnet Shard 0',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39000/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39900/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s0',
     chainId: 110001,
     networkId: 110001,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/0',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 1',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39001/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39901/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s1',
     chainId: 110002,
     networkId: 110002,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/1',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 2',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39002/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39902/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s2',
     chainId: 110003,
     networkId: 110003,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/2',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 3',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39003/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39903/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s3',
     chainId: 110004,
     networkId: 110004,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/3',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 4',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39004/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39904/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s4',
     chainId: 110005,
     networkId: 110005,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/4',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 5',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39005/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39905/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s5',
     chainId: 110006,
     networkId: 110006,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/5',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 6',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39006/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39906/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s6',
     chainId: 110007,
     networkId: 110007,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/6',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'QuarkChain Devnet Shard 7',
     chain: 'QuarkChain',
     network: 'devnet',
-    rpc: [ 'http://jrpc.devnet.quarkchain.io:39007/' ],
+    rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39907/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
     infoURL: 'https://www.quarkchain.io/',
     shortName: 'qkc-d-s7',
     chainId: 110008,
     networkId: 110008,
-    parent: { chain: 'eip155-110000', type: 'shard' }
+    parent: { chain: 'eip155-110000', type: 'shard' },
+    explorers: [
+      {
+        name: 'quarkchain-devnet',
+        url: 'https://devnet.quarkchain.io/7',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Akroma',
@@ -2770,7 +2941,12 @@ const chains = [
         url: 'https://rinkeby-explorer.arbitrum.io',
         standard: 'EIP3091'
       }
-    ]
+    ],
+    parent: {
+      type: 'L2',
+      chain: 'eip155-4',
+      bridges: [ { url: 'https://bridge.arbitrum.io' } ]
+    }
   },
   {
     name: 'Ether-1',
@@ -2899,6 +3075,26 @@ const chains = [
     shortName: 'TOYS',
     chainId: 99415706,
     networkId: 99415706
+  },
+  {
+    name: 'OneLedger Mainnet',
+    chain: 'OLT',
+    network: 'mainnet',
+    icon: 'oneledger',
+    rpc: [ 'https://mainnet-rpc.oneledger.network' ],
+    faucets: [],
+    nativeCurrency: { name: 'OLT', symbol: 'OLT', decimals: 18 },
+    infoURL: 'https://oneledger.io',
+    shortName: 'oneledger',
+    chainId: 311752642,
+    networkId: 311752642,
+    explorers: [
+      {
+        name: 'OneLedger Block Explorer',
+        url: 'https://mainnet-explorer.oneledger.network',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'IPOS Network',
@@ -3070,6 +3266,26 @@ const chains = [
     chainId: 3125659152,
     networkId: 3125659152,
     slip44: 164
+  },
+  {
+    name: 'OneLedger Testnet Frankenstein',
+    chain: 'OLT',
+    network: 'testnet',
+    icon: 'oneledger',
+    rpc: [ 'https://frankenstein-rpc.oneledger.network' ],
+    faucets: [ 'https://frankenstein-faucet.oneledger.network' ],
+    nativeCurrency: { name: 'OLT', symbol: 'OLT', decimals: 18 },
+    infoURL: 'https://oneledger.io',
+    shortName: 'frankenstein',
+    chainId: 4216137055,
+    networkId: 4216137055,
+    explorers: [
+      {
+        name: 'OneLedger Block Explorer',
+        url: 'https://frankenstein-explorer.oneledger.network',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Palm Testnet',
