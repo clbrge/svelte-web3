@@ -68,7 +68,7 @@ export const createStore = () => {
 
   const setBrowserProvider = async () => {
     init()
-    if (!getWindowEthereum()) throw new Error('Please autorized browser extension (Metamask or similar)')
+    if (!getWindowEthereum()) throw new Error('Please authorize browser extension (Metamask or similar)')
     const res = await getWindowEthereum().request({ method: 'eth_requestAccounts' })
     getWindowEthereum().on('accountsChanged', setBrowserProvider)
     getWindowEthereum().on('chainChanged', setBrowserProvider)
