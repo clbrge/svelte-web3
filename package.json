@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "svelte": "src/web3-store.js",
+  "types": "dist/svelte-web3.d.ts",
   "license": "MIT",
   "repository": "clbrge/svelte-web3",
   "author": {
@@ -20,6 +21,7 @@
     "release-it": "^14.11.6",
     "rollup": "^2.57.0",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-dts": "^4.0.1",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-svelte": "^7.1.0",
     "sirv-cli": "^1.0.14",
