@@ -85,7 +85,7 @@ const chains = [
     network: 'goerli',
     rpc: [
       'https://rpc.goerli.mudit.blog/',
-      'https://rpc.slock.it/goerli ',
+      'https://rpc.slock.it/goerli',
       'https://goerli.prylabs.net/'
     ],
     faucets: [
@@ -97,7 +97,14 @@ const chains = [
     shortName: 'gor',
     chainId: 5,
     networkId: 5,
-    ens: { registry: '0x112234455c3a32fd11230c42e7bccd4a84e02010' }
+    ens: { registry: '0x112234455c3a32fd11230c42e7bccd4a84e02010' },
+    explorers: [
+      {
+        name: 'etherscan-goerli',
+        url: 'https://goerli.etherscan.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Ethereum Classic Testnet Kotti',
@@ -165,7 +172,14 @@ const chains = [
     infoURL: 'https://optimism.io',
     shortName: 'oeth',
     chainId: 10,
-    networkId: 10
+    networkId: 10,
+    explorers: [
+      {
+        name: 'etherscan',
+        url: 'https://optimistic.etherscan.io',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Metadium Mainnet',
@@ -274,13 +288,20 @@ const chains = [
     name: 'Songbird Canary-Network',
     chain: 'SGB',
     network: 'songbird',
-    rpc: [],
-    faucets: [],
+    rpc: [ 'https://songbird.towolabs.com/rpc' ],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Songbird', symbol: 'SGB', decimals: 18 },
     infoURL: 'https://flare.xyz',
     shortName: 'sgb',
     chainId: 19,
-    networkId: 19
+    networkId: 19,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://songbird-explorer.flare.network',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'ELA-ETH-Sidechain Mainnet',
@@ -331,17 +352,67 @@ const chains = [
     networkId: 23
   },
   {
+    name: 'ShibaChain',
+    chain: 'SHIB',
+    network: 'mainnet',
+    rpc: [ 'https://rpc.shibachain.net' ],
+    faucets: [],
+    nativeCurrency: { name: 'SHIBA INU COIN', symbol: 'SHIB', decimals: 18 },
+    infoURL: 'https://www.shibachain.net',
+    shortName: 'shib',
+    chainId: 27,
+    networkId: 27,
+    explorers: [
+      {
+        name: 'Shiba Explorer',
+        url: 'https://exp.shibachain.net/',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'Boba Network Rinkeby Testnet',
+    chain: 'ETH',
+    network: 'rinkeby',
+    rpc: [ 'https://rinkeby.boba.network/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    infoURL: 'https://boba.network',
+    shortName: 'Boba Rinkeby',
+    chainId: 28,
+    networkId: 28,
+    explorers: [
+      {
+        name: 'Blockscout',
+        url: 'https://blockexplorer.rinkeby.boba.network/',
+        standard: 'none'
+      }
+    ],
+    parent: {
+      type: 'L2',
+      chain: 'eip155-4',
+      bridges: [ { url: 'https://gateway.rinkeby.boba.network' } ]
+    }
+  },
+  {
     name: 'RSK Mainnet',
     chain: 'RSK',
     network: 'mainnet',
     rpc: [ 'https://public-node.rsk.co', 'https://mycrypto.rsk.co' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'RSK Mainnet Ether', symbol: 'RBTC', decimals: 18 },
     infoURL: 'https://rsk.co',
     shortName: 'rsk',
     chainId: 30,
     networkId: 30,
-    slip44: 137
+    slip44: 137,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://explorer.rsk.co',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'RSK Testnet',
@@ -529,6 +600,32 @@ const chains = [
     networkId: 53
   },
   {
+    name: 'Zyx Mainnet',
+    chain: 'ZYX',
+    network: 'mainnet',
+    rpc: [
+      'https://rpc-1.zyx.network/',
+      'https://rpc-2.zyx.network/',
+      'https://rpc-3.zyx.network/',
+      'https://rpc-4.zyx.network/',
+      'https://rpc-5.zyx.network/',
+      'https://rpc-6.zyx.network/'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Zyx', symbol: 'ZYX', decimals: 18 },
+    infoURL: 'https://zyx.network/',
+    shortName: 'ZYX',
+    chainId: 55,
+    networkId: 55,
+    explorers: [
+      {
+        name: 'zyxscan',
+        url: 'https://zyxscan.com/',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Binance Smart Chain Mainnet',
     chain: 'BSC',
     network: 'mainnet',
@@ -547,12 +644,13 @@ const chains = [
       'https://bsc-dataseed4.ninicoin.io',
       'wss://bsc-ws-node.nariox.org'
     ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Binance Chain Native Token', symbol: 'BNB', decimals: 18 },
     infoURL: 'https://www.binance.org',
     shortName: 'bnb',
     chainId: 56,
     networkId: 56,
+    slip44: 714,
     explorers: [
       {
         name: 'bscscan',
@@ -560,18 +658,6 @@ const chains = [
         standard: 'EIP3091'
       }
     ]
-  },
-  {
-    name: 'Syscoin Mainnet',
-    chain: 'SYS',
-    network: 'mainnet',
-    rpc: [ 'https://rpc.syscoin.org', 'wss://rpc.syscoin.org/wss' ],
-    faucets: [ 'https://faucet.syscoin.org' ],
-    nativeCurrency: { name: 'Syscoin', symbol: 'SYS', decimals: 18 },
-    infoURL: 'https://www.syscoin.org',
-    shortName: 'sys',
-    chainId: 57,
-    networkId: 57
   },
   {
     name: 'Ontology Mainnet',
@@ -621,7 +707,7 @@ const chains = [
     chain: 'GO',
     network: 'mainnet',
     rpc: [ 'https://rpc.gochain.io' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'GoChain Ether', symbol: 'GO', decimals: 18 },
     infoURL: 'https://gochain.io',
     shortName: 'go',
@@ -641,13 +727,20 @@ const chains = [
     chain: 'ETC',
     network: 'mainnet',
     rpc: [ 'https://ethereumclassic.network' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/?' ],
     nativeCurrency: { name: 'Ethereum Classic Ether', symbol: 'ETC', decimals: 18 },
     infoURL: 'https://ethereumclassic.org',
     shortName: 'etc',
     chainId: 61,
     networkId: 1,
-    slip44: 61
+    slip44: 61,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.com/etc/mainnet',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Ethereum Classic Testnet Morden',
@@ -722,7 +815,7 @@ const chains = [
     chain: 'okexchain',
     network: 'mainnet',
     rpc: [ 'https://exchainrpc.okex.org' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/?' ],
     nativeCurrency: {
       name: 'OKExChain Global Utility Token',
       symbol: 'OKT',
@@ -803,7 +896,14 @@ const chains = [
     infoURL: 'https://poa.network',
     shortName: 'poa',
     chainId: 77,
-    networkId: 77
+    networkId: 77,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.com/poa/sokol',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'PrimusChain mainnet',
@@ -896,7 +996,8 @@ const chains = [
     infoURL: 'https://tomocoin.io',
     shortName: 'tomo',
     chainId: 88,
-    networkId: 88
+    networkId: 88,
+    slip44: 889
   },
   {
     name: 'CryptoKylin Testnet',
@@ -962,7 +1063,15 @@ const chains = [
     infoURL: 'https://poa.network',
     shortName: 'skl',
     chainId: 99,
-    networkId: 99
+    networkId: 99,
+    slip44: 178,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.com/poa/core',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'xDAI Chain',
@@ -977,13 +1086,23 @@ const chains = [
       'https://dai.poa.network',
       'ws://xdai.poanetwork.dev:8546'
     ],
-    faucets: [],
+    faucets: [
+      'https://free-online-app.com/faucet-for-eth-evm-chains/',
+      'https://xdai-app.herokuapp.com/faucet'
+    ],
     nativeCurrency: { name: 'xDAI', symbol: 'xDAI', decimals: 18 },
     infoURL: 'https://forum.poa.network/c/xdai-chain',
     shortName: 'xdai',
     chainId: 100,
     networkId: 100,
-    slip44: 700
+    slip44: 700,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.com/poa/xdai',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'EtherInc',
@@ -1011,6 +1130,29 @@ const chains = [
     networkId: 102
   },
   {
+    name: 'Velas EVM Mainnet',
+    chain: 'Velas',
+    network: 'mainnet',
+    icon: 'velas',
+    rpc: [
+      'https://evmexplorer.velas.com/rpc',
+      'https://explorer.velas.com/rpc'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Velas', symbol: 'VLX', decimals: 18 },
+    infoURL: 'https://velas.com',
+    shortName: 'vlx',
+    chainId: 106,
+    networkId: 106,
+    explorers: [
+      {
+        name: 'Velas Explorer',
+        url: 'https://evmexplorer.velas.com',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'ThunderCore Mainnet',
     chain: 'TT',
     network: 'mainnet',
@@ -1020,7 +1162,8 @@ const chains = [
     infoURL: 'https://thundercore.com',
     shortName: 'TT',
     chainId: 108,
-    networkId: 108
+    networkId: 108,
+    slip44: 1001
   },
   {
     name: 'Proton Testnet',
@@ -1092,7 +1235,7 @@ const chains = [
       'https://http-mainnet.hecochain.com',
       'wss://ws-mainnet.hecochain.com'
     ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: {
       name: 'Huobi ECO Chain Native Token',
       symbol: 'HT',
@@ -1102,6 +1245,7 @@ const chains = [
     shortName: 'heco',
     chainId: 128,
     networkId: 128,
+    slip44: 1010,
     explorers: [
       {
         name: 'hecoinfo',
@@ -1111,25 +1255,28 @@ const chains = [
     ]
   },
   {
-    name: 'Matic(Polygon) Mainnet',
-    chain: 'Matic(Polygon)',
+    name: 'Polygon Mainnet',
+    chain: 'Polygon',
     network: 'mainnet',
     rpc: [
+      'https://polygon-rpc.com/',
       'https://rpc-mainnet.matic.network',
-      'wss://ws-mainnet.matic.network',
+      'https://matic-mainnet.chainstacklabs.com',
+      'https://rpc-mainnet.maticvigil.com',
       'https://rpc-mainnet.matic.quiknode.pro',
-      'https://matic-mainnet.chainstacklabs.com'
+      'https://matic-mainnet-full-rpc.bwarelabs.com'
     ],
     faucets: [],
-    nativeCurrency: { name: 'Matic', symbol: 'MATIC', decimals: 18 },
-    infoURL: 'https://matic.network/',
-    shortName: 'matic',
+    nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+    infoURL: 'https://polygon.technology/',
+    shortName: 'MATIC',
     chainId: 137,
     networkId: 137,
+    slip44: 966,
     explorers: [
       {
         name: 'polygonscan',
-        url: 'https://polygonscan.com',
+        url: 'https://polygonscan.com/',
         standard: 'EIP3091'
       }
     ]
@@ -1202,6 +1349,44 @@ const chains = [
     networkId: 172
   },
   {
+    name: 'Seele Mainnet',
+    chain: 'Seele',
+    network: 'mainnet',
+    rpc: [ 'https://rpc.seelen.pro/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Seele', symbol: 'Seele', decimals: 18 },
+    infoURL: 'https://seelen.pro/',
+    shortName: 'Seele',
+    chainId: 186,
+    networkId: 186,
+    explorers: [
+      {
+        name: 'seeleview',
+        url: 'https://seeleview.net/',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'BitTorrent Chain Mainnet',
+    chain: 'BTTC',
+    network: 'mainnet',
+    rpc: [ 'https://rpc.bittorrentchain.io/' ],
+    faucets: [],
+    nativeCurrency: { name: 'BitTorrent', symbol: 'BTT', decimals: 18 },
+    infoURL: 'https://bittorrentchain.io/',
+    shortName: 'BTT',
+    chainId: 199,
+    networkId: 199,
+    explorers: [
+      {
+        name: 'bttcscan',
+        url: 'https://scan.bittorrentchain.io/',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Arbitrum on xDai',
     chain: 'AOX',
     network: 'xdai',
@@ -1237,24 +1422,47 @@ const chains = [
     networkId: 0
   },
   {
+    name: 'Permission',
+    chain: 'ASK',
+    network: 'ASK',
+    rpc: [ 'https://blockchain-api-mainnet.permission.io/rpc' ],
+    faucets: [],
+    nativeCurrency: { name: 'ASK', symbol: 'ASK', decimals: 18 },
+    infoURL: 'https://permission.io/',
+    shortName: 'ASK',
+    chainId: 222,
+    networkId: 2221,
+    slip44: 2221
+  },
+  {
     name: 'Energy Web Chain',
     chain: 'Energy Web Chain',
     network: 'mainnet',
     rpc: [ 'https://rpc.energyweb.org', 'wss://rpc.energyweb.org/ws' ],
-    faucets: [ 'https://faucet.carbonswap.exchange' ],
+    faucets: [
+      'https://faucet.carbonswap.exchange',
+      'https://free-online-app.com/faucet-for-eth-evm-chains/'
+    ],
     nativeCurrency: { name: 'Energy Web Token', symbol: 'EWT', decimals: 18 },
     infoURL: 'https://energyweb.org',
     shortName: 'ewt',
     chainId: 246,
     networkId: 246,
-    slip44: 246
+    slip44: 246,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://explorer.energyweb.org',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Fantom Opera',
     chain: 'FTM',
     network: 'mainnet',
     rpc: [ 'https://rpc.ftm.tools' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Fantom', symbol: 'FTM', decimals: 18 },
     infoURL: 'https://fantom.foundation',
     shortName: 'ftm',
@@ -1290,6 +1498,27 @@ const chains = [
     networkId: 256
   },
   {
+    name: 'SUR Blockchain Network',
+    chain: 'SUR',
+    network: 'mainnet',
+    rpc: [ 'https://sur.nilin.org' ],
+    faucets: [],
+    nativeCurrency: { name: 'Suren', symbol: 'SRN', decimals: 18 },
+    infoURL: 'https://surnet.org',
+    shortName: 'SUR',
+    chainId: 262,
+    networkId: 1,
+    icon: 'SUR',
+    explorers: [
+      {
+        name: 'Surnet Explorer',
+        url: 'https://explorer.surnet.org/',
+        icon: 'SUR',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'High Performance Blockchain',
     chain: 'HPB',
     network: 'mainnet',
@@ -1312,6 +1541,30 @@ const chains = [
         standard: 'EIP3091'
       }
     ]
+  },
+  {
+    name: 'Boba Network',
+    chain: 'ETH',
+    network: 'mainnet',
+    rpc: [ 'https://mainnet.boba.network/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    infoURL: 'https://boba.network',
+    shortName: 'Boba',
+    chainId: 288,
+    networkId: 288,
+    explorers: [
+      {
+        name: 'Blockscout',
+        url: 'https://blockexplorer.boba.network/',
+        standard: 'none'
+      }
+    ],
+    parent: {
+      type: 'L2',
+      chain: 'eip155-1',
+      bridges: [ { url: 'https://gateway.boba.network' } ]
+    }
   },
   {
     name: 'KCC Mainnet',
@@ -1354,6 +1607,50 @@ const chains = [
         name: 'kcc-scan',
         url: 'https://scan-testnet.kcc.network',
         standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Shiden',
+    chain: 'SDN',
+    network: 'shiden',
+    rpc: [
+      'https://rpc.shiden.astar.network:8545',
+      'wss://shiden.api.onfinality.io/public-ws'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Shiden', symbol: 'SDN', decimals: 18 },
+    infoURL: 'https://shiden.astar.network/',
+    shortName: 'sdn',
+    chainId: 336,
+    networkId: 336,
+    explorers: [
+      {
+        name: 'subscan',
+        url: 'https://shiden.subscan.io',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'Cronos Testnet',
+    chain: 'CRO',
+    network: 'testnet',
+    rpc: [
+      'https://cronos-testnet-3.crypto.org:8545',
+      'wss://cronos-testnet-3.crypto.org:8546'
+    ],
+    faucets: [ 'https://cronos.crypto.org/faucet' ],
+    nativeCurrency: { name: 'Crypto.org Test Coin', symbol: 'TCRO', decimals: 18 },
+    infoURL: 'https://cronos.crypto.org',
+    shortName: 'tcro',
+    chainId: 338,
+    networkId: 338,
+    explorers: [
+      {
+        name: 'Cronos Testnet Explorer',
+        url: 'https://cronos.crypto.org/explorer',
+        standard: 'none'
       }
     ]
   },
@@ -1603,6 +1900,25 @@ const chains = [
     networkId: 2
   },
   {
+    name: 'Ambros Chain Mainnet',
+    chain: 'ambroschain',
+    network: 'mainnet',
+    rpc: [ 'https://mainnet.ambroschain.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'AMBROS', symbol: 'AMBR', decimals: 18 },
+    infoURL: 'https://bcmhunt.com/',
+    shortName: 'ambros',
+    chainId: 880,
+    networkId: 880,
+    explorers: [
+      {
+        name: 'Ambros Chain Explorer',
+        url: 'https://explorer.ambroschain.com',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Wanchain',
     chain: 'WAN',
     network: 'mainnet',
@@ -1650,6 +1966,35 @@ const chains = [
     networkId: 977
   },
   {
+    name: 'Lucky Network',
+    chain: 'LN',
+    network: 'mainnet',
+    rpc: [
+      'https://rpc.luckynetwork.org',
+      'wss://ws.lnscan.org',
+      'https://rpc.lnscan.org'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Lucky', symbol: 'L99', decimals: 18 },
+    infoURL: 'https://luckynetwork.org',
+    shortName: 'ln',
+    chainId: 998,
+    networkId: 998,
+    icon: 'lucky',
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://explorer.luckynetwork.org',
+        standard: 'none'
+      },
+      {
+        name: 'expedition',
+        url: 'https://lnscan.org',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Wanchain Testnet',
     chain: 'WAN',
     network: 'testnet',
@@ -1695,7 +2040,8 @@ const chains = [
     infoURL: 'https://evrice.com',
     shortName: 'EVC',
     chainId: 1010,
-    networkId: 1010
+    networkId: 1010,
+    slip44: 1020
   },
   {
     name: 'Newton',
@@ -1750,10 +2096,32 @@ const chains = [
     networkId: 1024
   },
   {
+    name: 'BitTorrent Chain Testnet',
+    chain: 'BTTC',
+    network: 'testnet',
+    rpc: [ 'https://testrpc.bittorrentchain.io/' ],
+    faucets: [],
+    nativeCurrency: { name: 'BitTorrent', symbol: 'BTT', decimals: 18 },
+    infoURL: 'https://bittorrentchain.io/',
+    shortName: 'tbtt',
+    chainId: 1028,
+    networkId: 1028,
+    explorers: [
+      {
+        name: 'testbttcscan',
+        url: 'https://testscan.bittorrentchain.io/',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'MathChain',
     chain: 'MATH',
     network: 'mainnet',
-    rpc: [],
+    rpc: [
+      'https://mathchain-asia.maiziqianbao.net/rpc',
+      'https://mathchain-us.maiziqianbao.net/rpc'
+    ],
     faucets: [],
     nativeCurrency: { name: 'MathChain', symbol: 'MATH', decimals: 18 },
     infoURL: 'https://mathchain.org',
@@ -1772,6 +2140,44 @@ const chains = [
     shortName: 'tMATH',
     chainId: 1140,
     networkId: 1140
+  },
+  {
+    name: 'Popcateum Mainnet',
+    chain: 'POPCATEUM',
+    network: 'mainnet',
+    rpc: [ 'https://dataseed.popcateum.org' ],
+    faucets: [],
+    nativeCurrency: { name: 'Popcat', symbol: 'POP', decimals: 18 },
+    infoURL: 'https://popcateum.org',
+    shortName: 'popcat',
+    chainId: 1213,
+    networkId: 1213,
+    explorers: [
+      {
+        name: 'popcateum explorer',
+        url: 'https://explorer.popcateum.org',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'HALO Mainnet',
+    chain: 'HALO',
+    network: 'mainnet',
+    rpc: [ 'https://https://nodes.halo.land' ],
+    faucets: [],
+    nativeCurrency: { name: 'HALO', symbol: 'HO', decimals: 18 },
+    infoURL: 'https://halo.land/#/',
+    shortName: 'HO',
+    chainId: 1280,
+    networkId: 1280,
+    explorers: [
+      {
+        name: 'HALOexplorer',
+        url: 'https://browser.halo.land/',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Moonbeam',
@@ -1793,12 +2199,19 @@ const chains = [
       'https://rpc.moonriver.moonbeam.network',
       'wss://wss.moonriver.moonbeam.network'
     ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Moonriver', symbol: 'MOVR', decimals: 18 },
     infoURL: 'https://moonbeam.network/networks/moonriver/',
     shortName: 'mriver',
     chainId: 1285,
-    networkId: 1285
+    networkId: 1285,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.moonriver.moonbeam.network',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Moonrock',
@@ -1865,6 +2278,18 @@ const chains = [
     slip44: 1620
   },
   {
+    name: 'Btachain',
+    chain: 'btachain',
+    network: 'mainnet',
+    rpc: [ 'https://dataseed1.btachain.com/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Bitcoin Asset', symbol: 'BTA', decimals: 18 },
+    infoURL: 'https://bitcoinasset.io/',
+    shortName: 'bta',
+    chainId: 1657,
+    networkId: 1657
+  },
+  {
     name: 'Teslafunds',
     chain: 'TSF',
     network: 'mainnet',
@@ -1924,6 +2349,44 @@ const chains = [
     shortName: 'edgt',
     chainId: 2022,
     networkId: 2022
+  },
+  {
+    name: 'Ecoball Mainnet',
+    chain: 'ECO',
+    network: 'mainnet',
+    rpc: [ 'https://api.ecoball.org/ecoball/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Ecoball Coin', symbol: 'ECO', decimals: 18 },
+    infoURL: 'https://ecoball.org',
+    shortName: 'eco',
+    chainId: 2100,
+    networkId: 2100,
+    explorers: [
+      {
+        name: 'Ecoball Explorer',
+        url: 'https://scan.ecoball.org/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Ecoball Testnet Espuma',
+    chain: 'ECO',
+    network: 'espuma',
+    rpc: [ 'https://api.ecoball.org/espuma/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Espuma Coin', symbol: 'ECO', decimals: 18 },
+    infoURL: 'https://ecoball.org',
+    shortName: 'esp',
+    chainId: 2101,
+    networkId: 2101,
+    explorers: [
+      {
+        name: 'Ecoball Testnet Explorer',
+        url: 'https://espuma-scan.ecoball.org/',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Kortho Mainnet',
@@ -2022,7 +2485,14 @@ const chains = [
     infoURL: 'https://syscoin.org',
     shortName: 'tsys',
     chainId: 5700,
-    networkId: 5700
+    networkId: 5700,
+    explorers: [
+      {
+        name: 'Syscoin Testnet Block Explorer',
+        url: 'https://tanenbaum.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Ontology Testnet',
@@ -2150,6 +2620,25 @@ const chains = [
     slip44: 479
   },
   {
+    name: 'Ambros Chain Testnet',
+    chain: 'ambroschain',
+    network: 'testnet',
+    rpc: [ 'https://testnet.ambroschain.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'AMBROS', symbol: 'AMBR', decimals: 18 },
+    infoURL: 'https://bcmhunt.com/',
+    shortName: 'ambrostestnet',
+    chainId: 8888,
+    networkId: 8888,
+    explorers: [
+      {
+        name: 'Ambros Chain Explorer',
+        url: 'https://testexplorer.ambroschain.com',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'bloxberg',
     chain: 'bloxberg',
     network: 'mainnet',
@@ -2162,13 +2651,38 @@ const chains = [
     networkId: 8995
   },
   {
+    name: 'Evmos Testnet',
+    chain: 'Evmos',
+    network: 'testnet',
+    rpc: [ 'http://arsiamons.rpc.evmos.org:8545/' ],
+    faucets: [ 'https://faucet.evmos.org' ],
+    nativeCurrency: { name: 'Photon', symbol: 'PHOTON', decimals: 18 },
+    infoURL: 'https://evmos.org',
+    shortName: 'evmos-mons',
+    chainId: 9000,
+    networkId: 9000,
+    explorers: [
+      {
+        name: 'Evmos EVM Explorer (Blockscout)',
+        url: 'https://evm.evmos.org',
+        standard: 'none'
+      },
+      {
+        name: 'Evmos Cosmos Explorer (Big Dipper)',
+        url: 'https://explorer.evmos.org',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Smart Bitcoin Cash',
     chain: 'smartBCH',
     network: 'mainnet',
     rpc: [
       'https://smartbch.greyh.at',
       'https://rpc-mainnet.smartbch.org',
-      'https://smartbch.fountainhead.cash/mainnet'
+      'https://smartbch.fountainhead.cash/mainnet',
+      'https://smartbch.devops.cash/mainnet'
     ],
     faucets: [],
     nativeCurrency: { name: 'Bitcoin Cash', symbol: 'BCH', decimals: 18 },
@@ -2181,7 +2695,10 @@ const chains = [
     name: 'Smart Bitcoin Cash Testnet',
     chain: 'smartBCHTest',
     network: 'testnet',
-    rpc: [ 'https://rpc-testnet.smartbch.org' ],
+    rpc: [
+      'https://rpc-testnet.smartbch.org',
+      'https://smartbch.devops.cash/testnet'
+    ],
     faucets: [],
     nativeCurrency: { name: 'Bitcoin Cash Test Token', symbol: 'BCHT', decimals: 18 },
     infoURL: 'http://smartbch.org/',
@@ -2239,7 +2756,8 @@ const chains = [
     infoURL: 'https://webchain.network',
     shortName: 'web',
     chainId: 24484,
-    networkId: 37129
+    networkId: 37129,
+    slip44: 227
   },
   {
     name: 'MintMe.com Coin',
@@ -2302,7 +2820,7 @@ const chains = [
     name: 'Energi Mainnet',
     chain: 'NRG',
     network: 'mainnet',
-    rpc: [ 'https://nodeapi.gen3.energi.network' ],
+    rpc: [ 'https://nodeapi.energi.network' ],
     faucets: [],
     nativeCurrency: { name: 'Energi', symbol: 'NRG', decimals: 18 },
     infoURL: 'https://www.energi.world/',
@@ -2332,7 +2850,7 @@ const chains = [
     networkId: 42161,
     nativeCurrency: { name: 'Ether', symbol: 'AETH', decimals: 18 },
     rpc: [
-      'https://mainnet.infura.io/v3/${INFURA_API_KEY}',
+      'https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}',
       'https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
       'https://arb1.arbitrum.io/rpc',
       'wss://arb1.arbitrum.io/ws'
@@ -2366,8 +2884,15 @@ const chains = [
     networkId: 42220,
     nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
     rpc: [ 'https://forno.celo.org', 'wss://forno.celo.org/ws' ],
-    faucets: [],
-    infoURL: 'https://docs.celo.org/'
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
+    infoURL: 'https://docs.celo.org/',
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://explorer.celo.org',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Athereum',
@@ -2398,12 +2923,20 @@ const chains = [
     chain: 'AVAX',
     network: 'mainnet',
     rpc: [ 'https://api.avax.network/ext/bc/C/rpc' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Avalanche', symbol: 'AVAX', decimals: 18 },
-    infoURL: 'https://cchain.explorer.avax.network/',
+    infoURL: 'https://www.avax.network/',
     shortName: 'Avalanche',
     chainId: 43114,
-    networkId: 1
+    networkId: 43114,
+    slip44: 9000,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://cchain.explorer.avax.network',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Celo Alfajores Testnet',
@@ -2427,9 +2960,9 @@ const chains = [
     name: 'Energi Testnet',
     chain: 'NRG',
     network: 'testnet',
-    rpc: [ 'https://nodeapi.test3.energi.network' ],
+    rpc: [ 'https://nodeapi.test.energi.network' ],
     faucets: [],
-    nativeCurrency: { name: 'Energi', symbol: 'tNRG', decimals: 18 },
+    nativeCurrency: { name: 'Energi', symbol: 'NRG', decimals: 18 },
     infoURL: 'https://www.energi.world/',
     shortName: 'tnrg',
     chainId: 49797,
@@ -2495,13 +3028,18 @@ const chains = [
     networkId: 78110
   },
   {
-    name: 'Matic(Polygon) Testnet Mumbai',
-    chain: 'Matic(Polygon)',
+    name: 'Polygon Testnet Mumbai',
+    chain: 'Polygon',
     network: 'testnet',
-    rpc: [ 'https://rpc-mumbai.matic.today', 'wss://ws-mumbai.matic.today' ],
-    faucets: [ 'https://faucet.matic.network/' ],
-    nativeCurrency: { name: 'Matic', symbol: 'tMATIC', decimals: 18 },
-    infoURL: 'https://matic.network/',
+    rpc: [
+      'https://rpc-mumbai.matic.today',
+      'https://matic-mumbai.chainstacklabs.com',
+      'https://rpc-mumbai.maticvigil.com',
+      'https://matic-testnet-archive-rpc.bwarelabs.com'
+    ],
+    faucets: [ 'https://faucet.polygon.technology/' ],
+    nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+    infoURL: 'https://polygon.technology/',
     shortName: 'maticmum',
     chainId: 80001,
     networkId: 80001,
@@ -2871,6 +3409,56 @@ const chains = [
     slip44: 200625
   },
   {
+    name: 'Alaya Dev Testnet',
+    chain: 'Alaya',
+    network: 'testnet',
+    rpc: [
+      'https://devnetopenapi.alaya.network/rpc',
+      'wss://devnetopenapi.alaya.network/ws'
+    ],
+    faucets: [
+      'https://faucet.alaya.network/faucet/?id=f93426c0887f11eb83b900163e06151c'
+    ],
+    nativeCurrency: { name: 'ATP', symbol: 'atp', decimals: 18 },
+    infoURL: 'https://www.alaya.network/',
+    shortName: 'alaya',
+    chainId: 201030,
+    networkId: 1,
+    icon: 'alaya',
+    explorers: [
+      {
+        name: 'alaya explorer',
+        url: 'https://devnetscan.alaya.network',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'PlatON Dev Testnet',
+    chain: 'PlatON',
+    network: 'testnet',
+    rpc: [
+      'https://devnetopenapi.platon.network/rpc',
+      'wss://devnetopenapi.platon.network/ws'
+    ],
+    faucets: [
+      'https://faucet.platon.network/faucet/?id=e5d32df10aee11ec911142010a667c03'
+    ],
+    nativeCurrency: { name: 'LAT', symbol: 'lat', decimals: 18 },
+    infoURL: 'https://www.platon.network',
+    shortName: 'PlatON',
+    chainId: 210309,
+    networkId: 1,
+    icon: 'platon',
+    explorers: [
+      {
+        name: 'PlatON explorer',
+        url: 'https://devnetscan.platon.network/',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'ARTIS sigma1',
     chain: 'ARTIS',
     network: 'sigma1',
@@ -2949,17 +3537,55 @@ const chains = [
     }
   },
   {
-    name: 'Ether-1',
+    name: 'Eluvio Content Fabric',
+    chain: 'Eluvio',
+    network: 'mainnet',
+    rpc: [
+      'https://host-76-74-28-226.contentfabric.io/eth/',
+      'https://host-76-74-28-232.contentfabric.io/eth/',
+      'https://host-76-74-29-2.contentfabric.io/eth/',
+      'https://host-76-74-29-8.contentfabric.io/eth/',
+      'https://host-76-74-29-34.contentfabric.io/eth/',
+      'https://host-76-74-29-35.contentfabric.io/eth/',
+      'https://host-154-14-211-98.contentfabric.io/eth/',
+      'https://host-154-14-192-66.contentfabric.io/eth/',
+      'https://host-60-240-133-202.contentfabric.io/eth/',
+      'https://host-64-235-250-98.contentfabric.io/eth/'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'ELV', symbol: 'ELV', decimals: 18 },
+    infoURL: 'https://eluv.io',
+    shortName: 'elv',
+    chainId: 955305,
+    networkId: 955305,
+    slip44: 1011,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://explorer.eluv.io',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Etho Protocol',
     chain: 'ETHO',
     network: 'mainnet',
     rpc: [ 'https://rpc.ether1.org' ],
     faucets: [],
-    nativeCurrency: { name: 'Ether-1 Ether', symbol: 'ETHO', decimals: 18 },
-    infoURL: 'https://ether1.org',
+    nativeCurrency: { name: 'Etho Protocol', symbol: 'ETHO', decimals: 18 },
+    infoURL: 'https://ethoprotocol.com',
     shortName: 'etho',
     chainId: 1313114,
     networkId: 1313114,
-    slip44: 1313114
+    slip44: 1313114,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://explorer.ethoprotocol.com',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Xerom',
@@ -3077,6 +3703,42 @@ const chains = [
     networkId: 99415706
   },
   {
+    name: 'Neon EVM DevNet',
+    chain: 'Solana',
+    network: 'devnet',
+    rpc: [ 'https://proxy.devnet.neonlabs.org/solana' ],
+    faucets: [ 'https://neonswap.live/#/get-tokens' ],
+    nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
+    infoURL: 'https://neon-labs.org/',
+    shortName: 'neonevm-devnet',
+    chainId: 245022926,
+    networkId: 245022926
+  },
+  {
+    name: 'Neon EVM MainNet',
+    chain: 'Solana',
+    network: 'mainnet',
+    rpc: [ 'https://proxy.mainnet.neonlabs.org/solana' ],
+    faucets: [],
+    nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
+    infoURL: 'https://neon-labs.org/',
+    shortName: 'neonevm-mainnet',
+    chainId: 245022934,
+    networkId: 245022934
+  },
+  {
+    name: 'Neon EVM TestNet',
+    chain: 'Solana',
+    network: 'testnet',
+    rpc: [ 'https://proxy.testnet.neonlabs.org/solana' ],
+    faucets: [],
+    nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
+    infoURL: 'https://neon-labs.org/',
+    shortName: 'neonevm-testnet',
+    chainId: 245022940,
+    networkId: 245022940
+  },
+  {
     name: 'OneLedger Mainnet',
     chain: 'OLT',
     network: 'mainnet',
@@ -3112,7 +3774,7 @@ const chains = [
     name: 'Aurora MainNet',
     chain: 'NEAR',
     network: 'mainnet',
-    rpc: [ 'https://rpc.mainnet.aurora.dev:8545' ],
+    rpc: [ 'https://mainnet.aurora.dev' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
     infoURL: 'https://aurora.dev',
@@ -3124,7 +3786,7 @@ const chains = [
     name: 'Aurora TestNet',
     chain: 'NEAR',
     network: 'testnet',
-    rpc: [ 'https://rpc.testnet.aurora.dev:8545' ],
+    rpc: [ 'https://testnet.aurora.dev/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
     infoURL: 'https://aurora.dev',
@@ -3136,7 +3798,7 @@ const chains = [
     name: 'Aurora BetaNet',
     chain: 'NEAR',
     network: 'betanet',
-    rpc: [ 'https://rpc.betanet.aurora.dev:8545' ],
+    rpc: [ 'https://betanet.aurora.dev/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
     infoURL: 'https://aurora.dev',
@@ -3149,7 +3811,7 @@ const chains = [
     chain: 'Harmony',
     network: 'mainnet',
     rpc: [ 'https://api.harmony.one' ],
-    faucets: [],
+    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
     infoURL: 'https://www.harmony.one/',
     shortName: 'hmy-s0',
