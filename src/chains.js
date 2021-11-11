@@ -352,6 +352,25 @@ const chains = [
     networkId: 23
   },
   {
+    name: 'Cronos Mainnet Beta',
+    chain: 'CRO',
+    network: 'mainnet',
+    rpc: [ 'https://evm-cronos.crypto.org' ],
+    faucets: [],
+    nativeCurrency: { name: 'Crypto.org Coin', symbol: 'CRO', decimals: 18 },
+    infoURL: 'https://cronos.crypto.org',
+    shortName: 'cro',
+    chainId: 25,
+    networkId: 25,
+    explorers: [
+      {
+        name: 'Cronos Explorer',
+        url: 'https://cronos.crypto.org/explorer',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'ShibaChain',
     chain: 'SHIB',
     network: 'mainnet',
@@ -488,7 +507,14 @@ const chains = [
     infoURL: 'https://telos.net',
     shortName: 'Telos EVM',
     chainId: 40,
-    networkId: 40
+    networkId: 40,
+    explorers: [
+      {
+        name: 'teloscan',
+        url: 'https://teloscan.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Telos EVM Testnet',
@@ -941,12 +967,38 @@ const chains = [
     chain: 'METER',
     network: 'mainnet',
     rpc: [ 'https://rpc.meter.io' ],
-    faucets: [],
+    faucets: [ 'https://faucet.meter.io' ],
     nativeCurrency: { name: 'Meter', symbol: 'MTR', decimals: 18 },
     infoURL: 'https://www.meter.io',
     shortName: 'Meter',
     chainId: 82,
-    networkId: 82
+    networkId: 82,
+    explorers: [
+      {
+        name: 'Meter Mainnet Scan',
+        url: 'https://scan.meter.io',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Meter Testnet',
+    chain: 'METER Testnet',
+    network: 'testnet',
+    rpc: [ 'https://rpctest.meter.io' ],
+    faucets: [ 'https://faucet-warringstakes.meter.io' ],
+    nativeCurrency: { name: 'Meter', symbol: 'MTR', decimals: 18 },
+    infoURL: 'https://www.meter.io',
+    shortName: 'MeterTest',
+    chainId: 83,
+    networkId: 83,
+    explorers: [
+      {
+        name: 'Meter Testnet Scan',
+        url: 'https://scan-warringstakes.meter.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'GateChain Testnet',
@@ -1015,6 +1067,25 @@ const chains = [
         name: 'eosq',
         url: 'https://kylin.eosargentina.io',
         standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'NEXT Smart Chain',
+    chain: 'NSC',
+    network: 'mainnet',
+    rpc: [ 'https://rpc.nextsmartchain.com' ],
+    faucets: [ 'https://faucet.nextsmartchain.com' ],
+    nativeCurrency: { name: 'NEXT', symbol: 'NEXT', decimals: 18 },
+    infoURL: 'https://www.nextsmartchain.com/',
+    shortName: 'nsc',
+    chainId: 96,
+    networkId: 96,
+    explorers: [
+      {
+        name: 'Next Smart Chain Explorer',
+        url: 'https://explorer.nextsmartchain.com',
+        standard: 'none'
       }
     ]
   },
@@ -1649,7 +1720,7 @@ const chains = [
     explorers: [
       {
         name: 'Cronos Testnet Explorer',
-        url: 'https://cronos.crypto.org/explorer',
+        url: 'https://cronos.crypto.org/explorer/testnet3',
         standard: 'none'
       }
     ]
@@ -2531,6 +2602,25 @@ const chains = [
     networkId: 5869
   },
   {
+    name: 'Hazlor Testnet',
+    chain: 'Hazlor',
+    network: 'testnet',
+    rpc: [ 'http://hatlas.rpc.hazlor.com:8545/' ],
+    faucets: [ 'https://faucet.hazlor.com' ],
+    nativeCurrency: { name: 'Planet', symbol: 'PLANET', decimals: 18 },
+    infoURL: 'https://hazlor.com',
+    shortName: 'hazlor-hatlas',
+    chainId: 7878,
+    networkId: 7878,
+    explorers: [
+      {
+        name: 'Hazlor Explorer ',
+        url: 'https://explorer.hazlor.com',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'MDGL Testnet',
     chain: 'MDGL',
     network: 'testnet',
@@ -2721,6 +2811,25 @@ const chains = [
     shortName: 'GEN',
     chainId: 10101,
     networkId: 10101
+  },
+  {
+    name: 'Singularity ZERO Testnet',
+    chain: 'ZERO',
+    network: 'testnet',
+    rpc: [ 'https://betaenv.singularity.gold:18545' ],
+    faucets: [ 'https://nft.singularity.gold' ],
+    nativeCurrency: { name: 'ZERO', symbol: 'tZERO', decimals: 18 },
+    infoURL: 'https://www.singularity.gold',
+    shortName: 'tZERO',
+    chainId: 12051,
+    networkId: 12051,
+    explorers: [
+      {
+        name: 'zeroscan',
+        url: 'https://betaenv.singularity.gold:18002',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'MetaDot Mainnet',
@@ -2916,7 +3025,14 @@ const chains = [
     infoURL: 'https://cchain.explorer.avax-test.network',
     shortName: 'Fuji',
     chainId: 43113,
-    networkId: 1
+    networkId: 1,
+    explorers: [
+      {
+        name: 'snowtrace',
+        url: 'https://testnet.snowtrace.io/',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Avalanche Mainnet',
@@ -2932,9 +3048,9 @@ const chains = [
     slip44: 9000,
     explorers: [
       {
-        name: 'blockscout',
-        url: 'https://cchain.explorer.avax.network',
-        standard: 'none'
+        name: 'snowtrace',
+        url: 'https://snowtrace.io/',
+        standard: 'EIP3091'
       }
     ]
   },
@@ -2970,6 +3086,82 @@ const chains = [
     slip44: 49797
   },
   {
+    name: 'Thinkium Testnet Chain 0',
+    chain: 'Thinkium',
+    network: 'testnet',
+    rpc: [ 'https://test.thinkiumrpc.net/' ],
+    faucets: [ 'https://www.thinkiumdev.net/faucet' ],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM-test0',
+    chainId: 60000,
+    networkId: 60000,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://test0.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Thinkium Testnet Chain 1',
+    chain: 'Thinkium',
+    network: 'testnet',
+    rpc: [ 'https://test1.thinkiumrpc.net/' ],
+    faucets: [ 'https://www.thinkiumdev.net/faucet' ],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM-test1',
+    chainId: 60001,
+    networkId: 60001,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://test1.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Thinkium Testnet Chain 2',
+    chain: 'Thinkium',
+    network: 'testnet',
+    rpc: [ 'https://test2.thinkiumrpc.net/' ],
+    faucets: [ 'https://www.thinkiumdev.net/faucet' ],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM-test2',
+    chainId: 60002,
+    networkId: 60002,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://test2.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Thinkium Testnet Chain 103',
+    chain: 'Thinkium',
+    network: 'testnet',
+    rpc: [ 'https://test103.thinkiumrpc.net/' ],
+    faucets: [ 'https://www.thinkiumdev.net/faucet' ],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM-test103',
+    chainId: 60103,
+    networkId: 60103,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://test103.thinkiumscan.net',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Celo Baklava Testnet',
     chainId: 62320,
     shortName: 'BKLV',
@@ -2983,6 +3175,82 @@ const chains = [
       'https://cauldron.pretoriaresearchlab.io/baklava-faucet'
     ],
     infoURL: 'https://docs.celo.org/'
+  },
+  {
+    name: 'Thinkium Mainnet Chain 0',
+    chain: 'Thinkium',
+    network: 'mainnet',
+    rpc: [ 'https://proxy.thinkiumrpc.net/' ],
+    faucets: [],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM0',
+    chainId: 70000,
+    networkId: 70000,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://chain0.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Thinkium Mainnet Chain 1',
+    chain: 'Thinkium',
+    network: 'mainnet',
+    rpc: [ 'https://proxy1.thinkiumrpc.net/' ],
+    faucets: [],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM1',
+    chainId: 70001,
+    networkId: 70001,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://chain1.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Thinkium Mainnet Chain 2',
+    chain: 'Thinkium',
+    network: 'mainnet',
+    rpc: [ 'https://proxy2.thinkiumrpc.net/' ],
+    faucets: [],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM2',
+    chainId: 70002,
+    networkId: 70002,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://chain2.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Thinkium Mainnet Chain 103',
+    chain: 'Thinkium',
+    network: 'mainnet',
+    rpc: [ 'https://proxy103.thinkiumrpc.net/' ],
+    faucets: [],
+    nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
+    infoURL: 'https://thinkium.net/',
+    shortName: 'TKM103',
+    chainId: 70103,
+    networkId: 70103,
+    explorers: [
+      {
+        name: 'thinkiumscan',
+        url: 'https://chain103.thinkiumscan.net/',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Polyjuice Testnet',
@@ -3032,7 +3300,6 @@ const chains = [
     chain: 'Polygon',
     network: 'testnet',
     rpc: [
-      'https://rpc-mumbai.matic.today',
       'https://matic-mumbai.chainstacklabs.com',
       'https://rpc-mumbai.maticvigil.com',
       'https://matic-testnet-archive-rpc.bwarelabs.com'

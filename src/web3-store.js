@@ -172,6 +172,8 @@ export const makeContractStore = (abi, address, defaults = {}) => derived(
 
 loadWeb3()
 
+export { chains as allChainsData }
+
 export const defaultChainStore = makeChainStore('default')
 export const connected = allStores.default.connected
 export const chainId = allStores.default.chainId

@@ -1,6 +1,6 @@
 <script>
-  import { makeChainStore, defaultChainStore, web3, connected, selectedAccount, chainId, chainData } from '../../../dist/index.js'
-  //import { defaultChainStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  //import { allChainsData makeChainStore, defaultChainStore, web3, connected, selectedAccount, chainId, chainData } from '../../../dist/index.js'
+  import { allChainsData, makeChainStore, defaultChainStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
 
   export let name
 

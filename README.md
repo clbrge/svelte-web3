@@ -112,8 +112,15 @@ stores.
 
 `chainData` is a store returning the current JavaScript [CAIP-2 representation](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md) object.
 
+### Example
 
-### Example of information available (vary depending on the chain)
+The information returned by the `chainData` store depends (like all
+other web3 stores) on which chain the current provider is
+connected. If the store has not yet been connected (with `setProvider`
+or `setBrowserProvider`), the store value will be `undefined`.
+
+Below is the CAIP-2 formatted information when the default store is 
+connected with the Ethereum Mainnet :
 
 ```json
 {
@@ -143,6 +150,18 @@ stores.
   }]
 }
 ```
+
+
+You might want to access all chains CAIP-2 data directly without using the
+`chainData` store. In this case, use the getter `allChainsData`, it returns
+the list of all CAIP-2 data available.
+
+```js
+import { allChainsData } from 'svelte-web3'
+
+console.log( allChainsData )
+```
+
 
 ## Create contract stores
 
