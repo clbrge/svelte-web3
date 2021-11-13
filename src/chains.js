@@ -918,9 +918,9 @@ const chains = [
       'ws://sokol.poa.network:8546'
     ],
     faucets: [ 'https://faucet-sokol.herokuapp.com' ],
-    nativeCurrency: { name: 'POA Sokol Ether', symbol: 'POA', decimals: 18 },
+    nativeCurrency: { name: 'POA Sokol Ether', symbol: 'SKL', decimals: 18 },
     infoURL: 'https://poa.network',
-    shortName: 'poa',
+    shortName: 'skl',
     chainId: 77,
     networkId: 77,
     explorers: [
@@ -1130,9 +1130,9 @@ const chains = [
       'ws://core.poanetwork.dev:8546'
     ],
     faucets: [],
-    nativeCurrency: { name: 'POA Network Core Ether', symbol: 'SKL', decimals: 18 },
+    nativeCurrency: { name: 'POA Network Core Ether', symbol: 'POA', decimals: 18 },
     infoURL: 'https://poa.network',
-    shortName: 'skl',
+    shortName: 'poa',
     chainId: 99,
     networkId: 99,
     slip44: 178,
@@ -2235,7 +2235,7 @@ const chains = [
     name: 'HALO Mainnet',
     chain: 'HALO',
     network: 'mainnet',
-    rpc: [ 'https://https://nodes.halo.land' ],
+    rpc: [ 'https://nodes.halo.land' ],
     faucets: [],
     nativeCurrency: { name: 'HALO', symbol: 'HO', decimals: 18 },
     infoURL: 'https://halo.land/#/',
