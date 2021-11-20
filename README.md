@@ -220,13 +220,26 @@ stores this way :
   ({ web3: web3_B, ...ethStore_B } = makeChainStore('<id_B>'))
 ```
 
+## Examples
 
-## Svelte example (based on rollup template)
+If you are using `svelte-web3` to build an open source Dapp, let us know
+if you want to be listed in this section.
+
+### Svelte basic example (based on rollup template)
 
 Please check `examples/svelte-app-template-web3` in github.
 
 Contain both sub-examples to use the default store and multi stores.
 
-## Sapper example (based on webpack template)
+### Sapper basic example (based on webpack template)
 
 Please check `examples/sapper-app-template-web3` in github.
+
+
+### tradingstrategy.ai presented at EthLisbon 2021
+
+A website presented in EthLisbon 2021, used svelte-web3 for building the frontend. :
+
+* The page is live here: https://tradingstrategy.ai/strategy/ethlisbon
+* Source code : https://github.com/tradingstrategy-ai/frontend/blob/master/src/lib/web3/Investor.svelte
+

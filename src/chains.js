@@ -1274,6 +1274,18 @@ const chains = [
     networkId: 122
   },
   {
+    name: 'Fuse Sparknet',
+    chain: 'fuse',
+    network: 'testnet',
+    rpc: [ 'https://rpc.fusespark.io' ],
+    faucets: [ 'https://get.fusespark.io' ],
+    nativeCurrency: { name: 'Spark', symbol: 'SPARK', decimals: 18 },
+    infoURL: 'https://docs.fuse.io/general/fuse-network-blockchain/fuse-testnet',
+    shortName: 'spark',
+    chainId: 123,
+    networkId: 123
+  },
+  {
     name: 'Decentralized Web Mainnet',
     shortName: 'dwu',
     chain: 'DWU',
@@ -2472,6 +2484,19 @@ const chains = [
     networkId: 2559
   },
   {
+    name: 'ZCore Testnet',
+    chain: 'Beach',
+    network: 'testnet',
+    icon: 'zcore',
+    rpc: [ 'https://rpc-testnet.zcore.cash' ],
+    faucets: [ 'https://faucet.zcore.cash' ],
+    nativeCurrency: { name: 'ZCore', symbol: 'ZCR', decimals: 18 },
+    infoURL: 'https://zcore.cash',
+    shortName: 'zcrbeach',
+    chainId: 3331,
+    networkId: 3331
+  },
+  {
     name: 'Fantom Testnet',
     chain: 'FTM',
     network: 'testnet',
@@ -2744,7 +2769,7 @@ const chains = [
     name: 'Evmos Testnet',
     chain: 'Evmos',
     network: 'testnet',
-    rpc: [ 'http://arsiamons.rpc.evmos.org:8545/' ],
+    rpc: [ 'https://ethereum.rpc.evmos.dev' ],
     faucets: [ 'https://faucet.evmos.org' ],
     nativeCurrency: { name: 'Photon', symbol: 'PHOTON', decimals: 18 },
     infoURL: 'https://evmos.org',
