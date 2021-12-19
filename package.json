@@ -1,6 +1,6 @@
 {
   "name": "svelte-web3",
-  "version": "2.3.5",
+  "version": "3.0.0-0",
   "description": "web3.js as a collection of stores for Svelte, Sapper or SvelteKit.",
   "license": "MIT",
   "repository": "clbrge/svelte-web3",
@@ -12,15 +12,15 @@
   "module": "dist/index.mjs",
   "svelte": "src/web3-store.js",
   "types": "dist/svelte-web3.d.ts",
-  "exports":{
+  "exports": {
     "./package.json": "./package.json",
-    ".":{
+    ".": {
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
       "svelte": "./src/web3-store.js",
       "types": "./dist/svelte-web3.d.ts"
     },
-    "./components":{
+    "./components": {
       "import": "./src/components/index.js",
       "svelte": "./src/components/index.js"
     }
