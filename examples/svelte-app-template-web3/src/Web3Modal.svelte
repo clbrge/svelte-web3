@@ -1,8 +1,6 @@
 <script>
-  import { defaultChainStore, web3, connected, selectedAccount, chainId, chainData } from '../../../dist/index.js'
-  //import { defaultChainStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
-
-  export let name
+  import { defaultChainStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  import { Balance } from 'svelte-web3/components'
 
   const Web3Modal = window.Web3Modal.default
   const WalletConnectProvider = window.WalletConnectProvider.default
@@ -25,7 +23,6 @@
   }
 
   $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
-  $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
 
 </script>
 
@@ -50,14 +47,6 @@
   Selected account: {$selectedAccount || 'not defined'}
 </p>
 
-<p>
-  {checkAccount} Balance on {$chainData.name}:
-    {#await balance}
-  <span>waiting...</span>
-  {:then value}
-  <span>{value}</span>
-  {/await} {$chainData.nativeCurrency?.symbol}
-</p>
-
+<p>Selected account balance = <Balance address={checkAccount} /> {$chainData.nativeCurrency?.symbol}</p>
 
 {/if}

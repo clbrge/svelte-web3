@@ -1,7 +1,6 @@
 <script>
   import RPC from './RPC.svelte'
 
-
 </script>
 
 <p>Simple example to create several stores connected to different providers in parallel.</p>

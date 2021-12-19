@@ -84,7 +84,7 @@ export const createStore = () => {
     }))
   }
 
-  const close = async (provider) => {
+  const disconnect = async (provider) => {
     if(provider && provider.disconnect) {
       await provider.disconnect()
     }
@@ -97,7 +97,8 @@ export const createStore = () => {
   return {
     setBrowserProvider,
     setProvider,
-    close,
+    disconnect,
+    close: disconnect,
     subscribe
   }
 }
@@ -115,7 +116,7 @@ const getData = id => {
   return noData
 }
 
-export const makeChainStore = name => {
+export const makeEvmStores = name => {
 
   const ethStore = allStores[name] = createStore()
 
@@ -174,7 +175,8 @@ loadWeb3()
 
 export { chains as allChainsData }
 
-export const defaultChainStore = makeChainStore('default')
+export const defaultEvmStores = makeEvmStores('default')
+
 export const connected = allStores.default.connected
 export const chainId = allStores.default.chainId
 export const providerType = allStores.default.providerType
@@ -183,5 +185,7 @@ export const walletType = allStores.default.walletType
 export const web3 = allStores.default.web3
 export const chainData = allStores.default.chainData
 
-export const ethStore = defaultChainStore
+// legacy naming
 
+export const defaultChainStore = defaultEvmStores
+export const ethStore = defaultEvmStores

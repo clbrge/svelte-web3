@@ -1,5 +1,5 @@
 <script>
-  import { makeChainStore } from '../../../dist/index.js'
+  import { makeChainStore } from 'svelte-web3'
 
   export let name
   export let provider
