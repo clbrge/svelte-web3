@@ -8,7 +8,7 @@ for Svelte, Sapper or Sveltekit.
 If you prefer to use the [ethers.js
 library](https://docs.ethers.io/v5/) to intereact with EVM, you may be
 interested by our sister package
-[svelte-ethers-store](https://www.npmjs.com/package/svelte-ethers-store).%
+[svelte-ethers-store](https://www.npmjs.com/package/svelte-ethers-store).
 
 ### Community
 
@@ -279,7 +279,7 @@ Please check `examples/sapper-app-template-web3` in github.
 
 ### tradingstrategy.ai presented at EthLisbon 2021
 
-A website presented in EthLisbon 2021, used svelte-web3 for building the frontend. :
+A website presented in EthLisbon 2021, used svelte-web3 (version 2) for building the frontend. :
 
 * The page is live here: https://tradingstrategy.ai/strategy/ethlisbon
 * Source code : https://github.com/tradingstrategy-ai/frontend/blob/master/src/lib/web3/Investor.svelte

@@ -30,7 +30,8 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "svelte-proxied-store": "^0.1.2"
   },
   "devDependencies": {
     "eslint-plugin-svelte3": "^3.2.1",

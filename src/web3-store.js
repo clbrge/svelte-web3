@@ -1,6 +1,7 @@
 
 import chains from './chains.js'
-import { derived, writable } from 'svelte/store'
+import { proxied } from 'svelte-proxied-store'
+import { derived } from 'svelte/store'
 
 const getGlobalObject = () => {
   if (typeof globalThis !== 'undefined') { return globalThis }
@@ -30,15 +31,17 @@ const getWindowEthereum = () => {
 }
 
 export const createStore = () => {
-  const { subscribe, update, set } = writable({
-    connected: false,
-    accounts: []
-  })
+
+  const { emit, get, subscribe, assign, deleteAll } = proxied()
 
   const init = () => {
     loadWeb3()
     if (!Web3.version) throw new Error('Cannot find Web3')
     if (getWindowEthereum()) getWindowEthereum().autoRefreshOnNetworkChange = false
+    assign({
+      connected: false,
+      accounts: []
+    })
   }
 
   const setProvider = async (provider, callback) => {
@@ -56,14 +59,15 @@ export const createStore = () => {
         instance._provider.on('chainChanged', () => setProvider(provider, true))
       }
     }
-    update(() => ({
+    assign({
       provider,
       providerType: 'String',
       connected: true,
       chainId,
       accounts,
       instance
-    }))
+    })
+    emit()
   }
 
   const setBrowserProvider = async () => {
@@ -74,24 +78,27 @@ export const createStore = () => {
     getWindowEthereum().on('chainChanged', setBrowserProvider)
     const instance = new Web3(getWindowEthereum())
     const chainId = await instance.eth.getChainId()
-    update(() => ({
+    assign({
       provider: getWindowEthereum(),
       providerType: 'Browser',
       connected: true,
       chainId,
       accounts: res,
       instance
-    }))
+    })
+    emit()
   }
 
   const disconnect = async (provider) => {
     if(provider && provider.disconnect) {
       await provider.disconnect()
     }
-    update(() => ({
+    deleteAll()
+    assign({
       connected: false,
       accounts: []
-    }))
+    })
+    emit()
   }
 
   return {
@@ -99,7 +106,8 @@ export const createStore = () => {
     setProvider,
     disconnect,
     close: disconnect,
-    subscribe
+    subscribe,
+    get
   }
 }
 
@@ -188,4 +196,3 @@ export const chainData = allStores.default.chainData
 // legacy naming
 
 export const defaultChainStore = defaultEvmStores
-export const ethStore = defaultEvmStores
