@@ -10,14 +10,14 @@
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "svelte": "src/web3-store.js",
+  "svelte": "src/stores.js",
   "types": "dist/svelte-web3.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "main": "./dist/index.js",
       "module": "./dist/index.mjs",
-      "svelte": "./src/web3-store.js",
+      "svelte": "./src/stores.js",
       "types": "./dist/svelte-web3.d.ts"
     },
     "./components": {

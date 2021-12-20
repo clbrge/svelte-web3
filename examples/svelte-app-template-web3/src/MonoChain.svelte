@@ -1,17 +1,17 @@
 <script>
-  import { allChainsData, makeChainStore, defaultChainStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  import { allChainsData, makeEvmStores, defaultEvmStores, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
 
   import { Balance } from 'svelte-web3/components'
 
   let tipAddress = '0x834356a88C66897FA0A05a61964a91A607956ee3'
 
   let sokol, sokol_connected, sokol_web3
-  ({ connected: sokol_connected, web3: sokol_web3, ...sokol } = makeChainStore('sokol'))
+  ({ connected: sokol_connected, web3: sokol_web3, ...sokol } = makeEvmStores('sokol'))
 
   sokol.setProvider('https://sokol.poa.network')
 
-  const enable = () => defaultChainStore.setProvider('https://sokol.poa.network')
-  const enableBrowser = () => defaultChainStore.setBrowserProvider()
+  const enable = () => defaultEvmStores.setProvider('https://sokol.poa.network')
+  const enableBrowser = () => defaultEvmStores.setBrowserProvider()
 
   $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
 

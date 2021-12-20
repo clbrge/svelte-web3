@@ -3,6 +3,7 @@
   import MultiChain from './MultiChain.svelte'
   import Web3Modal from './Web3Modal.svelte'
 
+  let name
   let example = MonoChain
 
   $: metamaskConnected = window.ethereum ? window.ethereum.isConnected() : false

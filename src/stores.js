@@ -1,7 +1,8 @@
 
-import chains from './chains.js'
 import { proxied } from 'svelte-proxied-store'
 import { derived } from 'svelte/store'
+
+import chains from './chains.js'
 
 const getGlobalObject = () => {
   if (typeof globalThis !== 'undefined') { return globalThis }
@@ -36,68 +37,66 @@ export const createStore = () => {
 
   const init = () => {
     loadWeb3()
-    if (!Web3.version) throw new Error('Cannot find Web3')
+    if (!Web3.version) throw new Error('[svelte-web3] Cannot find Web3')
     if (getWindowEthereum()) getWindowEthereum().autoRefreshOnNetworkChange = false
     assign({
       connected: false,
+      evmProviderType: '',
       accounts: []
     })
   }
 
-  const setProvider = async (provider, callback) => {
+  const setProvider = async (evmProvider, callback) => {
     init()
-    const instance = new Web3(provider)
+    const instance = new Web3(evmProvider)
     const chainId = await instance.eth.getChainId()
     // no account with ganache
-    const accounts = /127/.test(provider) ? [] : await instance.eth.getAccounts()
+    const accounts = /127/.test(evmProvider) ? [] : await instance.eth.getAccounts()
     if (callback) {
-      instance._provider.removeListener('accountsChanged', () => setProvider(provider, true))
-      instance._provider.removeListener('chainChanged', () =>  setProvider(provider, true))
+      instance._provider.removeListener('accountsChanged', () => setProvider(evmProvider, true))
+      instance._provider.removeListener('chainChanged', () =>  setProvider(evmProvider, true))
     } else {
       if (instance._provider && instance._provider.on) {
-        instance._provider.on('accountsChanged', () => setProvider(provider, true))
-        instance._provider.on('chainChanged', () => setProvider(provider, true))
+        instance._provider.on('accountsChanged', () => setProvider(evmProvider, true))
+        instance._provider.on('chainChanged', () => setProvider(evmProvider, true))
       }
     }
     assign({
-      provider,
-      providerType: 'String',
+      instance,
+      evmProvider: instance._provider,
+      evmProviderType: typeof evmProvider === 'string' ? 'RPC' : 'Web3',
       connected: true,
       chainId,
-      accounts,
-      instance
+      accounts
     })
     emit()
   }
 
   const setBrowserProvider = async () => {
     init()
-    if (!getWindowEthereum()) throw new Error('Please authorize browser extension (Metamask or similar)')
+    if (!getWindowEthereum()) throw new Error('[svelte-web3] Please authorize browser extension (Metamask or similar)')
     const res = await getWindowEthereum().request({ method: 'eth_requestAccounts' })
     getWindowEthereum().on('accountsChanged', setBrowserProvider)
     getWindowEthereum().on('chainChanged', setBrowserProvider)
     const instance = new Web3(getWindowEthereum())
     const chainId = await instance.eth.getChainId()
     assign({
-      provider: getWindowEthereum(),
-      providerType: 'Browser',
+      instance,
+      evmProvider: getWindowEthereum(),
+      evmProviderType: 'Browser',
       connected: true,
       chainId,
-      accounts: res,
-      instance
+      accounts: res
     })
     emit()
   }
 
-  const disconnect = async (provider) => {
-    if(provider && provider.disconnect) {
-      await provider.disconnect()
+  const disconnect = async (evmProvider) => {
+    if(evmProvider && evmProvider.disconnect) {
+      await evmProvider.disconnect()
     }
     deleteAll()
-    assign({
-      connected: false,
-      accounts: []
-    })
+    init()
     emit()
   }
 
@@ -124,48 +123,62 @@ const getData = id => {
   return noData
 }
 
+const subStoreNames = [ 'connected', 'chainId', 'evmProviderType', 'web3', 'selectedAccount', 'chainData', 'walletType' ]
+
 export const makeEvmStores = name => {
 
-  const ethStore = allStores[name] = createStore()
+  const evmStore = allStores[name] = createStore()
 
-  allStores[name].connected = derived(ethStore, $ethStore => $ethStore.connected)
-  allStores[name].chainId = derived(ethStore, $ethStore => $ethStore.chainId)
-  allStores[name].providerType = derived(ethStore, $ethStore => $ethStore.providerType)
+  allStores[name].connected = derived(evmStore, $evmStore => $evmStore.connected)
+  allStores[name].chainId = derived(evmStore, $evmStore => $evmStore.chainId)
+  allStores[name].evmProviderType = derived(evmStore, $evmStore => $evmStore.evmProviderType)
+
   allStores[name].selectedAccount = derived(
-    ethStore,
-    $ethStore => {
-      if ($ethStore.connected) return $ethStore.accounts.length ? $ethStore.accounts[0] : null
+    evmStore,
+    $evmStore => {
+      if ($evmStore.connected) return $evmStore.accounts.length ? $evmStore.accounts[0] : null
       return null
     }
   )
-
-  allStores[name].walletType = derived(ethStore, $ethStore => {
-    if (!$ethStore.provider) return null
-    if (typeof $ethStore.provider === 'string') return $ethStore.provider
-    if ($ethStore.provider.isMetaMask) return 'MetaMask (or compatible)'
-    if ($ethStore.provider.isNiftyWallet) return 'Nifty'
-    if ($ethStore.provider.isTrust) return 'Trust'
-    return 'Unknown'
-  })
-
   allStores[name].web3 = derived(
-    ethStore,
-    $ethStore => {
-      if (!$ethStore.instance) return { utils: Web3.utils, version: Web3.version }
-      return $ethStore.instance
+    evmStore,
+    $evmStore => {
+      if (!$evmStore.instance) return { utils: Web3.utils, version: Web3.version }
+      return $evmStore.instance
     }
   )
 
   allStores[name].chainData = derived(
-    ethStore,
-    $ethStore => $ethStore.chainId ? getData($ethStore.chainId) : {}
+    evmStore,
+    $evmStore => $evmStore.chainId ? getData($evmStore.chainId) : {}
   )
 
-  return allStores[name]
+  allStores[name].walletType = derived(evmStore, $evmStore => {
+    if (!$evmStore.provider) return null
+    if (typeof $evmStore.provider === 'string') return $evmStore.provider
+    if ($evmStore.provider.isMetaMask) return 'MetaMask (or compatible)'
+    if ($evmStore.provider.isNiftyWallet) return 'Nifty'
+    if ($evmStore.provider.isTrust) return 'Trust'
+    return 'Unknown'
+  })
+
+  return new Proxy(allStores[name], {
+    get: function (internal, property) {
+      if (/^\$/.test(property)) {
+        // TODO forbid deconstruction !
+        property = property.slice(1)
+        if (subStoreNames.includes(property)) return allStores[name].get(property)
+        throw new Error(`[svelte-web3] no store named ${property}`)
+      }
+      if (['subscribe', 'get', 'setBrowserProvider', 'setProvider', 'close', 'disconnect', ...subStoreNames].includes(property))
+        return Reflect.get(internal, property)
+      throw new Error(`[svelte-web3] no store named ${property}`)
+    }
+  })
 }
 
 export const getChainStore = name => {
-  if (!allStores[name]) throw new Error(`chain store ${name} does not exist`)
+  if (!allStores[name]) throw new Error(`[svelte-web3] chain store ${name} does not exist`)
   return allStores[name]
 }
 
@@ -187,11 +200,13 @@ export const defaultEvmStores = makeEvmStores('default')
 
 export const connected = allStores.default.connected
 export const chainId = allStores.default.chainId
-export const providerType = allStores.default.providerType
+export const evmProviderType = allStores.default.evmProviderType
 export const selectedAccount = allStores.default.selectedAccount
-export const walletType = allStores.default.walletType
 export const web3 = allStores.default.web3
 export const chainData = allStores.default.chainData
+
+// TODO spin off dectector
+export const walletType = allStores.default.walletType
 
 // legacy naming
 

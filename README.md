@@ -29,32 +29,34 @@ npm i svelte-web3
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 ```
 
-This step is necessary for now because the Web3.js doesn't play well with bundlers (webpack,
-vite, snowpack, etc), thus we cannot simply add a dependency in package.json.
+This step is necessary for now because the Web3.js library doesn't
+play well with bundlers (webpack, vite, snowpack, etc), thus we cannot
+simply add a dependency in package.json.
 
 
 ## Basic usage (default stores connected to one chain)
 
-## Derived stores
+### Derived stores
 
-This library is creating automatically a set of readable Svelte stores
-that are automatically updated when a new connection happens, or when
-the chain or the selected account change. You can import them directly
-in any svelte or JavaScript files :
+This library creates a set of readable Svelte stores that are
+automatically updated when a new connection happens, or when the chain
+or the selected account change. You can import them directly in any
+svelte or JavaScript files :
 
 ```js
 import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
 ```
 
  * connected: store value is true a connection has been set up.
- * web3: store value is an Web3.js instance if connected.
- * selectedAccount: store value is the current selected account (if connected).
- * chainId: store value is the current chainId if connected.
- * chainData: store value is the current blokchain CAIP-2 data (if connected), see below.
+ * web3: store value is a Web3.js instance when connected.
+ * selectedAccount: store value is the current selected account (when connected).
+ * chainId: store value is the current chainId when connected.
+ * chainData: store value is the current blokchain CAIP-2 data (when connected), see below.
 
-For these stores to be useful in your svelte application, you first need to connect to the blockchain.
+For these stores to be useful in your svelte application, you thus
+first need to connect to the EVM blockchain.
 
-The main connection helper `defaultEvmStores` can be use to initiate a connection.
+The main connection helper `defaultEvmStores` can be used to initiate a connection.
 
 ```js
 import { defaultEvmStores } from 'svelte-web3'
@@ -90,7 +92,7 @@ former naming still works but will be removed in later versions of
 ### Connection with other providers (ws, http, Web3Modal, Walletconnect, etc)
 
 To enable connection using an url string or a valid provider object
-(as returned by web3Modal or WalletConnect for example):
+(for example as returned by web3Modal or WalletConnect):
 
 ```js
 defaultEvmStores.setProvider(<ws/https or http provider url or provider Object>)
@@ -99,11 +101,12 @@ defaultEvmStores.setProvider(<ws/https or http provider url or provider Object>)
 Please check `examples/svelte-app-template-web3/src/Web3Modal.svelte` in github.
 
 
-### Using the connection Web3 API 
+### Using the Web3 API 
 
 After a connection has been established, you may import the default
-`web3` store anywhere in your application to use Web3.js API. Use the
-`$` prefix svelte notation to access its value and call Web3.js functions.
+`web3` store anywhere in your application to use the Web3.js API. Use
+the `$` prefix svelte notation to access its instance and call Web3.js
+functions.
 
 ```js
   import { web3, selectedAccount } from 'svelte-web3'
@@ -116,15 +119,16 @@ After a connection has been established, you may import the default
 ```
 
 The whole Web3.js API is usable in the `<script>` section of your
-svelte files if you always use notation `$web3` (beware, `web3` is the
-default notation in web3.js library documentation but in our context,
-it's the Svelte store itself, not it's value, the instantiated
-library).
+svelte files using the notation `$web3` (beware, in the Web3.js
+library documentaion, instances are always noted as `web3`, without
+`$`, but in the context of `svelte-web3`, `web3` is the Svelte store
+itself, not it's value).
 
 
 ### Forcing a disconnect (and the remove all listeners)
 
-Simply call the function `disconnect` directly on the store. For example with the default store:
+Simply call the function `disconnect` directly on the store. For
+example with the default store:
 
 ```js
 defaultEvmStores.disconnect()
