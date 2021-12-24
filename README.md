@@ -2,7 +2,7 @@
 # svelte-web3
 
 Use the [web3.js library](https://web3js.readthedocs.io/) as a
-collection of [readable svelte stores](https://svelte.dev/tutorial/readable-stores)
+collection of [readable Svelte stores](https://svelte.dev/tutorial/readable-stores)
 for Svelte, Sapper or Sveltekit.
 
 If you prefer to use the [ethers.js
@@ -41,7 +41,7 @@ simply add a dependency in package.json.
 This library creates a set of readable Svelte stores that are
 automatically updated when a new connection happens, or when the chain
 or the selected account change. You can import them directly in any
-svelte or JavaScript files :
+Svelte or JavaScript files :
 
 ```js
 import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
@@ -53,7 +53,7 @@ import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web
  * chainId: store value is the current chainId when connected.
  * chainData: store value is the current blokchain CAIP-2 data (when connected), see below.
 
-For these stores to be useful in your svelte application, a connection
+For these stores to be useful in your Svelte application, a connection
 first need to established to a EVM blockchain. The abstract helper
 `defaultEvmStores` can be used to initiate that connection and
 instanciate all stores.
@@ -104,7 +104,7 @@ Please check `examples/svelte-app-template-web3/src/Web3Modal.svelte` in github.
 
 After a connection has been established, you may import the stores
 anywhere in your application. Most of the time, you should use the `$`
-prefix svelte notation to access the stores values.
+prefix Svelte notation to access the stores values.
 
 
 ```html
@@ -127,7 +127,7 @@ prefix svelte notation to access the stores values.
 
 ### Using the Web3 API
 
-Likewise use the `$` prefix svelte notation to access its instance and
+Likewise use the `$` prefix Svelte notation to access its instance and
 use the full Web3.js API. (beware, in the Web3.js library
 documentaion, instances are always noted as `web3`, without `$`, but
 in the context of `svelte-web3`, `web3` is the Svelte store itself,
@@ -145,7 +145,7 @@ not it's value).
 
 ### Reading stores outside of Svelte files
 
-The `$` prefix svelte notation to access store values in only
+The `$` prefix Svelte notation to access store values in only
 available inside Svelte files. To directly access the instanciated
 values in pure javascript library without subscribing to the store,
 you can use special getter on the library abstract helper:
@@ -268,15 +268,15 @@ connection to the same chain througth the browser wallet and
 simultaneously with Infura; or many stores each connected to a
 different chains at the same time.
 
-In this case, use the `makeChainStore` factory function as below :
+In this case, use the `makeEvmStores` factory function as below :
 
 ```js
-  import { makeChainStore } from 'svelte-web3'
+  import { makeEvmStores } from 'svelte-web3'
 
-  let ethStore, web3, connected, selectedAccount, chainId, chainData
-  ({ web3, connected, selectedAccount, chainId, chainData, ...ethStore } = makeChainStore('<id>'))
+  let evmStores, web3, connected, selectedAccount, chainId, chainData
+  ({ web3, connected, selectedAccount, chainId, chainData, ...evmStores } = makeEvmStores('<id>'))
 
-  ethStore.setProvider('https://rpc.slock.it/goerli')
+  evmStores.setProvider('https://rpc.slock.it/goerli')
 ```
 
 `<id>` can be an arbitrary name to be able to retrieve the store with the function `getChainStore`
@@ -286,21 +286,21 @@ without reinitializing the conection:
 ```js
   import { getChainStore } from 'svelte-web3'
 
-  let ethStore, web3, connected, selectedAccount, chainId, chainData
-  ({ web3, connected, selectedAccount, chainId, chainData, ...ethStore } = getChainStore('<id>'))
+  let evmStores, web3, connected, selectedAccount, chainId, chainData
+  ({ web3, connected, selectedAccount, chainId, chainData, ...evmStores } = getChainStore('<id>'))
 ```
 
 The `web3` store and all other derived stores will work the same way as with the default store.
 
-If you want to use the different chain stores in the same svelte file
+If you want to use the different chain stores in the same Svelte file
 (not advised, it's better to use subcomponents), you may renamed the
 stores this way :
 
 ```js
-  let ethStore_A, web3_A, ethStore_B, web3_B
+  let evmStores_A, web3_A, evmStores_B, web3_B
 
-  ({ web3: web3_A, ...ethStore_A } = makeChainStore('<id_A>'))
-  ({ web3: web3_B, ...ethStore_B } = makeChainStore('<id_B>'))
+  ({ web3: web3_A, ...evmStores_A } = makeEvmStores('<id_A>'))
+  ({ web3: web3_B, ...evmStores_B } = makeEvmStores('<id_B>'))
 ```
 
 ## Examples
