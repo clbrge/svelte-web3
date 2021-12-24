@@ -1,13 +1,13 @@
 <script>
   import { onMount } from 'svelte';
 
-  import { ethStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  import { defaultEvmStores, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
 
   export let message
   export let tipAddress
 
-  const enable = () => ethStore.setProvider('https://sokol.poa.network')
-  const enableBrowser = () => ethStore.setBrowserProvider()
+  const enable = () => defaultEvmStores.setProvider('https://sokol.poa.network')
+  const enableBrowser = () => defaultEvmStores.setBrowserProvider()
 
   $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
   $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
@@ -28,7 +28,7 @@
   onMount(
     async () => {
       message = 'Connecting to Ethereum Testnet Görli...'
-       await ethStore.setProvider('https://rpc.slock.it/goerli')
+       await defaultEvmStores.setProvider('https://rpc.slock.it/goerli')
       message = ''
     })
 
@@ -77,11 +77,11 @@
     <span>waiting...</span>
     {:then value}
     <span>{value}</span>
-    {/await} {$chainData.nativeCurrency?.symbol}
+    {/await} {$chainData.nativeCurrency.symbol}
   </p>
 
-  {#if $selectedAccount}
-  <p><button on:click="{sendTip}">send 0.01 {$chainData.nativeCurrency?.symbol} tip to {tipAddress} (author)</button></p>
+  {#if false && $selectedAccount}
+  <p><button on:click="{sendTip}">send 0.01 {$chainData.nativeCurrency.symbol} tip to {tipAddress} (author)</button></p>
   {/if}
 
   {/if}
