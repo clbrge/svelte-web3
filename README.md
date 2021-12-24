@@ -53,27 +53,32 @@ import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web
  * chainId: store value is the current chainId when connected.
  * chainData: store value is the current blokchain CAIP-2 data (when connected), see below.
 
-For these stores to be useful in your svelte application, you thus
-first need to connect to the EVM blockchain.
-
-The main connection helper `defaultEvmStores` can be used to initiate a connection.
+For these stores to be useful in your svelte application, a connection
+first need to established to a EVM blockchain. The abstract helper
+`defaultEvmStores` can be used to initiate that connection and
+instanciate all stores.
 
 ```js
 import { defaultEvmStores } from 'svelte-web3'
 ```
 
-### Connection with the browser provider (wallets like metamask)
+:exclamation: `defaultEvmStores` was named before `defaultChainStore`. The
+former naming still works but will be removed in later versions of
+`svelte-web3` package. Please update your code!
 
-To enable a connection with the current window provider: 
+### Connection with the browser provider (eg wallets like Metamask)
+
+To enable a connection with the current window provider, simply call
+`setBrowserProvider` on the library abstract helper:
 
 ```js
 defaultEvmStores.setBrowserProvider()
 ```
 
-Please note that your code need to be in browser context when
-`setBrowserProvider` is running. So you may want to use `onMount` when
-using Sapper or Sveltekit. Similarly, you cannot use
-`setBrowserProvider` in SSR context.
+Please note that this code need to be executed in a browser
+context. So you may want to use `onMount` when using Sapper or
+SvelteKit. Similarly, you cannot use `setBrowserProvider` in SSR
+context.
 
 ```js
   onMount(
@@ -84,14 +89,9 @@ using Sapper or Sveltekit. Similarly, you cannot use
   )
 ```
 
-:exclamation: `defaultEvmStores` was named before `defaultChainStore`. The
-former naming still works but will be removed in later versions of
-`svelte-web3` package. Please update your code!
-
-
 ### Connection with other providers (ws, http, Web3Modal, Walletconnect, etc)
 
-To enable connection using an url string or a valid provider object
+To enable connection using an URL string or a valid provider object
 (for example as returned by web3Modal or WalletConnect):
 
 ```js
@@ -100,13 +100,38 @@ defaultEvmStores.setProvider(<ws/https or http provider url or provider Object>)
 
 Please check `examples/svelte-app-template-web3/src/Web3Modal.svelte` in github.
 
+### Using the stores
 
-### Using the Web3 API 
+After a connection has been established, you may import the stores
+anywhere in your application. Most of the time, you should use the `$`
+prefix svelte notation to access the stores values.
 
-After a connection has been established, you may import the default
-`web3` store anywhere in your application to use the Web3.js API. Use
-the `$` prefix svelte notation to access its instance and call Web3.js
-functions.
+
+```html
+<script>
+
+  import { connected, chainId } from 'svelte-web3'
+
+</script>
+
+{#if !$connected}
+
+<p>My application is not yet connected</p>
+
+{:else}
+
+<p>Connected to chain with id {$chainId}</p>
+
+{/if}
+```
+
+### Using the Web3 API
+
+Likewise use the `$` prefix svelte notation to access its instance and
+use the full Web3.js API. (beware, in the Web3.js library
+documentaion, instances are always noted as `web3`, without `$`, but
+in the context of `svelte-web3`, `web3` is the Svelte store itself,
+not it's value).
 
 ```js
   import { web3, selectedAccount } from 'svelte-web3'
@@ -118,40 +143,32 @@ functions.
   const balance = await $web3.eth.getBalance('0x0000000000000000000000000000000000000000') : ''
 ```
 
-The whole Web3.js API is usable in the `<script>` section of your
-svelte files using the notation `$web3` (beware, in the Web3.js
-library documentaion, instances are always noted as `web3`, without
-`$`, but in the context of `svelte-web3`, `web3` is the Svelte store
-itself, not it's value).
+### Reading stores outside of Svelte files
 
+The `$` prefix svelte notation to access store values in only
+available inside Svelte files. To directly access the instanciated
+values in pure javascript library without subscribing to the store,
+you can use special getter on the library abstract helper:
+
+```js
+import { defaultEvmStores } from 'svelte-web3'
+
+
+if (defaultEvmStores.$selectedAccount) {
+
+  // do something if store selectedAccount is non null
+
+}
+```
 
 ### Forcing a disconnect (and the remove all listeners)
 
-Simply call the function `disconnect` directly on the store. For
-example with the default store:
+Simply call the function `disconnect` directly on the on the library
+abstract helper:
 
 ```js
 defaultEvmStores.disconnect()
 ```
-
-## Web3 Svelte component [ experimental ]
-
-
-We plan to export generic Svelte components both to demonstrate the use
-of the svelte-web3 library and as resuable and composable best practices
-components. Only a `Balance` component has been implemented for now. You
-are welcome to help define and develop new components by joining our
-discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
-
-
-```html
-  import { Balance } from 'svelte-web3/components'
-</script>
-
-<p>balance = <Balance address="0x0000000000000000000000000000000000000000" />
-
-```
-
 
 ## Human readable chain CAIP-2 information
 
@@ -222,6 +239,27 @@ This store is conveniently and automatically updated after connection
 and when the account or chain change.
 
 
+## Web3 Svelte component [ experimental ]
+
+
+We plan to export generic Svelte components both to demonstrate the use
+of the svelte-web3 library and as resuable and composable best practices
+components. Only a `Balance` component has been implemented for now. You
+are welcome to help define and develop new components by joining our
+discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
+
+
+```html
+  import { Balance } from 'svelte-web3/components'
+</script>
+
+<p>balance = <Balance address="0x0000000000000000000000000000000000000000" />
+
+```
+
+
+
+
 ## Simultaneous multi chain usage
 
 You can also using the library to create several stores, each
@@ -269,6 +307,7 @@ stores this way :
 
 If you are using `svelte-web3` to build an open source Dapp, let us know
 if you want to be listed in this section.
+
 
 ### Svelte basic example (based on rollup template)
 
