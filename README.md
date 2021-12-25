@@ -315,6 +315,10 @@ Please check `examples/svelte-app-template-web3` in github.
 
 Contain both sub-examples to use the default store and multi stores.
 
+### SvelteKit basic example
+
+Please check `examples/sveltekit-app-template-web3` in github.
+
 ### Sapper basic example (based on webpack template)
 
 Please check `examples/sapper-app-template-web3` in github.
