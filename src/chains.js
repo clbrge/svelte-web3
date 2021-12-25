@@ -288,8 +288,13 @@ const chains = [
     name: 'Songbird Canary-Network',
     chain: 'SGB',
     network: 'songbird',
-    rpc: [ 'https://songbird.towolabs.com/rpc' ],
-    faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
+    rpc: [
+      'https://songbird.towolabs.com/rpc',
+      'https://sgb.ftso.com.au/ext/bc/C/rpc',
+      'https://sgb.lightft.so/rpc',
+      'https://sgb-rpc.ftso.eu'
+    ],
+    faucets: [],
     nativeCurrency: { name: 'Songbird', symbol: 'SGB', decimals: 18 },
     infoURL: 'https://flare.xyz',
     shortName: 'sgb',
@@ -1249,8 +1254,8 @@ const chains = [
     ]
   },
   {
-    name: 'xDAI Chain',
-    chain: 'XDAI',
+    name: 'Gnosis Chain (formerly xDai)',
+    chain: 'Gnosis',
     network: 'mainnet',
     rpc: [
       'https://rpc.xdaichain.com',
@@ -1262,19 +1267,20 @@ const chains = [
       'ws://xdai.poanetwork.dev:8546'
     ],
     faucets: [
-      'https://free-online-app.com/faucet-for-eth-evm-chains/',
-      'https://xdai-app.herokuapp.com/faucet'
+      'https://xdai-app.herokuapp.com/faucet',
+      'https://stakely.io/faucet/xdai-chain',
+      'https://faucet.prussia.dev/xdai'
     ],
     nativeCurrency: { name: 'xDAI', symbol: 'xDAI', decimals: 18 },
-    infoURL: 'https://forum.poa.network/c/xdai-chain',
-    shortName: 'xdai',
+    infoURL: 'https://www.xdaichain.com/',
+    shortName: 'gno',
     chainId: 100,
     networkId: 100,
     slip44: 700,
     explorers: [
       {
         name: 'blockscout',
-        url: 'https://blockscout.com/poa/xdai',
+        url: 'https://blockscout.com/xdai/mainnet',
         standard: 'EIP3091'
       }
     ]
@@ -2274,7 +2280,7 @@ const chains = [
     name: 'Klaytn Testnet Baobab',
     chain: 'KLAY',
     network: 'baobab',
-    rpc: [ 'https://node-api.klaytnapi.com/v1/klaytn' ],
+    rpc: [ 'https://api.baobab.klaytn.net:8651' ],
     faucets: [ 'https://baobab.wallet.klaytn.com/access?next=faucet' ],
     nativeCurrency: { name: 'KLAY', symbol: 'KLAY', decimals: 18 },
     infoURL: 'https://www.klaytn.com/',
@@ -2671,6 +2677,7 @@ const chains = [
     name: 'Rangers Protocol Mainnet',
     chain: 'Rangers',
     network: 'mainnet',
+    icon: 'rangers',
     rpc: [ 'https://mainnet.rangersprotocol.com/api/jsonrpc' ],
     faucets: [],
     nativeCurrency: { name: 'Rangers Protocol Gas', symbol: 'RPG', decimals: 18 },
@@ -2752,13 +2759,13 @@ const chains = [
   },
   {
     name: 'Bittex Mainnet',
-    chain: 'BTTX',
+    chain: 'BTX',
     network: 'mainnet',
     rpc: [ 'https://rpc1.bittexscan.info', 'https://rpc2.bittexscan.info' ],
     faucets: [],
-    nativeCurrency: { name: 'Bittex', symbol: 'BTTX', decimals: 18 },
+    nativeCurrency: { name: 'Bittex', symbol: 'BTX', decimals: 18 },
     infoURL: 'https://bittexscan.com',
-    shortName: 'bttx',
+    shortName: 'btx',
     chainId: 3690,
     networkId: 3690,
     icon: 'ethereum',
@@ -2992,7 +2999,7 @@ const chains = [
     name: 'Klaytn Mainnet Cypress',
     chain: 'KLAY',
     network: 'cypress',
-    rpc: [ 'https://api.cypress.ozys.net:8651' ],
+    rpc: [ 'https://public-node-api.klaytnapi.com/v1/cypress' ],
     faucets: [],
     nativeCurrency: { name: 'KLAY', symbol: 'KLAY', decimals: 18 },
     infoURL: 'https://www.klaytn.com/',
