@@ -3,7 +3,7 @@
 
 Use the [web3.js library](https://web3js.readthedocs.io/) as a
 collection of [readable Svelte stores](https://svelte.dev/tutorial/readable-stores)
-for Svelte, Sapper or Sveltekit.
+for Svelte, Sapper or SvelteKit.
 
 If you prefer to use the [ethers.js
 library](https://docs.ethers.io/v5/) to intereact with EVM, you may be
@@ -53,9 +53,9 @@ import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web
  * chainId: store value is the current chainId when connected.
  * chainData: store value is the current blokchain CAIP-2 data (when connected), see below.
 
-For these stores to be useful in your Svelte application, a connection
-first need to established to a EVM blockchain. The abstract helper
-`defaultEvmStores` can be used to initiate that connection and
+For these stores to be useful in your Svelte application, a connection to an EVM
+blockchain first need to established . The abstract helper
+`defaultEvmStores` can be used to initiate the connection and automatically
 instanciate all stores.
 
 ```js
@@ -75,7 +75,7 @@ To enable a connection with the current window provider, simply call
 defaultEvmStores.setBrowserProvider()
 ```
 
-Please note that this code need to be executed in a browser
+Please note that `setBrowserProvider` can only to be executed in a browser
 context. So you may want to use `onMount` when using Sapper or
 SvelteKit. Similarly, you cannot use `setBrowserProvider` in SSR
 context.
@@ -129,14 +129,14 @@ prefix Svelte notation to access the stores values.
 
 Likewise use the `$` prefix Svelte notation to access its instance and
 use the full Web3.js API. (beware, in the Web3.js library
-documentaion, instances are always noted as `web3`, without `$`, but
+documentation, instances are always noted as `web3`, without `$`, but
 in the context of `svelte-web3`, `web3` is the Svelte store itself,
 not it's value).
 
 ```js
   import { web3, selectedAccount } from 'svelte-web3'
 
-  ...
+  // ...
 
   const { name, chainId } = await $web3.eth.getChainId()
 
@@ -146,11 +146,12 @@ not it's value).
 ### Reading stores outside of Svelte files
 
 The `$` prefix Svelte notation to access store values in only
-available inside Svelte files. To directly access the instanciated
+available inside Svelte files. To directly access the instantiated
 values in pure javascript library without subscribing to the store,
 you can use special getter on the library abstract helper:
 
 ```js
+// this is not a Svelte file but a standard JavaScript file 
 import { defaultEvmStores } from 'svelte-web3'
 
 
@@ -257,9 +258,6 @@ discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
 
 ```
 
-
-
-
 ## Simultaneous multi chain usage
 
 You can also using the library to create several stores, each
@@ -311,18 +309,22 @@ if you want to be listed in this section.
 
 ### Svelte basic example (based on rollup template)
 
-Please check `examples/svelte-app-template-web3` in github.
+Please check [`examples/svelte-app-template-web3` in github]
+(https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
 
-Contain both sub-examples to use the default store and multi stores.
+Contains demos to use the default store and multi stores.
 
 ### SvelteKit basic example
 
-Please check `examples/sveltekit-app-template-web3` in github.
+Please check [`examples/sveltekit-app-template-web3` in github]
+(https://github.com/clbrge/svelte-web3/tree/master/examples/sveltekit-app-template-web3).
 
 ### Sapper basic example (based on webpack template)
 
-Please check `examples/sapper-app-template-web3` in github.
+Please check [`examples/sapper-app-template-web3` in github]
+(https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
 
+Please check `examples/sapper-app-template-web3` in github.
 
 ### tradingstrategy.ai presented at EthLisbon 2021
 

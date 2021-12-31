@@ -357,6 +357,19 @@ const chains = [
     networkId: 23
   },
   {
+    name: 'Dithereum Mainnet',
+    chain: 'DTH',
+    network: 'mainnet',
+    icon: 'dithereum',
+    rpc: [ 'https://node-mainnet.dithereum.io' ],
+    faucets: [ 'https://faucet.dithereum.org' ],
+    nativeCurrency: { name: 'Dither', symbol: 'DTH', decimals: 18 },
+    infoURL: 'https://dithereum.org',
+    shortName: 'dthmainnet',
+    chainId: 24,
+    networkId: 24
+  },
+  {
     name: 'Cronos Mainnet Beta',
     chain: 'CRO',
     network: 'mainnet',
@@ -2546,8 +2559,8 @@ const chains = [
     chain: 'MOON',
     network: 'moonbase',
     rpc: [
-      'https://rpc.testnet.moonbeam.network',
-      'wss://wss.testnet.moonbeam.network'
+      'https://rpc.api.moonbase.moonbeam.network',
+      'wss://wss.api.moonbase.moonbeam.network'
     ],
     faucets: [],
     nativeCurrency: { name: 'Dev', symbol: 'DEV', decimals: 18 },
@@ -3116,6 +3129,42 @@ const chains = [
     ]
   },
   {
+    name: 'Evmos',
+    chain: 'Evmos',
+    network: 'mainnet',
+    rpc: [ 'https://ethereum.rpc.evmos.org' ],
+    faucets: [],
+    nativeCurrency: { name: 'Evmos', symbol: 'EVMOS', decimals: 18 },
+    infoURL: 'https://evmos.org',
+    shortName: 'evmos',
+    chainId: 9001,
+    networkId: 9001,
+    explorers: [
+      {
+        name: 'Evmos EVM Explorer (Blockscout)',
+        url: 'https://evm.evmos.org',
+        standard: 'none'
+      },
+      {
+        name: 'Evmos Cosmos Explorer (Big Dipper)',
+        url: 'https://explorer.evmos.org',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'Genesis Coin',
+    chain: 'Genesis',
+    network: 'Genesis Coin',
+    rpc: [ 'https://genesis-gn.com', 'wss://genesis-gn.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'GN Coin', symbol: 'GNC', decimals: 18 },
+    infoURL: 'https://genesis-gn.com',
+    shortName: 'GENEC',
+    chainId: 9100,
+    networkId: 9100
+  },
+  {
     name: 'Rangers Protocol Testnet Robin',
     chain: 'Rangers',
     network: 'robin',
@@ -3422,6 +3471,49 @@ const chains = [
         name: 'blockscout',
         url: 'https://explorer.celo.org',
         standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'Emerald Paratime Testnet',
+    chain: 'Emerald',
+    network: 'testnet',
+    icon: 'oasis',
+    rpc: [
+      'https://testnet.emerald.oasis.dev/',
+      'wss://testnet.emerald.oasis.dev/ws'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Emerald Rose', symbol: 'ROSE', decimals: 18 },
+    infoURL: 'https://docs.oasis.dev/general/developer-resources/overview',
+    shortName: 'emerald',
+    chainId: 42261,
+    networkId: 42261,
+    explorers: [
+      {
+        name: 'Emerald Paratime Testnet Explorer',
+        url: 'https://testnet.explorer.emerald.oasis.dev/',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Emerald Paratime Mainnet',
+    chain: 'Emerald',
+    network: 'Mainnet',
+    icon: 'oasis',
+    rpc: [ 'https://emerald.oasis.dev', 'wss://emerald.oasis.dev/ws' ],
+    faucets: [],
+    nativeCurrency: { name: 'Emerald Rose', symbol: 'ROSE', decimals: 18 },
+    infoURL: 'https://docs.oasis.dev/general/developer-resources/overview',
+    shortName: 'oasis',
+    chainId: 42262,
+    networkId: 42262,
+    explorers: [
+      {
+        name: 'Emerald Paratime Mainnet Explorer',
+        url: 'https://explorer.emerald.oasis.dev/',
+        standard: 'EIP3091'
       }
     ]
   },
