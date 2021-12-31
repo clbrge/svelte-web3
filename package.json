@@ -1,33 +1,47 @@
 {
   "name": "svelte-web3",
-  "version": "2.3.5",
+  "version": "3.0.0-5",
   "description": "web3.js as a collection of stores for Svelte, Sapper or SvelteKit.",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "svelte": "src/web3-store.js",
-  "types": "dist/svelte-web3.d.ts",
   "license": "MIT",
   "repository": "clbrge/svelte-web3",
   "author": {
     "name": "Christophe Le Bars",
     "email": "<clb@rouge.network>"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "svelte": "src/stores.js",
+  "types": "dist/svelte-web3.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "main": "./dist/index.js",
+      "module": "./dist/index.mjs",
+      "svelte": "./src/stores.js",
+      "types": "./dist/svelte-web3.d.ts"
+    },
+    "./components": {
+      "import": "./src/components/index.js",
+      "svelte": "./src/components/index.js"
+    }
+  },
   "scripts": {
     "update-chains": "node ./scripts/update-chains.js",
     "build": "rollup -c"
   },
   "dependencies": {
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "svelte-proxied-store": "^0.2.0"
   },
   "devDependencies": {
     "eslint-plugin-svelte3": "^3.2.1",
     "release-it": "^14.11.8",
-    "rollup": "^2.61.1",
+    "rollup": "^2.62.0",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-dts": "^4.0.1",
+    "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-svelte": "^7.1.0",
-    "sirv-cli": "^1.0.14",
+    "sirv-cli": "^2.0.1",
     "svelte": "^3.44.3",
     "web3": "1.6.1"
   },

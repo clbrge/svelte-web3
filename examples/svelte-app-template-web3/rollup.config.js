@@ -29,9 +29,13 @@ function serve() {
 }
 
 export default {
-	input: 'src/main.js',
-	output: {
-		sourcemap: true,
+  input: 'src/main.js',
+  // globals: {
+  //   'svelte-web3': 'svelte-web3',
+  //   'svelte-web3/components': ' svelte-web3/components',
+  // },
+  output: {
+	sourcemap: true,
 		format: 'iife',
 		name: 'app',
 		file: 'public/build/bundle.js'
@@ -53,8 +57,8 @@ export default {
 		// consult the documentation for details:
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
-			browser: true,
-			dedupe: ['svelte']
+		  browser: true,
+		  dedupe: ['svelte', 'svelte-web3']
 		}),
 		commonjs(),
 

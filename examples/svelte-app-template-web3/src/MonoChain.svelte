@@ -1,21 +1,19 @@
 <script>
-  //import { allChainsData makeChainStore, defaultChainStore, web3, connected, selectedAccount, chainId, chainData } from '../../../dist/index.js'
-  import { allChainsData, makeChainStore, defaultChainStore, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  import { allChainsData, makeEvmStores, defaultEvmStores, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
 
-  export let name
+  import { Balance } from 'svelte-web3/components'
 
   let tipAddress = '0x834356a88C66897FA0A05a61964a91A607956ee3'
 
   let sokol, sokol_connected, sokol_web3
-  ({ connected: sokol_connected, web3: sokol_web3, ...sokol } = makeChainStore('sokol'))
+  ({ connected: sokol_connected, web3: sokol_web3, ...sokol } = makeEvmStores('sokol'))
 
   sokol.setProvider('https://sokol.poa.network')
 
-  const enable = () => defaultChainStore.setProvider('https://sokol.poa.network')
-  const enableBrowser = () => defaultChainStore.setBrowserProvider()
+  const enable = () => defaultEvmStores.setProvider('https://sokol.poa.network')
+  const enableBrowser = () => defaultEvmStores.setBrowserProvider()
 
   $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
-  $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
 
   const sendTip = async (e) => {
     console.log('Received move event (sendTip button)', e)
@@ -51,18 +49,12 @@
 <p>
   chainData = {JSON.stringify($chainData)}
 </p>
+
 <p>
   Selected account: {$selectedAccount || 'not defined'}
 </p>
 
-<p>
-  {checkAccount} Balance on {$chainData.name}:
-    {#await balance}
-  <span>waiting...</span>
-  {:then value}
-  <span>{value}</span>
-  {/await} {$chainData.nativeCurrency?.symbol}
-</p>
+<p>Selected account balance = <Balance address={checkAccount} /> {$chainData.nativeCurrency?.symbol}</p>
 
 {#if $selectedAccount}
 <p><button class="button is-primary is-light" on:click="{sendTip}">send 0.01 {$chainData.nativeCurrency?.symbol} tip to {tipAddress} (author)</button></p>

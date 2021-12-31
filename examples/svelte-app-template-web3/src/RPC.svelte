@@ -1,11 +1,11 @@
 <script>
-  import { makeChainStore } from '../../../dist/index.js'
+  import { makeEvmStores } from 'svelte-web3'
 
   export let name
   export let provider
 
   let ethStore, web3, connected, selectedAccount, chainId, chainData
-  ({ web3, connected, selectedAccount, chainId, chainData, ...ethStore } = makeChainStore(name))
+  ({ web3, connected, selectedAccount, chainId, chainData, ...ethStore } = makeEvmStores(name))
 
   ethStore.setProvider(provider)
 
