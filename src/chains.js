@@ -80,9 +80,9 @@ const chains = [
     ]
   },
   {
-    name: 'Ethereum Testnet Görli',
+    name: 'Görli',
+    title: 'Ethereum Testnet Görli',
     chain: 'ETH',
-    network: 'goerli',
     rpc: [
       'https://rpc.goerli.mudit.blog/',
       'https://rpc.slock.it/goerli',
@@ -4417,7 +4417,8 @@ const chains = [
     networkId: 1313500
   },
   {
-    name: 'Kintsugi merge testnet',
+    name: 'Kintsugi',
+    title: 'Kintsugi merge testnet',
     chain: 'ETH',
     network: 'testnet',
     rpc: [ 'https://rpc.kintsugi.themerge.dev' ],
