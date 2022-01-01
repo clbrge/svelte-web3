@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "svelte": "^3.0.0",
-    "svelte-proxied-store": "^0.2.0"
+    "svelte-proxied-store": "^1.0.0"
   },
   "devDependencies": {
     "eslint-plugin-svelte3": "^3.2.1",

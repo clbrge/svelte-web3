@@ -145,15 +145,14 @@ not it's value).
 
 ### Reading stores outside of Svelte files
 
-The `$` prefix Svelte notation to access store values in only
+The `$` prefix Svelte notation to access store values is only
 available inside Svelte files. To directly access the instantiated
 values in pure javascript library without subscribing to the store,
-you can use special getter on the library abstract helper:
+you can use a special getter on the library abstract helper:
 
 ```js
 // this is not a Svelte file but a standard JavaScript file 
 import { defaultEvmStores } from 'svelte-web3'
-
 
 if (defaultEvmStores.$selectedAccount) {
 
@@ -162,7 +161,7 @@ if (defaultEvmStores.$selectedAccount) {
 }
 ```
 
-### Forcing a disconnect (and the remove all listeners)
+### Forcing a disconnect (and removing all listeners)
 
 Simply call the function `disconnect` directly on the on the library
 abstract helper:
@@ -254,7 +253,7 @@ discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
   import { Balance } from 'svelte-web3/components'
 </script>
 
-<p>balance = <Balance address="0x0000000000000000000000000000000000000000" />
+<p>balance = <Balance address="0x0000000000000000000000000000000000000000" /></p>
 
 ```
 
@@ -309,20 +308,17 @@ if you want to be listed in this section.
 
 ### Svelte basic example (based on rollup template)
 
-Please check [`examples/svelte-app-template-web3` in github]
-(https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
+Please check [`examples/svelte-app-template-web3` in github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
 
 Contains demos to use the default store and multi stores.
 
 ### SvelteKit basic example
 
-Please check [`examples/sveltekit-app-template-web3` in github]
-(https://github.com/clbrge/svelte-web3/tree/master/examples/sveltekit-app-template-web3).
+Please check [`examples/sveltekit-app-template-web3` in github](https://github.com/clbrge/svelte-web3/tree/master/examples/sveltekit-app-template-web3).
 
 ### Sapper basic example (based on webpack template)
 
-Please check [`examples/sapper-app-template-web3` in github]
-(https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
+Please check [`examples/sapper-app-template-web3` in github](https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
 
 Please check `examples/sapper-app-template-web3` in github.
 
