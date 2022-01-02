@@ -47,7 +47,7 @@ Svelte or JavaScript files :
 import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
 ```
 
- * connected: store value is true a connection has been set up.
+ * connected: store value is true if a connection has been set up.
  * web3: store value is a Web3.js instance when connected.
  * selectedAccount: store value is the current selected account (when connected).
  * chainId: store value is the current chainId when connected.
@@ -68,37 +68,82 @@ former naming still works but will be removed in later versions of
 
 ### Connection with the browser provider (eg wallets like Metamask)
 
-To enable a connection with the current window provider, simply call
-`setBrowserProvider` on the library abstract helper:
+To enable a connection with the current [EIP-1193
+provider](https://eips.ethereum.org/EIPS/eip-1193#appendix-i-consumer-facing-api-documentation)
+injected in the browser `window` context, simply call `setProvider` on
+the library abstract helper with no argument:
 
 ```js
-defaultEvmStores.setBrowserProvider()
+defaultEvmStores.setProvider()
 ```
 
-Please note that `setBrowserProvider` can only to be executed in a browser
-context. So you may want to use `onMount` when using Sapper or
-SvelteKit. Similarly, you cannot use `setBrowserProvider` in SSR
-context.
+Please note that `setProvider` can only to be called with no argument
+in a browser context. So you may want to use `onMount` when using
+Sapper or SvelteKit. Similarly, you cannot use `setProvider` with no
+argument in SSR context.
 
 ```js
   onMount(
     () => {
       // add a test to return in SSR context
-      defaultEvmStores.setBrowserProvider()
+      defaultEvmStores.setProvider()
     }
   )
 ```
 
-### Connection with other providers (ws, http, Web3Modal, Walletconnect, etc)
+`svelte-web3` will automatically update the stores when the network or
+accounts change and remove listeners at disconnection.
 
-To enable connection using an URL string or a valid provider object
-(for example as returned by web3Modal or WalletConnect):
+:exclamation: previous version of `svelte-web3` were using a special
+method `setBrowserProvider`. The former naming still works but will be
+removed in later versions. Please update your code!
+
+
+### Connection with non injected EIP-1193 providers
+
+To connect to non injected EIP-1193 providers like :
+
+ * buidler.dev
+ * ethers.js
+ * eth-provider
+ * WalletConnect
+ * Web3Modal
+
+Call `setProvider` on the library abstract helper with the js provider
+instance object of the library. For example with Web3Modal :
 
 ```js
-defaultEvmStores.setProvider(<ws/https or http provider url or provider Object>)
+const web3Modal = new Web3Modal(<your config>)
+const provider = await web3Modal.connect()
+defaultEvmStores.setProvider(provider)
 ```
 
-Please check `examples/svelte-app-template-web3/src/Web3Modal.svelte` in github.
+`svelte-web3` will automatically update the stores when the network or
+accounts change and remove listeners at disconnection.
+
+Please check
+ `examples/svelte-app-template-web3/src/Web3Modal.svelte`(https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3/src/Web3Modal.svelte).
+ in github for a complete example.
+
+### Connection with other Web3 providers (ws, http, ipc, ...)
+
+Any provider supported by Web3.js can also be used with `setProvider`.
+A WS or HTTP RPC string URL or any providers returned by `new
+Web3.providers`, for example :
+
+```js
+defaultEvmStores.setProvider('https://rinkeby.infura.io/v3/your-api-key')
+// or 
+defaultEvmStores.setProvider('https://eth-mainnet.alchemyapi.io/v2/your-api-key')
+// or 
+defaultEvmStores.setProvider('http://localhost:8545')
+// or 
+defaultEvmStores.setProvider(new Web3.providers.WebsocketProvider('ws://localhost:8546'))
+// or 
+var net = require('net')
+defaultEvmStores.setProvider(new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net))
+// etc...
+```
 
 ### Using the stores
 
@@ -178,8 +223,12 @@ defaultEvmStores.disconnect()
 
 The information returned by the `chainData` store depends (like all
 other web3 stores) on which chain the current provider is
-connected. If the store has not yet been connected (with `setProvider`
-or `setBrowserProvider`), the store value will be `undefined`.
+connected. If the store has not yet been connected (with
+`setProvider`), the store value will be `undefined`.
+
+This object is extremely useful to build components that reactively
+update all variables elements that depends on the current active chain
+or account.
 
 Below is the CAIP-2 formatted information when the default store is 
 connected with the Ethereum Mainnet :
@@ -235,8 +284,8 @@ parameters as a ̀new web3.eth.Contract` call:
 makeContractStore(jsonInterface[, address][, options])
 ```
 
-This store is conveniently and automatically updated after connection
-and when the account or chain change.
+This store is also conveniently and automatically updated after
+connection and when the account or chain change.
 
 
 ## Web3 Svelte component [ experimental ]

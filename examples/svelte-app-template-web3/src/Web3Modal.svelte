@@ -1,5 +1,5 @@
 <script>
-  import { defaultEvmStores, web3, selectedAccount, connected, chainId, chainData } from 'svelte-web3'
+  import { defaultEvmStores, web3, selectedAccount, walletType, connected, chainId, chainData } from 'svelte-web3'
   import { Balance } from 'svelte-web3/components'
 
   const Web3Modal = window.Web3Modal.default
@@ -54,6 +54,11 @@
 <p>
   Selected account: {$selectedAccount || 'not defined'}
 </p>
+
+<p>
+  Wallet type: {$walletType || 'not defined'}
+</p>
+
 
 <p>Selected account balance = <Balance address={checkAccount} /> {$chainData.nativeCurrency?.symbol}</p>
 

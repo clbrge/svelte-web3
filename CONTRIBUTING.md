@@ -17,8 +17,8 @@ No software is bug-free. So, if you got an issue, follow these steps:
   - Clear title (shorter is better).
   - Describe the issue in clear language.
   - Share error logs, screenshots and etc.
-  - To speed up the issue fixing process, send us a sample repo with the issue you faced:
+  - To speed up the issue fixing process, send us a sample repo with the issue you faced.
 
 ## Pull Requests (PRs)
 
-We welcome all contributions. There are many ways you can help us. This is few of those ways:
+We welcome all contributions.

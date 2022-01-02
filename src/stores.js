@@ -38,7 +38,10 @@ export const createStore = () => {
   const init = () => {
     loadWeb3()
     if (!Web3.version) throw new Error('[svelte-web3] Cannot find Web3')
-    if (getWindowEthereum()) getWindowEthereum().autoRefreshOnNetworkChange = false
+    if (get('eipProvider') && get('eipProvider').removeListener) {
+      get('eipProvider').removeListener('accountsChanged', () => switch1193Provider())
+      get('eipProvider').removeListener('chainChanged', () => switch1193Provider())
+    }
     deleteAll()
     assign({
       connected: false,
@@ -47,57 +50,69 @@ export const createStore = () => {
     })
   }
 
-  const setProvider = async (evmProvider, callback) => {
+  const switch1193Provider = async accounts => {
+    const chainId = await get('web3').eth.getChainId()
+    if (!accounts) {
+      accounts = await get('eipProvider').request({ method: 'eth_requestAccounts' })
+    }
+    assign({
+      connected: true,
+      selectedAccount: accounts.length ? accounts[0] : null,
+      chainId,
+      accounts
+    })
+    emit()
+  }
+
+  const set1193Provider = async eipProvider => {
+    init()
+    const accounts = await eipProvider.request({ method: 'eth_requestAccounts' })
+    const web3 = new Web3(eipProvider)
+    assign({
+      web3,
+      eipProvider,
+      evmProviderType: 'EIP1193',
+      accounts
+    })
+    if (eipProvider.on) {
+      // TODO handle disconnect/connect events
+      eipProvider.on('accountsChanged', () => switch1193Provider())
+      eipProvider.on('chainChanged', () => switch1193Provider())
+    }
+    return switch1193Provider(accounts)
+  }
+
+  const setProvider = async evmProvider => {
+    if (!evmProvider) {
+      if (!getWindowEthereum()) throw new Error('[svelte-web3] Please authorize browser extension (Metamask or similar)')
+      getWindowEthereum().autoRefreshOnNetworkChange = false
+      return set1193Provider(getWindowEthereum())
+    }
+    if (typeof evmProvider === 'object' && evmProvider.request) return set1193Provider(evmProvider)
     init()
     const web3 = new Web3(evmProvider)
     const chainId = await web3.eth.getChainId()
-    // no account with ganache use try catch ?
-    const accounts = /127/.test(evmProvider) ? [] : await web3.eth.getAccounts()
-    if (callback) {
-      web3._provider.removeListener('accountsChanged', () => setProvider(evmProvider, true))
-      web3._provider.removeListener('chainChanged', () =>  setProvider(evmProvider, true))
-    } else {
-      if (web3._provider && web3._provider.on) {
-        web3._provider.on('accountsChanged', () => setProvider(evmProvider, true))
-        web3._provider.on('chainChanged', () => setProvider(evmProvider, true))
-      }
-    }
+    let accounts = []
+    try {
+      // not all provider support accounts
+      accounts = await web3.eth.getAccounts()
+    } catch (e) {
+      console.warn(e)
+   }
     assign({
       web3,
       selectedAccount: accounts.length ? accounts[0] : null,
       connected: true,
       chainId,
-      evmProvider: web3._provider,
-      evmProviderType: typeof evmProvider === 'string' ? 'RPC' : 'Web3',
+      evmProviderType: 'Web3',
       accounts
     })
     emit()
   }
 
-  const setBrowserProvider = async () => {
-    init()
-    if (!getWindowEthereum()) throw new Error('[svelte-web3] Please authorize browser extension (Metamask or similar)')
-    const accounts = await getWindowEthereum().request({ method: 'eth_requestAccounts' })
-    getWindowEthereum().on('accountsChanged', setBrowserProvider)
-    getWindowEthereum().on('chainChanged', setBrowserProvider)
-    const web3 = new Web3(getWindowEthereum())
-    const chainId = await web3.eth.getChainId()
-    assign({
-      web3,
-      selectedAccount: accounts.length ? accounts[0] : null,
-      connected: true,
-      chainId,
-      evmProvider: getWindowEthereum(),
-      evmProviderType: 'Browser',
-      accounts
-    })
-    emit()
-  }
+  const setBrowserProvider = () => setProvider()
 
-  const disconnect = async (evmProvider) => {
-    if(evmProvider && evmProvider.disconnect) {
-      await evmProvider.disconnect()
-    }
+  const disconnect = async () => {
     init()
     emit()
   }
@@ -150,11 +165,11 @@ export const makeEvmStores = name => {
 
   allStores[name].evmProviderType = derived(evmStore, $evmStore => $evmStore.evmProviderType)
   allStores[name].walletType = derived(evmStore, $evmStore => {
-    if (!$evmStore.provider) return null
-    if (typeof $evmStore.provider === 'string') return $evmStore.provider
-    if ($evmStore.provider.isMetaMask) return 'MetaMask (or compatible)'
-    if ($evmStore.provider.isNiftyWallet) return 'Nifty'
-    if ($evmStore.provider.isTrust) return 'Trust'
+    if (!$evmStore.eipProvider) return null
+    if (typeof $evmStore.eipProvider === 'string') return $evmStore.eipProvider
+    if ($evmStore.eipProvider.isMetaMask) return 'MetaMask (or compatible)'
+    if ($evmStore.eipProvider.isNiftyWallet) return 'Nifty'
+    if ($evmStore.eipProvider.isTrust) return 'Trust'
     return 'Unknown'
   })
 
@@ -166,7 +181,8 @@ export const makeEvmStores = name => {
         if (subStoreNames.includes(property)) return allStores[name].get(property)
         throw new Error(`[svelte-web3] no value for store named ${property}`)
       }
-      if (['subscribe', 'get', 'setBrowserProvider', 'setProvider', 'evmProviderType', 'chainData', 'walletType', 'close', 'disconnect', ...subStoreNames].includes(property))
+      if (['subscribe', 'get', 'setBrowserProvider', 'setProvider', 'evmProviderType',
+           'chainData', 'walletType', 'close', 'disconnect', ...subStoreNames].includes(property))
         return Reflect.get(internal, property)
       throw new Error(`[svelte-web3] no store named ${property}`)
     }
