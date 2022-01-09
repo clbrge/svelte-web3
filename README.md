@@ -53,10 +53,10 @@ import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web
  * chainId: store value is the current chainId when connected.
  * chainData: store value is the current blokchain CAIP-2 data (when connected), see below.
 
-For these stores to be useful in your Svelte application, a connection to an EVM
-blockchain first need to established . The abstract helper
-`defaultEvmStores` can be used to initiate the connection and automatically
-instanciate all stores.
+For these stores to be useful in your Svelte application, a connection
+to an EVM blockchain first need to established . The abstract helper
+`defaultEvmStores` can be used to initiate the connection and
+automatically instanciate all stores.
 
 ```js
 import { defaultEvmStores } from 'svelte-web3'
@@ -109,7 +109,7 @@ To connect to non injected EIP-1193 providers like :
  * WalletConnect
  * Web3Modal
 
-Call `setProvider` on the library abstract helper with the js provider
+Call `setProvider` on the library abstract helper with the JavaScript provider
 instance object of the library. For example with Web3Modal :
 
 ```js
@@ -143,6 +143,15 @@ defaultEvmStores.setProvider(new Web3.providers.WebsocketProvider('ws://localhos
 var net = require('net')
 defaultEvmStores.setProvider(new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net))
 // etc...
+```
+### Selecting a specific account
+
+
+You can also pass `Index` as the second argument of `setProvider()` to
+select another account than the default when possible.
+
+```js
+defaultEvmStores.setProvider(<provider>, <Index>)
 ```
 
 ### Using the stores
