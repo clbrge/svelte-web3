@@ -27,6 +27,7 @@
   },
   "scripts": {
     "update-chains": "node ./scripts/update-chains.js",
+    "lint": "prettier-standard --lint 'src/**/*.js'",
     "build": "rollup -c"
   },
   "dependencies": {
@@ -35,15 +36,20 @@
   },
   "devDependencies": {
     "eslint-plugin-svelte3": "^3.3.0",
+    "lint-staged": "^12.1.7",
+    "prettier-standard": "^16.4.1",
     "release-it": "^14.11.8",
     "rollup": "^2.63.0",
-    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-dts": "^4.1.0",
-    "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-svelte": "^7.1.0",
     "sirv-cli": "^2.0.1",
     "svelte": "^3.45.0",
     "web3": "1.6.1"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier-standard --lint"
+    ]
   },
   "release-it": {
     "github": {

@@ -6,15 +6,17 @@
   const WalletConnectProvider = window.WalletConnectProvider.default
 
   const disable = () => defaultEvmStores.disconnect()
+
+  let infuraId
+  let web3Modal
   const enable = async () => {
-    let web3Modal = new Web3Modal({
+    if (web3Modal) web3Modal.clearCachedProvider()
+    web3Modal = new Web3Modal({
       cacheProvider: false,
       providerOptions: {
         walletconnect: {
           package: WalletConnectProvider,
-          options: {
-            infuraId: '27e484dcd9e3efcfd25a83a78777cdf1'
-          }
+          options: { infuraId }
         }
       },
       disableInjectedProvider: false,
@@ -23,13 +25,31 @@
     defaultEvmStores.setProvider(provider)
   }
 
-  $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
+  $: checkAccount = $selectedAccount
+
+
+  const debug = async () => {
+
+    console.log('$web3.eth.getChainId', await $web3.eth.getChainId())
+
+  }
+
+
+  $: if ($connected && $web3) debug()
+
 
 </script>
 
-<p>
+<p class="subtitle">
   Simple example to using the <a href="https://web3modal.com/">Web3Modal</a> library to connect the default store.
 </p>
+
+<div class="field">
+  <div class="control">
+    <input class="input p-4" type="text" placeholder="InfuraId (to use walletconnect)"  bind:value={infuraId}>
+  </div>
+</div>
+
 
 {#if $web3.version}
 <div class="buttons">
@@ -45,11 +65,9 @@
 
 
 {#if $connected}
+
 <p>
   Connected chain: chainId = {$chainId}
-</p>
-<p>
-  chainData = {JSON.stringify($chainData)}
 </p>
 <p>
   Selected account: {$selectedAccount || 'not defined'}
@@ -57,6 +75,9 @@
 
 <p>
   Wallet type: {$walletType || 'not defined'}
+</p>
+<p>
+  chainData = {JSON.stringify($chainData)}
 </p>
 
 
