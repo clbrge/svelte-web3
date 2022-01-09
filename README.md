@@ -10,7 +10,7 @@ library](https://docs.ethers.io/v5/) to intereact with EVM, you may be
 interested by our sister package
 [svelte-ethers-store](https://www.npmjs.com/package/svelte-ethers-store).
 
-### Community
+## Community
 
 For additional help or discussion, join us [in our
 Discord](https://discord.gg/7yXuwDwaHF).
@@ -237,7 +237,7 @@ connected with the Ethereum Mainnet :
 {
   "name": "Ethereum Mainnet",
   "chain": "ETH",
-  "network": "mainnet",
+  "icon": "ethereum",
   "rpc": [
     "https://mainnet.infura.io/v3/${INFURA_API_KEY}",
     "https://api.mycryptoapi.com/eth"
@@ -252,11 +252,11 @@ connected with the Ethereum Mainnet :
   "shortName": "eth",
   "chainId": 1,
   "networkId": 1,
-  "icon": "ethereum",
+  "slip44": 60,
+  "ens": { "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" },
   "explorers": [{
     "name": "etherscan",
     "url": "https://etherscan.io",
-    "icon": "etherscan",
     "standard": "EIP3091"
   }]
 }

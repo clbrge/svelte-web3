@@ -6,7 +6,7 @@
   "repository": "clbrge/svelte-web3",
   "author": {
     "name": "Christophe Le Bars",
-    "email": "<clb@rouge.network>"
+    "email": "<clb@toort.net>"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -9,7 +9,7 @@ const getGlobalObject = () => {
   if (typeof self !== 'undefined') { return self }
   if (typeof window !== 'undefined') { return window }
   if (typeof global !== 'undefined') { return global }
-  throw new Error('cannot find the global object')
+  throw new Error('[svelte-web3] cannot find the global object')
 }
 
 export let Web3 = {}

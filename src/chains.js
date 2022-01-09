@@ -3,7 +3,6 @@ const chains = [
   {
     name: 'Ethereum Mainnet',
     chain: 'ETH',
-    network: 'mainnet',
     icon: 'ethereum',
     rpc: [
       'https://mainnet.infura.io/v3/${INFURA_API_KEY}',
@@ -30,7 +29,6 @@ const chains = [
   {
     name: 'Expanse Network',
     chain: 'EXP',
-    network: 'mainnet',
     rpc: [ 'https://node.expanse.tech' ],
     faucets: [],
     nativeCurrency: { name: 'Expanse Network Ether', symbol: 'EXP', decimals: 18 },
@@ -43,7 +41,6 @@ const chains = [
   {
     name: 'Ethereum Testnet Ropsten',
     chain: 'ETH',
-    network: 'ropsten',
     rpc: [
       'https://ropsten.infura.io/v3/${INFURA_API_KEY}',
       'wss://ropsten.infura.io/ws/v3/${INFURA_API_KEY}'
@@ -57,9 +54,9 @@ const chains = [
     ens: { registry: '0x112234455c3a32fd11230c42e7bccd4a84e02010' }
   },
   {
-    name: 'Ethereum Testnet Rinkeby',
+    name: 'Rinkeby',
+    title: 'Ethereum Testnet Rinkeby',
     chain: 'ETH',
-    network: 'rinkeby',
     rpc: [
       'https://rinkeby.infura.io/v3/${INFURA_API_KEY}',
       'wss://rinkeby.infura.io/ws/v3/${INFURA_API_KEY}'
@@ -84,9 +81,9 @@ const chains = [
     title: 'Ethereum Testnet Görli',
     chain: 'ETH',
     rpc: [
-      'https://rpc.goerli.mudit.blog/',
-      'https://rpc.slock.it/goerli',
-      'https://goerli.prylabs.net/'
+      'https://goerli.infura.io/v3/${INFURA_API_KEY}',
+      'wss://goerli.infura.io/v3/${INFURA_API_KEY}',
+      'https://rpc.goerli.mudit.blog/'
     ],
     faucets: [
       'https://goerli-faucet.slock.it/?address=${ADDRESS}',
@@ -109,7 +106,6 @@ const chains = [
   {
     name: 'Ethereum Classic Testnet Kotti',
     chain: 'ETC',
-    network: 'kotti',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Kotti Ether', symbol: 'KOT', decimals: 18 },
@@ -121,7 +117,6 @@ const chains = [
   {
     name: 'ThaiChain',
     chain: 'TCH',
-    network: 'mainnet',
     rpc: [ 'https://rpc.dome.cloud' ],
     faucets: [],
     nativeCurrency: { name: 'ThaiChain Ether', symbol: 'TCH', decimals: 18 },
@@ -133,7 +128,6 @@ const chains = [
   {
     name: 'Ubiq',
     chain: 'UBQ',
-    network: 'mainnet',
     rpc: [ 'https://rpc.octano.dev', 'https://pyrus2.ubiqscan.io' ],
     faucets: [],
     nativeCurrency: { name: 'Ubiq Ether', symbol: 'UBQ', decimals: 18 },
@@ -153,7 +147,6 @@ const chains = [
   {
     name: 'Ubiq Network Testnet',
     chain: 'UBQ',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Ubiq Testnet Ether', symbol: 'TUBQ', decimals: 18 },
@@ -165,7 +158,6 @@ const chains = [
   {
     name: 'Optimistic Ethereum',
     chain: 'ETH',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.optimism.io/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'OETH', decimals: 18 },
@@ -184,7 +176,6 @@ const chains = [
   {
     name: 'Metadium Mainnet',
     chain: 'META',
-    network: 'mainnet',
     rpc: [ 'https://api.metadium.com/prod' ],
     faucets: [],
     nativeCurrency: { name: 'Metadium Mainnet Ether', symbol: 'META', decimals: 18 },
@@ -197,7 +188,6 @@ const chains = [
   {
     name: 'Metadium Testnet',
     chain: 'META',
-    network: 'testnet',
     rpc: [ 'https://api.metadium.com/dev' ],
     faucets: [],
     nativeCurrency: { name: 'Metadium Testnet Ether', symbol: 'KAL', decimals: 18 },
@@ -209,7 +199,6 @@ const chains = [
   {
     name: 'Diode Testnet Staging',
     chain: 'DIODE',
-    network: 'testnet',
     rpc: [
       'https://staging.diode.io:8443/',
       'wss://staging.diode.io:8443/ws'
@@ -224,7 +213,6 @@ const chains = [
   {
     name: 'Flare Mainnet',
     chain: 'FLR',
-    network: 'flare',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Spark', symbol: 'FLR', decimals: 18 },
@@ -236,7 +224,6 @@ const chains = [
   {
     name: 'Diode Prenet',
     chain: 'DIODE',
-    network: 'mainnet',
     rpc: [
       'https://prenet.diode.io:8443/',
       'wss://prenet.diode.io:8443/ws'
@@ -251,7 +238,6 @@ const chains = [
   {
     name: 'Flare Testnet Coston',
     chain: 'FLR',
-    network: 'coston',
     rpc: [],
     faucets: [ 'https://faucet.towolabs.com' ],
     nativeCurrency: { name: 'Coston Spark', symbol: 'CFLR', decimals: 18 },
@@ -263,7 +249,6 @@ const chains = [
   {
     name: 'ThaiChain 2.0 ThaiFi',
     chain: 'TCH',
-    network: 'thaifi',
     rpc: [ 'https://rpc.thaifi.com' ],
     faucets: [],
     nativeCurrency: { name: 'Thaifi Ether', symbol: 'TFI', decimals: 18 },
@@ -275,7 +260,6 @@ const chains = [
   {
     name: 'ThunderCore Testnet',
     chain: 'TST',
-    network: 'testnet',
     rpc: [ 'https://testnet-rpc.thundercore.com' ],
     faucets: [ 'https://faucet-testnet.thundercore.com' ],
     nativeCurrency: { name: 'ThunderCore Testnet Ether', symbol: 'TST', decimals: 18 },
@@ -287,7 +271,6 @@ const chains = [
   {
     name: 'Songbird Canary-Network',
     chain: 'SGB',
-    network: 'songbird',
     rpc: [
       'https://songbird.towolabs.com/rpc',
       'https://sgb.ftso.com.au/ext/bc/C/rpc',
@@ -311,7 +294,6 @@ const chains = [
   {
     name: 'ELA-ETH-Sidechain Mainnet',
     chain: 'ETH',
-    network: 'mainnet',
     rpc: [ 'https://mainrpc.elaeth.io' ],
     faucets: [],
     nativeCurrency: { name: 'Elastos', symbol: 'ELA', decimals: 18 },
@@ -323,7 +305,6 @@ const chains = [
   {
     name: 'ELA-ETH-Sidechain Testnet',
     chain: 'ETH',
-    network: 'testnet',
     rpc: [ 'https://rpc.elaeth.io' ],
     faucets: [ 'https://faucet.elaeth.io/' ],
     nativeCurrency: { name: 'Elastos', symbol: 'tELA', decimals: 18 },
@@ -335,7 +316,6 @@ const chains = [
   {
     name: 'ELA-DID-Sidechain Mainnet',
     chain: 'ETH',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Elastos', symbol: 'ELA', decimals: 18 },
@@ -347,7 +327,6 @@ const chains = [
   {
     name: 'ELA-DID-Sidechain Testnet',
     chain: 'ETH',
-    network: 'testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Elastos', symbol: 'tELA', decimals: 18 },
@@ -359,7 +338,6 @@ const chains = [
   {
     name: 'Dithereum Mainnet',
     chain: 'DTH',
-    network: 'mainnet',
     icon: 'dithereum',
     rpc: [ 'https://node-mainnet.dithereum.io' ],
     faucets: [ 'https://faucet.dithereum.org' ],
@@ -372,7 +350,6 @@ const chains = [
   {
     name: 'Cronos Mainnet Beta',
     chain: 'CRO',
-    network: 'mainnet',
     rpc: [ 'https://evm-cronos.crypto.org' ],
     faucets: [],
     nativeCurrency: { name: 'Crypto.org Coin', symbol: 'CRO', decimals: 18 },
@@ -391,7 +368,6 @@ const chains = [
   {
     name: 'Genesis L1 testnet',
     chain: 'genesis',
-    network: 'testnet',
     rpc: [ 'https://testrpc.genesisl1.org' ],
     faucets: [],
     nativeCurrency: { name: 'L1 testcoin', symbol: 'L1test', decimals: 18 },
@@ -410,7 +386,6 @@ const chains = [
   {
     name: 'ShibaChain',
     chain: 'SHIB',
-    network: 'mainnet',
     rpc: [ 'https://rpc.shibachain.net' ],
     faucets: [],
     nativeCurrency: { name: 'SHIBA INU COIN', symbol: 'SHIB', decimals: 18 },
@@ -429,7 +404,6 @@ const chains = [
   {
     name: 'Boba Network Rinkeby Testnet',
     chain: 'ETH',
-    network: 'rinkeby',
     rpc: [ 'https://rinkeby.boba.network/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
@@ -453,7 +427,6 @@ const chains = [
   {
     name: 'Genesis L1',
     chain: 'genesis',
-    network: 'mainnet',
     rpc: [ 'https://rpc.genesisl1.org' ],
     faucets: [],
     nativeCurrency: { name: 'L1 coin', symbol: 'L1', decimals: 18 },
@@ -472,7 +445,6 @@ const chains = [
   {
     name: 'RSK Mainnet',
     chain: 'RSK',
-    network: 'mainnet',
     rpc: [ 'https://public-node.rsk.co', 'https://mycrypto.rsk.co' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'RSK Mainnet Ether', symbol: 'RBTC', decimals: 18 },
@@ -492,7 +464,6 @@ const chains = [
   {
     name: 'RSK Testnet',
     chain: 'RSK',
-    network: 'testnet',
     rpc: [
       'https://public-node.testnet.rsk.co',
       'https://mycrypto.testnet.rsk.co'
@@ -507,7 +478,6 @@ const chains = [
   {
     name: 'GoodData Testnet',
     chain: 'GooD',
-    network: 'testnet',
     rpc: [ 'https://test2.goodata.io' ],
     faucets: [],
     nativeCurrency: { name: 'GoodData Testnet Ether', symbol: 'GooD', decimals: 18 },
@@ -519,7 +489,6 @@ const chains = [
   {
     name: 'GoodData Mainnet',
     chain: 'GooD',
-    network: 'mainnet',
     rpc: [ 'https://rpc.goodata.io' ],
     faucets: [],
     nativeCurrency: { name: 'GoodData Mainnet Ether', symbol: 'GooD', decimals: 18 },
@@ -531,7 +500,6 @@ const chains = [
   {
     name: 'Dithereum Testnet',
     chain: 'DTH',
-    network: 'testnet',
     icon: 'dithereum',
     rpc: [ 'https://node-testnet.dithereum.io' ],
     faucets: [ 'https://faucet.dithereum.org' ],
@@ -544,7 +512,6 @@ const chains = [
   {
     name: 'TBWG Chain',
     chain: 'TBWG',
-    network: 'mainnet',
     rpc: [ 'https://rpc.tbwg.io' ],
     faucets: [],
     nativeCurrency: { name: 'TBWG Ether', symbol: 'TBG', decimals: 18 },
@@ -556,7 +523,6 @@ const chains = [
   {
     name: 'Valorbit',
     chain: 'VAL',
-    network: 'mainnet',
     rpc: [ 'https://rpc.valorbit.com/v2' ],
     faucets: [],
     nativeCurrency: { name: 'Valorbit', symbol: 'VAL', decimals: 18 },
@@ -569,7 +535,6 @@ const chains = [
   {
     name: 'Telos EVM Mainnet',
     chain: 'TLOS',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.telos.net/evm' ],
     faucets: [],
     nativeCurrency: { name: 'Telos', symbol: 'TLOS', decimals: 18 },
@@ -588,7 +553,6 @@ const chains = [
   {
     name: 'Telos EVM Testnet',
     chain: 'TLOS',
-    network: 'testnet',
     rpc: [ 'https://testnet.telos.net/evm' ],
     faucets: [ 'https://app.telos.net/testnet/developers' ],
     nativeCurrency: { name: 'Telos', symbol: 'TLOS', decimals: 18 },
@@ -598,9 +562,9 @@ const chains = [
     networkId: 41
   },
   {
-    name: 'Ethereum Testnet Kovan',
+    name: 'Kovan',
+    title: 'Ethereum Testnet Kovan',
     chain: 'ETH',
-    network: 'kovan',
     rpc: [
       'https://kovan.poa.network',
       'http://kovan.poa.network:8545',
@@ -613,6 +577,13 @@ const chains = [
       'https://gitter.im/kovan-testnet/faucet'
     ],
     nativeCurrency: { name: 'Kovan Ether', symbol: 'KOV', decimals: 18 },
+    explorers: [
+      {
+        name: 'etherscan',
+        url: 'https://kovan.etherscan.io',
+        standard: 'EIP3091'
+      }
+    ],
     infoURL: 'https://kovan-testnet.github.io/website',
     shortName: 'kov',
     chainId: 42,
@@ -621,7 +592,6 @@ const chains = [
   {
     name: 'Darwinia Pangolin Testnet',
     chain: 'pangolin',
-    network: 'free testnet',
     rpc: [ 'http://pangolin-rpc.darwinia.network' ],
     faucets: [
       'https://docs.crab.network/dvm/wallets/dvm-metamask#apply-for-the-test-token'
@@ -646,7 +616,6 @@ const chains = [
   {
     name: 'Darwinia Crab Network',
     chain: 'crab',
-    network: 'Crab network',
     rpc: [ 'http://crab-rpc.darwinia.network' ],
     faucets: [],
     nativeCurrency: { name: 'Crab Network Native Token', symbol: 'CRAB', decimals: 9 },
@@ -665,7 +634,6 @@ const chains = [
   {
     name: 'XinFin Network Mainnet',
     chain: 'XDC',
-    network: 'mainnet',
     rpc: [ 'https://rpc.xinfin.network' ],
     faucets: [],
     nativeCurrency: { name: 'XinFin', symbol: 'XDC', decimals: 18 },
@@ -677,7 +645,6 @@ const chains = [
   {
     name: 'XinFin Apothem Testnet',
     chain: 'TXDC',
-    network: 'testnet',
     rpc: [ 'https://rpc.apothem.network' ],
     faucets: [],
     nativeCurrency: { name: 'XinFinTest', symbol: 'TXDC', decimals: 18 },
@@ -689,7 +656,6 @@ const chains = [
   {
     name: 'CoinEx Smart Chain Mainnet',
     chain: 'CSC',
-    network: 'mainnet',
     rpc: [ 'https://rpc.coinex.net' ],
     faucets: [],
     nativeCurrency: { name: 'CoinEx Chain Native Token', symbol: 'cet', decimals: 18 },
@@ -708,7 +674,6 @@ const chains = [
   {
     name: 'CoinEx Smart Chain Testnet',
     chain: 'CSC',
-    network: 'testnet',
     rpc: [ 'https://testnet-rpc.coinex.net/' ],
     faucets: [],
     nativeCurrency: {
@@ -731,7 +696,6 @@ const chains = [
   {
     name: 'Zyx Mainnet',
     chain: 'ZYX',
-    network: 'mainnet',
     rpc: [
       'https://rpc-1.zyx.network/',
       'https://rpc-2.zyx.network/',
@@ -757,7 +721,6 @@ const chains = [
   {
     name: 'Binance Smart Chain Mainnet',
     chain: 'BSC',
-    network: 'mainnet',
     rpc: [
       'https://bsc-dataseed1.binance.org',
       'https://bsc-dataseed2.binance.org',
@@ -791,7 +754,6 @@ const chains = [
   {
     name: 'Syscoin Mainnet',
     chain: 'SYS',
-    network: 'mainnet',
     rpc: [ 'https://rpc.syscoin.org', 'wss://rpc.syscoin.org/wss' ],
     faucets: [ 'https://faucet.syscoin.org' ],
     nativeCurrency: { name: 'Syscoin', symbol: 'SYS', decimals: 18 },
@@ -810,7 +772,6 @@ const chains = [
   {
     name: 'Ontology Mainnet',
     chain: 'Ontology',
-    network: 'mainnet',
     rpc: [
       'https://dappnode1.ont.io:20339',
       'https://dappnode2.ont.io:20339',
@@ -834,7 +795,6 @@ const chains = [
   {
     name: 'EOS Mainnet',
     chain: 'EOS',
-    network: 'mainnet',
     rpc: [ 'https://api.eosargentina.io' ],
     faucets: [],
     nativeCurrency: { name: 'EOS', symbol: 'EOS', decimals: 18 },
@@ -853,7 +813,6 @@ const chains = [
   {
     name: 'GoChain',
     chain: 'GO',
-    network: 'mainnet',
     rpc: [ 'https://rpc.gochain.io' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'GoChain Ether', symbol: 'GO', decimals: 18 },
@@ -873,7 +832,6 @@ const chains = [
   {
     name: 'Ethereum Classic Mainnet',
     chain: 'ETC',
-    network: 'mainnet',
     rpc: [ 'https://ethereumclassic.network' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/?' ],
     nativeCurrency: { name: 'Ethereum Classic Ether', symbol: 'ETC', decimals: 18 },
@@ -893,7 +851,6 @@ const chains = [
   {
     name: 'Ethereum Classic Testnet Morden',
     chain: 'ETC',
-    network: 'testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: {
@@ -909,7 +866,6 @@ const chains = [
   {
     name: 'Ethereum Classic Testnet Mordor',
     chain: 'ETC',
-    network: 'testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: {
@@ -925,7 +881,6 @@ const chains = [
   {
     name: 'Ellaism',
     chain: 'ELLA',
-    network: 'mainnet',
     rpc: [ 'https://jsonrpc.ellaism.org' ],
     faucets: [],
     nativeCurrency: { name: 'Ellaism Ether', symbol: 'ELLA', decimals: 18 },
@@ -938,7 +893,6 @@ const chains = [
   {
     name: 'OKExChain Testnet',
     chain: 'okexchain',
-    network: 'testnet',
     rpc: [ 'https://exchaintestrpc.okex.org' ],
     faucets: [ 'https://www.okex.com/drawdex' ],
     nativeCurrency: {
@@ -961,7 +915,6 @@ const chains = [
   {
     name: 'OKExChain Mainnet',
     chain: 'okexchain',
-    network: 'mainnet',
     rpc: [ 'https://exchainrpc.okex.org' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/?' ],
     nativeCurrency: {
@@ -984,7 +937,6 @@ const chains = [
   {
     name: 'DBChain Testnet',
     chain: 'DBM',
-    network: 'testnet',
     rpc: [ 'http://test-rpc.dbmbp.com' ],
     faucets: [],
     nativeCurrency: { name: 'DBChain Testnet', symbol: 'DBM', decimals: 18 },
@@ -996,7 +948,6 @@ const chains = [
   {
     name: 'SoterOne Mainnet',
     chain: 'SOTER',
-    network: 'mainnet',
     rpc: [ 'https://rpc.soter.one' ],
     faucets: [],
     nativeCurrency: { name: 'SoterOne Mainnet Ether', symbol: 'SOTER', decimals: 18 },
@@ -1006,12 +957,19 @@ const chains = [
     networkId: 68
   },
   {
-    name: 'Optimistic Ethereum Testnet Kovan',
+    name: 'Optimistic Kovan',
+    title: 'Optimistic Ethereum Testnet Kovan',
     chain: 'ETH',
-    network: 'kovan',
     rpc: [ 'https://kovan.optimism.io/' ],
     faucets: [],
     nativeCurrency: { name: 'Kovan Ether', symbol: 'KOR', decimals: 18 },
+    explorers: [
+      {
+        name: 'etherscan',
+        url: 'https://kovan-optimistic.etherscan.io',
+        standard: 'EIP3091'
+      }
+    ],
     infoURL: 'https://optimism.io',
     shortName: 'okov',
     chainId: 69,
@@ -1020,7 +978,6 @@ const chains = [
   {
     name: 'Mix',
     chain: 'MIX',
-    network: 'mainnet',
     rpc: [ 'https://rpc2.mix-blockchain.org:8647' ],
     faucets: [],
     nativeCurrency: { name: 'Mix Ether', symbol: 'MIX', decimals: 18 },
@@ -1033,7 +990,6 @@ const chains = [
   {
     name: 'POA Network Sokol',
     chain: 'POA',
-    network: 'sokol',
     rpc: [
       'https://sokol.poa.network',
       'wss://sokol.poa.network/wss',
@@ -1056,7 +1012,6 @@ const chains = [
   {
     name: 'PrimusChain mainnet',
     chain: 'PC',
-    network: 'mainnet',
     rpc: [ 'https://ethnode.primusmoney.com/mainnet' ],
     faucets: [],
     nativeCurrency: { name: 'Primus Ether', symbol: 'PETH', decimals: 18 },
@@ -1068,7 +1023,6 @@ const chains = [
   {
     name: 'GeneChain',
     chain: 'GeneChain',
-    network: 'mainnet',
     rpc: [ 'https://rpc.genechain.io' ],
     faucets: [],
     nativeCurrency: { name: 'RNA', symbol: 'RNA', decimals: 18 },
@@ -1087,7 +1041,6 @@ const chains = [
   {
     name: 'Meter Mainnet',
     chain: 'METER',
-    network: 'mainnet',
     rpc: [ 'https://rpc.meter.io' ],
     faucets: [ 'https://faucet.meter.io' ],
     nativeCurrency: { name: 'Meter', symbol: 'MTR', decimals: 18 },
@@ -1106,7 +1059,6 @@ const chains = [
   {
     name: 'Meter Testnet',
     chain: 'METER Testnet',
-    network: 'testnet',
     rpc: [ 'https://rpctest.meter.io' ],
     faucets: [ 'https://faucet-warringstakes.meter.io' ],
     nativeCurrency: { name: 'Meter', symbol: 'MTR', decimals: 18 },
@@ -1127,7 +1079,6 @@ const chains = [
     chainId: 85,
     shortName: 'gttest',
     chain: 'GTTEST',
-    network: 'testnet',
     networkId: 85,
     nativeCurrency: { name: 'GateToken', symbol: 'GT', decimals: 18 },
     rpc: [ 'https://testnet.gatenode.cc' ],
@@ -1146,7 +1097,6 @@ const chains = [
     chainId: 86,
     shortName: 'gt',
     chain: 'GT',
-    network: 'mainnet',
     networkId: 86,
     nativeCurrency: { name: 'GateToken', symbol: 'GT', decimals: 18 },
     rpc: [ 'https://evm.gatenode.cc' ],
@@ -1163,7 +1113,6 @@ const chains = [
   {
     name: 'TomoChain',
     chain: 'TOMO',
-    network: 'mainnet',
     rpc: [ 'https://rpc.tomochain.com' ],
     faucets: [],
     nativeCurrency: { name: 'TomoChain Ether', symbol: 'TOMO', decimals: 18 },
@@ -1176,7 +1125,6 @@ const chains = [
   {
     name: 'CryptoKylin Testnet',
     chain: 'EOS',
-    network: 'testnet',
     rpc: [ 'https://kylin.eosargentina.io' ],
     faucets: [],
     nativeCurrency: { name: 'EOS', symbol: 'EOS', decimals: 18 },
@@ -1195,7 +1143,6 @@ const chains = [
   {
     name: 'NEXT Smart Chain',
     chain: 'NSC',
-    network: 'mainnet',
     rpc: [ 'https://rpc.nextsmartchain.com' ],
     faucets: [ 'https://faucet.nextsmartchain.com' ],
     nativeCurrency: { name: 'NEXT', symbol: 'NEXT', decimals: 18 },
@@ -1214,7 +1161,6 @@ const chains = [
   {
     name: 'Binance Smart Chain Testnet',
     chain: 'BSC',
-    network: 'Chapel',
     rpc: [
       'https://data-seed-prebsc-1-s1.binance.org:8545',
       'https://data-seed-prebsc-2-s1.binance.org:8545',
@@ -1244,7 +1190,6 @@ const chains = [
   {
     name: 'POA Network Core',
     chain: 'POA',
-    network: 'core',
     rpc: [
       'https://core.poanetwork.dev',
       'http://core.poanetwork.dev:8545',
@@ -1269,7 +1214,6 @@ const chains = [
   {
     name: 'Gnosis Chain (formerly xDai)',
     chain: 'Gnosis',
-    network: 'mainnet',
     rpc: [
       'https://rpc.xdaichain.com',
       'https://xdai.poanetwork.dev',
@@ -1280,7 +1224,7 @@ const chains = [
       'ws://xdai.poanetwork.dev:8546'
     ],
     faucets: [
-      'https://xdai-app.herokuapp.com/faucet',
+      'https://faucet.gimlu.com/gnosis',
       'https://stakely.io/faucet/xdai-chain',
       'https://faucet.prussia.dev/xdai'
     ],
@@ -1301,7 +1245,6 @@ const chains = [
   {
     name: 'EtherInc',
     chain: 'ETI',
-    network: 'mainnet',
     rpc: [ 'https://api.einc.io/jsonrpc/mainnet' ],
     faucets: [],
     nativeCurrency: { name: 'EtherInc Ether', symbol: 'ETI', decimals: 18 },
@@ -1314,7 +1257,6 @@ const chains = [
   {
     name: 'Web3Games Testnet',
     chain: 'Web3Games',
-    network: 'testnet',
     rpc: [ 'https://testnet.web3games.org/evm' ],
     faucets: [],
     nativeCurrency: { name: 'Web3Games', symbol: 'W3G', decimals: 18 },
@@ -1326,7 +1268,6 @@ const chains = [
   {
     name: 'Velas EVM Mainnet',
     chain: 'Velas',
-    network: 'mainnet',
     icon: 'velas',
     rpc: [
       'https://evmexplorer.velas.com/rpc',
@@ -1349,7 +1290,6 @@ const chains = [
   {
     name: 'ThunderCore Mainnet',
     chain: 'TT',
-    network: 'mainnet',
     rpc: [ 'https://mainnet-rpc.thundercore.com' ],
     faucets: [ 'https://faucet.thundercore.com' ],
     nativeCurrency: { name: 'ThunderCore Mainnet Ether', symbol: 'TT', decimals: 18 },
@@ -1362,7 +1302,6 @@ const chains = [
   {
     name: 'Proton Testnet',
     chain: 'XPR',
-    network: 'testnet',
     rpc: [ 'https://protontestnet.greymass.com/' ],
     faucets: [],
     nativeCurrency: { name: 'Proton', symbol: 'XPR', decimals: 4 },
@@ -1374,7 +1313,6 @@ const chains = [
   {
     name: 'EtherLite Chain',
     chain: 'ETL',
-    network: 'mainnet',
     rpc: [ 'https://rpc.etherlite.org' ],
     faucets: [ 'https://etherlite.org/faucets' ],
     nativeCurrency: { name: 'EtherLite', symbol: 'ETL', decimals: 18 },
@@ -1387,7 +1325,6 @@ const chains = [
   {
     name: 'Fuse Mainnet',
     chain: 'FUSE',
-    network: 'mainnet',
     rpc: [ 'https://rpc.fuse.io' ],
     faucets: [],
     nativeCurrency: { name: 'Fuse', symbol: 'FUSE', decimals: 18 },
@@ -1399,7 +1336,6 @@ const chains = [
   {
     name: 'Fuse Sparknet',
     chain: 'fuse',
-    network: 'testnet',
     rpc: [ 'https://rpc.fusespark.io' ],
     faucets: [ 'https://get.fusespark.io' ],
     nativeCurrency: { name: 'Spark', symbol: 'SPARK', decimals: 18 },
@@ -1412,7 +1348,6 @@ const chains = [
     name: 'Decentralized Web Mainnet',
     shortName: 'dwu',
     chain: 'DWU',
-    network: 'mainnet',
     chainId: 124,
     networkId: 124,
     rpc: [ 'https://decentralized-web.tech/dw_rpc.php' ],
@@ -1423,7 +1358,6 @@ const chains = [
   {
     name: 'Factory 127 Mainnet',
     chain: 'FETH',
-    network: 'factory127 mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Factory 127 Token', symbol: 'FETH', decimals: 18 },
@@ -1436,7 +1370,6 @@ const chains = [
   {
     name: 'Huobi ECO Chain Mainnet',
     chain: 'Heco',
-    network: 'mainnet',
     rpc: [
       'https://http-mainnet.hecochain.com',
       'wss://ws-mainnet.hecochain.com'
@@ -1463,7 +1396,6 @@ const chains = [
   {
     name: 'Polygon Mainnet',
     chain: 'Polygon',
-    network: 'mainnet',
     rpc: [
       'https://polygon-rpc.com/',
       'https://rpc-mainnet.matic.network',
@@ -1490,7 +1422,6 @@ const chains = [
   {
     name: 'DAX CHAIN',
     chain: 'DAX',
-    network: 'mainnet',
     rpc: [ 'https://rpc.prodax.io' ],
     faucets: [],
     nativeCurrency: { name: 'Prodax', symbol: 'DAX', decimals: 18 },
@@ -1502,7 +1433,6 @@ const chains = [
   {
     name: 'Lightstreams Testnet',
     chain: 'PHT',
-    network: 'sirius',
     rpc: [ 'https://node.sirius.lightstreams.io' ],
     faucets: [ 'https://discuss.lightstreams.network/t/request-test-tokens' ],
     nativeCurrency: { name: 'Lightstreams PHT', symbol: 'PHT', decimals: 18 },
@@ -1514,7 +1444,6 @@ const chains = [
   {
     name: 'Lightstreams Mainnet',
     chain: 'PHT',
-    network: 'mainnet',
     rpc: [ 'https://node.mainnet.lightstreams.io' ],
     faucets: [],
     nativeCurrency: { name: 'Lightstreams PHT', symbol: 'PHT', decimals: 18 },
@@ -1526,7 +1455,6 @@ const chains = [
   {
     name: 'HOO Smart Chain Testnet',
     chain: 'ETH',
-    network: 'testnet',
     rpc: [ 'https://http-testnet.hoosmartchain.com' ],
     faucets: [ 'https://faucet-testnet.hscscan.com/' ],
     nativeCurrency: { name: 'HOO', symbol: 'HOO', decimals: 18 },
@@ -1538,7 +1466,6 @@ const chains = [
   {
     name: 'Latam-Blockchain Resil Testnet',
     chain: 'Resil',
-    network: 'testnet',
     rpc: [
       'https://rpc.latam-blockchain.com',
       'wss://ws.latam-blockchain.com'
@@ -1557,7 +1484,6 @@ const chains = [
   {
     name: 'Seele Mainnet',
     chain: 'Seele',
-    network: 'mainnet',
     rpc: [ 'https://rpc.seelen.pro/' ],
     faucets: [],
     nativeCurrency: { name: 'Seele', symbol: 'Seele', decimals: 18 },
@@ -1576,7 +1502,6 @@ const chains = [
   {
     name: 'BMC Mainnet',
     chain: 'BMC',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.bmcchain.com/' ],
     faucets: [],
     nativeCurrency: { name: 'BTM', symbol: 'BTM', decimals: 18 },
@@ -1595,7 +1520,6 @@ const chains = [
   {
     name: 'BMC Testnet',
     chain: 'BMC',
-    network: 'testnet',
     rpc: [ 'https://testnet.bmcchain.com' ],
     faucets: [],
     nativeCurrency: { name: 'BTM', symbol: 'BTM', decimals: 18 },
@@ -1614,7 +1538,6 @@ const chains = [
   {
     name: 'BitTorrent Chain Mainnet',
     chain: 'BTTC',
-    network: 'mainnet',
     rpc: [ 'https://rpc.bittorrentchain.io/' ],
     faucets: [],
     nativeCurrency: { name: 'BitTorrent', symbol: 'BTT', decimals: 18 },
@@ -1633,7 +1556,6 @@ const chains = [
   {
     name: 'Arbitrum on xDai',
     chain: 'AOX',
-    network: 'xdai',
     rpc: [ 'https://arbitrum.xdaichain.com/' ],
     faucets: [],
     nativeCurrency: { name: 'xDAI', symbol: 'xDAI', decimals: 18 },
@@ -1653,7 +1575,6 @@ const chains = [
   {
     name: 'Freight Trust Network',
     chain: 'EDI',
-    network: 'freight & trade network',
     rpc: [
       'http://13.57.207.168:3435',
       'https://app.freighttrust.net/ftn/${API_KEY}'
@@ -1668,7 +1589,6 @@ const chains = [
   {
     name: 'Permission',
     chain: 'ASK',
-    network: 'ASK',
     rpc: [ 'https://blockchain-api-mainnet.permission.io/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'ASK', symbol: 'ASK', decimals: 18 },
@@ -1681,7 +1601,6 @@ const chains = [
   {
     name: 'Energy Web Chain',
     chain: 'Energy Web Chain',
-    network: 'mainnet',
     rpc: [ 'https://rpc.energyweb.org', 'wss://rpc.energyweb.org/ws' ],
     faucets: [
       'https://faucet.carbonswap.exchange',
@@ -1704,7 +1623,6 @@ const chains = [
   {
     name: 'Fantom Opera',
     chain: 'FTM',
-    network: 'mainnet',
     rpc: [ 'https://rpc.ftm.tools' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Fantom', symbol: 'FTM', decimals: 18 },
@@ -1725,7 +1643,6 @@ const chains = [
   {
     name: 'Huobi ECO Chain Testnet',
     chain: 'Heco',
-    network: 'testnet',
     rpc: [
       'https://http-testnet.hecochain.com',
       'wss://ws-testnet.hecochain.com'
@@ -1744,7 +1661,6 @@ const chains = [
   {
     name: 'SUR Blockchain Network',
     chain: 'SUR',
-    network: 'mainnet',
     rpc: [ 'https://sur.nilin.org' ],
     faucets: [],
     nativeCurrency: { name: 'Suren', symbol: 'SRN', decimals: 18 },
@@ -1765,7 +1681,6 @@ const chains = [
   {
     name: 'High Performance Blockchain',
     chain: 'HPB',
-    network: 'mainnet',
     rpc: [ 'https://hpbnode.com', 'wss://ws.hpbnode.com' ],
     faucets: [ 'https://myhpbwallet.com/' ],
     nativeCurrency: {
@@ -1785,7 +1700,6 @@ const chains = [
   {
     name: 'Boba Network',
     chain: 'ETH',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.boba.network/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
@@ -1809,7 +1723,6 @@ const chains = [
   {
     name: 'KCC Mainnet',
     chain: 'KCC',
-    network: 'mainnet',
     rpc: [
       'https://rpc-mainnet.kcc.network',
       'wss://rpc-ws-mainnet.kcc.network'
@@ -1831,7 +1744,6 @@ const chains = [
   {
     name: 'KCC Testnet',
     chain: 'KCC',
-    network: 'testnet',
     rpc: [
       'https://rpc-testnet.kcc.network',
       'wss://rpc-ws-testnet.kcc.network'
@@ -1853,7 +1765,6 @@ const chains = [
   {
     name: 'Shiden',
     chain: 'SDN',
-    network: 'shiden',
     rpc: [
       'https://rpc.shiden.astar.network:8545',
       'wss://shiden.api.onfinality.io/public-ws'
@@ -1875,7 +1786,6 @@ const chains = [
   {
     name: 'Cronos Testnet',
     chain: 'CRO',
-    network: 'testnet',
     rpc: [
       'https://cronos-testnet-3.crypto.org:8545',
       'wss://cronos-testnet-3.crypto.org:8546'
@@ -1897,7 +1807,6 @@ const chains = [
   {
     name: 'Theta Mainnet',
     chain: 'Theta',
-    network: 'mainnet',
     rpc: [ 'https://eth-rpc-api.thetatoken.org/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'Theta Fuel', symbol: 'TFUEL', decimals: 18 },
@@ -1916,7 +1825,6 @@ const chains = [
   {
     name: 'Theta Sapphire Testnet',
     chain: 'Theta',
-    network: 'testnet_sapphire',
     rpc: [ 'https://eth-rpc-api-sapphire.thetatoken.org/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'Theta Fuel', symbol: 'TFUEL', decimals: 18 },
@@ -1935,7 +1843,6 @@ const chains = [
   {
     name: 'Theta Amber Testnet',
     chain: 'Theta',
-    network: 'testnet_amber',
     rpc: [ 'https://eth-rpc-api-amber.thetatoken.org/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'Theta Fuel', symbol: 'TFUEL', decimals: 18 },
@@ -1954,7 +1861,6 @@ const chains = [
   {
     name: 'Theta Testnet',
     chain: 'Theta',
-    network: 'testnet',
     rpc: [ 'https://eth-rpc-api-testnet.thetatoken.org/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'Theta Fuel', symbol: 'TFUEL', decimals: 18 },
@@ -1974,7 +1880,6 @@ const chains = [
     name: 'PulseChain Mainnet',
     shortName: 'pls',
     chain: 'PLS',
-    network: 'mainnet',
     chainId: 369,
     networkId: 369,
     infoURL: 'https://pulsechain.com/',
@@ -1988,7 +1893,6 @@ const chains = [
   {
     name: 'Lisinski',
     chain: 'CRO',
-    network: 'mainnet',
     rpc: [ 'https://rpc-bitfalls1.lisinski.online' ],
     faucets: [ 'https://pipa.lisinski.online' ],
     nativeCurrency: { name: 'Lisinski Ether', symbol: 'LISINSKI', decimals: 18 },
@@ -2000,7 +1904,6 @@ const chains = [
   {
     name: 'Optimistic Ethereum Testnet Goerli',
     chain: 'ETH',
-    network: 'goerli',
     rpc: [ 'https://goerli.optimism.io/' ],
     faucets: [],
     nativeCurrency: { name: 'Görli Ether', symbol: 'GOR', decimals: 18 },
@@ -2012,7 +1915,6 @@ const chains = [
   {
     name: 'Rupaya',
     chain: 'RUPX',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Rupaya', symbol: 'RUPX', decimals: 18 },
@@ -2025,7 +1927,6 @@ const chains = [
   {
     name: 'Tao Network',
     chain: 'TAO',
-    network: 'core',
     rpc: [
       'https://rpc.testnet.tao.network',
       'http://rpc.testnet.tao.network:8545',
@@ -2042,7 +1943,6 @@ const chains = [
   {
     name: 'Metis Stardust Testnet',
     chain: 'ETH',
-    network: 'rinkeby',
     rpc: [ 'https://stardust.metis.io/?owner=588' ],
     faucets: [],
     nativeCurrency: { name: 'tMetis', symbol: 'METIS', decimals: 18 },
@@ -2066,7 +1966,6 @@ const chains = [
   {
     name: 'Acala Mandala Testnet',
     chain: 'mACA',
-    network: 'testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Acala Mandala Token', symbol: 'mACA', decimals: 18 },
@@ -2078,7 +1977,6 @@ const chains = [
   {
     name: 'Pixie Chain Testnet',
     chain: 'PixieChain',
-    network: 'testnet',
     rpc: [
       'https://http-testnet.chain.pixie.xyz',
       'wss://ws-testnet.chain.pixie.xyz'
@@ -2097,7 +1995,6 @@ const chains = [
   {
     name: 'Karura Network',
     chain: 'KAR',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Karura Token', symbol: 'KAR', decimals: 18 },
@@ -2108,9 +2005,50 @@ const chains = [
     slip44: 686
   },
   {
+    name: 'BlockChain Station Mainnet',
+    chain: 'BCS',
+    rpc: [
+      'https://rpc-mainnet.bcsdev.io',
+      'wss://rpc-ws-mainnet.bcsdev.io'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'BCS Token', symbol: 'PLAY', decimals: 18 },
+    infoURL: 'https://blockchainstation.io',
+    shortName: 'play',
+    chainId: 707,
+    networkId: 707,
+    explorers: [
+      {
+        name: 'BlockChain Station Explorer',
+        url: 'https://explorer.bcsdev.io',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'BlockChain Station Testnet',
+    chain: 'BCS',
+    rpc: [
+      'https://rpc-testnet.bcsdev.io',
+      'wss://rpc-ws-testnet.bcsdev.io'
+    ],
+    faucets: [ 'https://faucet.bcsdev.io' ],
+    nativeCurrency: { name: 'BCS Testnet Token', symbol: 'tPLAY', decimals: 18 },
+    infoURL: 'https://blockchainstation.io',
+    shortName: 'tplay',
+    chainId: 708,
+    networkId: 708,
+    explorers: [
+      {
+        name: 'BlockChain Station Explorer',
+        url: 'https://testnet.bcsdev.io',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Factory 127 Testnet',
     chain: 'FETH',
-    network: 'factory127 testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Factory 127 Token', symbol: 'FETH', decimals: 18 },
@@ -2123,7 +2061,6 @@ const chains = [
   {
     name: 'cheapETH',
     chain: 'cheapETH',
-    network: 'cheapnet',
     rpc: [ 'https://node.cheapeth.org/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'cTH', symbol: 'cTH', decimals: 18 },
@@ -2135,7 +2072,6 @@ const chains = [
   {
     name: 'Acala Network',
     chain: 'ACA',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Acala Token', symbol: 'ACA', decimals: 18 },
@@ -2148,7 +2084,6 @@ const chains = [
   {
     name: 'Haic',
     chain: 'Haic',
-    network: 'mainnet',
     rpc: [ 'https://orig.haichain.io/' ],
     faucets: [],
     nativeCurrency: { name: 'Haicoin', symbol: 'HAIC', decimals: 18 },
@@ -2160,7 +2095,6 @@ const chains = [
   {
     name: 'Callisto Mainnet',
     chain: 'CLO',
-    network: 'mainnet',
     rpc: [ 'https://clo-geth.0xinfra.com' ],
     faucets: [],
     nativeCurrency: { name: 'Callisto Mainnet Ether', symbol: 'CLO', decimals: 18 },
@@ -2173,7 +2107,6 @@ const chains = [
   {
     name: 'Callisto Testnet',
     chain: 'CLO',
-    network: 'testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Callisto Testnet Ether', symbol: 'TCLO', decimals: 18 },
@@ -2185,7 +2118,6 @@ const chains = [
   {
     name: 'Ambros Chain Mainnet',
     chain: 'ambroschain',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.ambroschain.com' ],
     faucets: [],
     nativeCurrency: { name: 'AMBROS', symbol: 'AMBR', decimals: 18 },
@@ -2204,7 +2136,6 @@ const chains = [
   {
     name: 'Wanchain',
     chain: 'WAN',
-    network: 'mainnet',
     rpc: [ 'https://gwan-ssl.wandevs.org:56891/' ],
     faucets: [],
     nativeCurrency: { name: 'Wancoin', symbol: 'WAN', decimals: 18 },
@@ -2218,7 +2149,6 @@ const chains = [
     name: 'PulseChain Testnet',
     shortName: 'tpls',
     chain: 'tPLS',
-    network: 'testnet',
     chainId: 940,
     networkId: 940,
     infoURL: 'https://pulsechain.com/',
@@ -2232,7 +2162,6 @@ const chains = [
   {
     name: 'Nepal Blockchain Network',
     chain: 'YETI',
-    network: 'mainnet',
     rpc: [
       'https://api.nepalblockchain.dev',
       'https://api.nepalblockchain.network'
@@ -2251,7 +2180,6 @@ const chains = [
   {
     name: 'Lucky Network',
     chain: 'LN',
-    network: 'mainnet',
     rpc: [
       'https://rpc.luckynetwork.org',
       'wss://ws.lnscan.org',
@@ -2280,7 +2208,6 @@ const chains = [
   {
     name: 'Wanchain Testnet',
     chain: 'WAN',
-    network: 'testnet',
     rpc: [ 'https://gwan-ssl.wandevs.org:46891/' ],
     faucets: [],
     nativeCurrency: { name: 'Wancoin', symbol: 'WAN', decimals: 18 },
@@ -2292,7 +2219,6 @@ const chains = [
   {
     name: 'Klaytn Testnet Baobab',
     chain: 'KLAY',
-    network: 'baobab',
     rpc: [ 'https://api.baobab.klaytn.net:8651' ],
     faucets: [ 'https://baobab.wallet.klaytn.com/access?next=faucet' ],
     nativeCurrency: { name: 'KLAY', symbol: 'KLAY', decimals: 18 },
@@ -2304,7 +2230,6 @@ const chains = [
   {
     name: 'Newton Testnet',
     chain: 'NEW',
-    network: 'testnet',
     rpc: [ 'https://rpc1.newchain.newtonproject.org' ],
     faucets: [],
     nativeCurrency: { name: 'Newton', symbol: 'NEW', decimals: 18 },
@@ -2316,7 +2241,6 @@ const chains = [
   {
     name: 'Evrice Network',
     chain: 'EVC',
-    network: 'Evrice',
     rpc: [ 'https://meta.evrice.com' ],
     faucets: [],
     nativeCurrency: { name: 'Evrice', symbol: 'EVC', decimals: 18 },
@@ -2329,7 +2253,6 @@ const chains = [
   {
     name: 'Newton',
     chain: 'NEW',
-    network: 'mainnet',
     rpc: [ 'https://global.rpc.mainnet.newtonproject.org' ],
     faucets: [],
     nativeCurrency: { name: 'Newton', symbol: 'NEW', decimals: 18 },
@@ -2341,7 +2264,6 @@ const chains = [
   {
     name: 'Sakura',
     chain: 'Sakura',
-    network: 'sakura',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Sakura', symbol: 'SKU', decimals: 18 },
@@ -2353,7 +2275,6 @@ const chains = [
   {
     name: 'Clover Testnet',
     chain: 'Clover',
-    network: 'clover testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Clover', symbol: 'CLV', decimals: 18 },
@@ -2365,7 +2286,6 @@ const chains = [
   {
     name: 'Clover Mainnet',
     chain: 'Clover',
-    network: 'clover mainnet',
     rpc: [
       'https://rpc-ivy.clover.finance',
       'https://rpc-ivy-2.clover.finance',
@@ -2381,7 +2301,6 @@ const chains = [
   {
     name: 'BitTorrent Chain Testnet',
     chain: 'BTTC',
-    network: 'testnet',
     rpc: [ 'https://testrpc.bittorrentchain.io/' ],
     faucets: [],
     nativeCurrency: { name: 'BitTorrent', symbol: 'BTT', decimals: 18 },
@@ -2398,9 +2317,26 @@ const chains = [
     ]
   },
   {
+    name: 'Conflux',
+    chain: 'Conflux',
+    rpc: [ 'https://ethcore.confluxrpc.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'CFX', symbol: 'CFX', decimals: 18 },
+    infoURL: 'https://confluxnetwork.org',
+    shortName: 'cfx',
+    chainId: 1030,
+    networkId: 1030,
+    explorers: [
+      {
+        name: 'Conflux Scan',
+        url: 'https://confluxscan.io',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Metis Andromeda Mainnet',
     chain: 'ETH',
-    network: 'mainnet',
     rpc: [ 'https://andromeda.metis.io/?owner=1088' ],
     faucets: [],
     nativeCurrency: { name: 'Metis', symbol: 'METIS', decimals: 18 },
@@ -2424,7 +2360,6 @@ const chains = [
   {
     name: 'MathChain',
     chain: 'MATH',
-    network: 'mainnet',
     rpc: [
       'https://mathchain-asia.maiziqianbao.net/rpc',
       'https://mathchain-us.maiziqianbao.net/rpc'
@@ -2439,7 +2374,6 @@ const chains = [
   {
     name: 'MathChain Testnet',
     chain: 'MATH',
-    network: 'testnet',
     rpc: [ 'https://galois-hk.maiziqianbao.net/rpc' ],
     faucets: [ 'https://scan.boka.network/#/Galois/faucet' ],
     nativeCurrency: { name: 'MathChain', symbol: 'MATH', decimals: 18 },
@@ -2451,7 +2385,6 @@ const chains = [
   {
     name: 'World Trade Technical Chain Mainnet',
     chain: 'WTT',
-    network: 'mainnet',
     rpc: [ 'https://rpc.cadaut.com', 'wss://rpc.cadaut.com/ws' ],
     faucets: [],
     nativeCurrency: { name: 'World Trade Token', symbol: 'WTT', decimals: 18 },
@@ -2470,7 +2403,6 @@ const chains = [
   {
     name: 'Popcateum Mainnet',
     chain: 'POPCATEUM',
-    network: 'mainnet',
     rpc: [ 'https://dataseed.popcateum.org' ],
     faucets: [],
     nativeCurrency: { name: 'Popcat', symbol: 'POP', decimals: 18 },
@@ -2489,7 +2421,6 @@ const chains = [
   {
     name: 'HALO Mainnet',
     chain: 'HALO',
-    network: 'mainnet',
     rpc: [ 'https://nodes.halo.land' ],
     faucets: [],
     nativeCurrency: { name: 'HALO', symbol: 'HO', decimals: 18 },
@@ -2508,7 +2439,6 @@ const chains = [
   {
     name: 'Moonbeam',
     chain: 'MOON',
-    network: 'moonbeam',
     rpc: [
       'https://rpc.api.moonbeam.network',
       'wss://wss.api.moonbeam.network'
@@ -2518,12 +2448,23 @@ const chains = [
     infoURL: 'https://moonbeam.network/networks/moonbeam/',
     shortName: 'mbeam',
     chainId: 1284,
-    networkId: 1284
+    networkId: 1284,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.moonbeam.network/',
+        standard: 'none'
+      },
+      {
+        name: 'moonscan',
+        url: 'https://moonbeam.moonscan.io/',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Moonriver',
     chain: 'MOON',
-    network: 'moonriver',
     rpc: [
       'https://rpc.moonriver.moonbeam.network',
       'wss://wss.moonriver.moonbeam.network'
@@ -2543,21 +2484,8 @@ const chains = [
     ]
   },
   {
-    name: 'Moonrock',
-    chain: 'MOON',
-    network: 'moonrock',
-    rpc: [],
-    faucets: [],
-    nativeCurrency: { name: 'Rocs', symbol: 'ROC', decimals: 18 },
-    infoURL: '',
-    shortName: 'mrock',
-    chainId: 1286,
-    networkId: 1286
-  },
-  {
     name: 'Moonbase Alpha',
     chain: 'MOON',
-    network: 'moonbase',
     rpc: [
       'https://rpc.api.moonbase.moonbeam.network',
       'wss://wss.api.moonbase.moonbeam.network'
@@ -2577,21 +2505,22 @@ const chains = [
     ]
   },
   {
-    name: 'Moonshadow',
+    name: 'Moonrock',
     chain: 'MOON',
-    network: 'moonshadow',
-    rpc: [],
+    rpc: [
+      'https://rpc.api.moonrock.moonbeam.network',
+      'wss://wss.api.moonrock.moonbeam.network'
+    ],
     faucets: [],
-    nativeCurrency: { name: 'Moonshadow', symbol: 'MSHD', decimals: 18 },
-    infoURL: 'https://docs.moonbeam.network/networks/overview/',
-    shortName: 'mshadow',
+    nativeCurrency: { name: 'Rocs', symbol: 'ROC', decimals: 18 },
+    infoURL: 'https://docs.moonbeam.network/learn/platform/networks/overview/',
+    shortName: 'mrock',
     chainId: 1288,
     networkId: 1288
   },
   {
     name: 'Catecoin Chain Mainnet',
     chain: 'Catechain',
-    network: 'mainnet',
     rpc: [ 'https://send.catechain.com' ],
     faucets: [],
     nativeCurrency: { name: 'Catecoin', symbol: 'CATE', decimals: 18 },
@@ -2603,7 +2532,6 @@ const chains = [
   {
     name: 'Atheios',
     chain: 'ATH',
-    network: 'mainnet',
     rpc: [ 'https://wallet.atheios.com:8797' ],
     faucets: [],
     nativeCurrency: { name: 'Atheios Ether', symbol: 'ATH', decimals: 18 },
@@ -2616,7 +2544,6 @@ const chains = [
   {
     name: 'Btachain',
     chain: 'btachain',
-    network: 'mainnet',
     rpc: [ 'https://dataseed1.btachain.com/' ],
     faucets: [],
     nativeCurrency: { name: 'Bitcoin Asset', symbol: 'BTA', decimals: 18 },
@@ -2628,7 +2555,6 @@ const chains = [
   {
     name: 'Teslafunds',
     chain: 'TSF',
-    network: 'mainnet',
     rpc: [ 'https://tsfapi.europool.me' ],
     faucets: [],
     nativeCurrency: { name: 'Teslafunds Ether', symbol: 'TSF', decimals: 18 },
@@ -2640,7 +2566,6 @@ const chains = [
   {
     name: 'EtherGem',
     chain: 'EGEM',
-    network: 'mainnet',
     rpc: [ 'https://jsonrpc.egem.io/custom' ],
     faucets: [],
     nativeCurrency: { name: 'EtherGem Ether', symbol: 'EGEM', decimals: 18 },
@@ -2653,7 +2578,6 @@ const chains = [
   {
     name: '420coin',
     chain: '420',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'Fourtwenty', symbol: '420', decimals: 18 },
@@ -2665,7 +2589,6 @@ const chains = [
   {
     name: 'Edgeware Mainnet',
     chain: 'EDG',
-    network: 'mainnet',
     rpc: [ 'https://mainnet1.edgewa.re' ],
     faucets: [],
     nativeCurrency: { name: 'Edge', symbol: 'EDG', decimals: 18 },
@@ -2677,7 +2600,6 @@ const chains = [
   {
     name: 'Beresheet Testnet',
     chain: 'EDG',
-    network: 'beresheet',
     rpc: [ 'https://beresheet1.edgewa.re' ],
     faucets: [],
     nativeCurrency: { name: 'Testnet Edge', symbol: 'tEDG', decimals: 18 },
@@ -2689,7 +2611,6 @@ const chains = [
   {
     name: 'Rangers Protocol Mainnet',
     chain: 'Rangers',
-    network: 'mainnet',
     icon: 'rangers',
     rpc: [ 'https://mainnet.rangersprotocol.com/api/jsonrpc' ],
     faucets: [],
@@ -2710,7 +2631,6 @@ const chains = [
   {
     name: 'Ecoball Mainnet',
     chain: 'ECO',
-    network: 'mainnet',
     rpc: [ 'https://api.ecoball.org/ecoball/' ],
     faucets: [],
     nativeCurrency: { name: 'Ecoball Coin', symbol: 'ECO', decimals: 18 },
@@ -2729,7 +2649,6 @@ const chains = [
   {
     name: 'Ecoball Testnet Espuma',
     chain: 'ECO',
-    network: 'espuma',
     rpc: [ 'https://api.ecoball.org/espuma/' ],
     faucets: [],
     nativeCurrency: { name: 'Espuma Coin', symbol: 'ECO', decimals: 18 },
@@ -2748,7 +2667,6 @@ const chains = [
   {
     name: 'Kortho Mainnet',
     chain: 'Kortho Chain',
-    network: 'mainnet',
     rpc: [ 'https://www.kortho-chain.com' ],
     faucets: [],
     nativeCurrency: { name: 'KorthoChain', symbol: 'KTO', decimals: 11 },
@@ -2760,7 +2678,6 @@ const chains = [
   {
     name: 'ZCore Testnet',
     chain: 'Beach',
-    network: 'testnet',
     icon: 'zcore',
     rpc: [ 'https://rpc-testnet.zcore.cash' ],
     faucets: [ 'https://faucet.zcore.cash' ],
@@ -2773,7 +2690,6 @@ const chains = [
   {
     name: 'Bittex Mainnet',
     chain: 'BTX',
-    network: 'mainnet',
     rpc: [ 'https://rpc1.bittexscan.info', 'https://rpc2.bittexscan.info' ],
     faucets: [],
     nativeCurrency: { name: 'Bittex', symbol: 'BTX', decimals: 18 },
@@ -2794,7 +2710,6 @@ const chains = [
   {
     name: 'Fantom Testnet',
     chain: 'FTM',
-    network: 'testnet',
     rpc: [ 'https://rpc.testnet.fantom.network' ],
     faucets: [ 'https://faucet.fantom.network' ],
     nativeCurrency: { name: 'Fantom', symbol: 'FTM', decimals: 18 },
@@ -2815,7 +2730,6 @@ const chains = [
   {
     name: 'IoTeX Network Mainnet',
     chain: 'iotex.io',
-    network: 'mainnet',
     rpc: [ 'https://babel-api.mainnet.iotex.io' ],
     faucets: [],
     nativeCurrency: { name: 'IoTeX', symbol: 'IOTX', decimals: 18 },
@@ -2834,7 +2748,6 @@ const chains = [
   {
     name: 'IoTeX Network Testnet',
     chain: 'iotex.io',
-    network: 'testnet',
     rpc: [ 'https://babel-api.testnet.iotex.io' ],
     faucets: [ 'https://faucet.iotex.io/' ],
     nativeCurrency: { name: 'IoTeX', symbol: 'IOTX', decimals: 18 },
@@ -2853,7 +2766,6 @@ const chains = [
   {
     name: 'EraSwap Mainnet',
     chain: 'ESN',
-    network: 'mainnet',
     icon: 'eraswap',
     rpc: [
       'https://mainnet.eraswap.network',
@@ -2869,7 +2781,6 @@ const chains = [
   {
     name: 'Uzmi Network Mainnet',
     chain: 'UZMI',
-    network: 'mainnet',
     rpc: [ 'https://network.uzmigames.com.br/' ],
     faucets: [],
     nativeCurrency: { name: 'UZMI', symbol: 'UZMI', decimals: 18 },
@@ -2881,7 +2792,6 @@ const chains = [
   {
     name: 'Syscoin Tanenbaum Testnet',
     chain: 'SYS',
-    network: 'testnet',
     rpc: [ 'https://rpc.tanenbaum.io', 'wss://rpc.tanenbaum.io/wss' ],
     faucets: [ 'https://faucet.tanenbaum.io' ],
     nativeCurrency: { name: 'Testnet Syscoin', symbol: 'tSYS', decimals: 18 },
@@ -2900,7 +2810,6 @@ const chains = [
   {
     name: 'Ontology Testnet',
     chain: 'Ontology',
-    network: 'testnet',
     rpc: [
       'https://polaris1.ont.io:20339',
       'https://polaris2.ont.io:20339',
@@ -2924,7 +2833,6 @@ const chains = [
   {
     name: 'Wegochain Rubidium Mainnet',
     chain: 'RBD',
-    network: 'mainnet',
     rpc: [ 'https://proxy.wegochain.io', 'http://wallet.wegochain.io:7764' ],
     faucets: [],
     nativeCurrency: { name: 'Rubid', symbol: 'RBD', decimals: 18 },
@@ -2936,7 +2844,6 @@ const chains = [
   {
     name: 'Pixie Chain Mainnet',
     chain: 'PixieChain',
-    network: 'mainnet',
     rpc: [
       'https://http-mainnet.chain.pixie.xyz',
       'wss://ws-mainnet.chain.pixie.xyz'
@@ -2958,7 +2865,6 @@ const chains = [
   {
     name: 'Hazlor Testnet',
     chain: 'SCAS',
-    network: 'testnet',
     rpc: [
       'https://hatlas.rpc.hazlor.com:8545',
       'wss://hatlas.rpc.hazlor.com:8546'
@@ -2980,7 +2886,6 @@ const chains = [
   {
     name: 'MDGL Testnet',
     chain: 'MDGL',
-    network: 'testnet',
     rpc: [ 'https://testnet.mdgl.io' ],
     faucets: [],
     nativeCurrency: { name: 'MDGL Token', symbol: 'MDGLT', decimals: 18 },
@@ -2992,7 +2897,6 @@ const chains = [
   {
     name: 'GeneChain Adenine Testnet',
     chain: 'GeneChain',
-    network: 'adenine',
     rpc: [ 'https://rpc-testnet.genechain.io' ],
     faucets: [ 'https://faucet.genechain.io' ],
     nativeCurrency: { name: 'Testnet RNA', symbol: 'tRNA', decimals: 18 },
@@ -3011,7 +2915,6 @@ const chains = [
   {
     name: 'Klaytn Mainnet Cypress',
     chain: 'KLAY',
-    network: 'cypress',
     rpc: [ 'https://public-node-api.klaytnapi.com/v1/cypress' ],
     faucets: [],
     nativeCurrency: { name: 'KLAY', symbol: 'KLAY', decimals: 18 },
@@ -3031,7 +2934,6 @@ const chains = [
   {
     name: 'KorthoTest',
     chain: 'Kortho',
-    network: 'Test',
     rpc: [ 'https://www.krotho-test.net' ],
     faucets: [],
     nativeCurrency: { name: 'Kortho Test', symbol: 'KTO', decimals: 11 },
@@ -3043,7 +2945,6 @@ const chains = [
   {
     name: 'TOOL Global Mainnet',
     chain: 'OLO',
-    network: 'mainnet',
     rpc: [ 'https://mainnet-web3.wolot.io' ],
     faucets: [],
     nativeCurrency: { name: 'TOOL Global', symbol: 'OLO', decimals: 18 },
@@ -3063,7 +2964,6 @@ const chains = [
   {
     name: 'TOOL Global Testnet',
     chain: 'OLO',
-    network: 'testnet',
     rpc: [ 'https://testnet-web3.wolot.io' ],
     faucets: [ 'https://testnet-explorer.wolot.io' ],
     nativeCurrency: { name: 'TOOL Global', symbol: 'OLO', decimals: 18 },
@@ -3076,7 +2976,6 @@ const chains = [
   {
     name: 'Ambros Chain Testnet',
     chain: 'ambroschain',
-    network: 'testnet',
     rpc: [ 'https://testnet.ambroschain.com' ],
     faucets: [],
     nativeCurrency: { name: 'AMBROS', symbol: 'AMBR', decimals: 18 },
@@ -3095,7 +2994,6 @@ const chains = [
   {
     name: 'bloxberg',
     chain: 'bloxberg',
-    network: 'mainnet',
     rpc: [ 'https://core.bloxberg.org' ],
     faucets: [ 'https://faucet.bloxberg.org/' ],
     nativeCurrency: { name: 'BERG', symbol: 'U+25B3', decimals: 18 },
@@ -3107,7 +3005,6 @@ const chains = [
   {
     name: 'Evmos Testnet',
     chain: 'Evmos',
-    network: 'testnet',
     rpc: [ 'https://ethereum.rpc.evmos.dev' ],
     faucets: [ 'https://faucet.evmos.org' ],
     nativeCurrency: { name: 'Photon', symbol: 'PHOTON', decimals: 18 },
@@ -3115,23 +3012,25 @@ const chains = [
     shortName: 'evmos-mons',
     chainId: 9000,
     networkId: 9000,
+    icon: 'evmos',
     explorers: [
       {
         name: 'Evmos EVM Explorer (Blockscout)',
         url: 'https://evm.evmos.org',
-        standard: 'none'
+        standard: 'none',
+        icon: 'evmos'
       },
       {
         name: 'Evmos Cosmos Explorer (Big Dipper)',
         url: 'https://explorer.evmos.org',
-        standard: 'none'
+        standard: 'none',
+        icon: 'evmos'
       }
     ]
   },
   {
     name: 'Evmos',
     chain: 'Evmos',
-    network: 'mainnet',
     rpc: [ 'https://ethereum.rpc.evmos.org' ],
     faucets: [],
     nativeCurrency: { name: 'Evmos', symbol: 'EVMOS', decimals: 18 },
@@ -3139,23 +3038,25 @@ const chains = [
     shortName: 'evmos',
     chainId: 9001,
     networkId: 9001,
+    icon: 'evmos',
     explorers: [
       {
         name: 'Evmos EVM Explorer (Blockscout)',
         url: 'https://evm.evmos.org',
-        standard: 'none'
+        standard: 'none',
+        icon: 'evmos'
       },
       {
         name: 'Evmos Cosmos Explorer (Big Dipper)',
         url: 'https://explorer.evmos.org',
-        standard: 'none'
+        standard: 'none',
+        icon: 'evmos'
       }
     ]
   },
   {
     name: 'Genesis Coin',
     chain: 'Genesis',
-    network: 'Genesis Coin',
     rpc: [ 'https://genesis-gn.com', 'wss://genesis-gn.com' ],
     faucets: [],
     nativeCurrency: { name: 'GN Coin', symbol: 'GNC', decimals: 18 },
@@ -3167,7 +3068,6 @@ const chains = [
   {
     name: 'Rangers Protocol Testnet Robin',
     chain: 'Rangers',
-    network: 'robin',
     icon: 'rangers',
     rpc: [ 'https://robin.rangersprotocol.com/api/jsonrpc' ],
     faucets: [ 'https://robin-faucet.rangersprotocol.com' ],
@@ -3187,7 +3087,6 @@ const chains = [
   {
     name: 'myOwn Testnet',
     chain: 'myOwn',
-    network: 'testnet',
     rpc: [ 'https://geth.dev.bccloud.net' ],
     faucets: [],
     nativeCurrency: { name: 'MYN', symbol: 'MYN', decimals: 18 },
@@ -3199,7 +3098,6 @@ const chains = [
   {
     name: 'Smart Bitcoin Cash',
     chain: 'smartBCH',
-    network: 'mainnet',
     rpc: [
       'https://smartbch.greyh.at',
       'https://rpc-mainnet.smartbch.org',
@@ -3216,7 +3114,6 @@ const chains = [
   {
     name: 'Smart Bitcoin Cash Testnet',
     chain: 'smartBCHTest',
-    network: 'testnet',
     rpc: [
       'https://rpc-testnet.smartbch.org',
       'https://smartbch.devops.cash/testnet'
@@ -3231,7 +3128,6 @@ const chains = [
   {
     name: 'Blockchain Genesis Mainnet',
     chain: 'GEN',
-    network: 'mainnet',
     rpc: [
       'https://eu.mainnet.xixoio.com',
       'https://us.mainnet.xixoio.com',
@@ -3247,7 +3143,6 @@ const chains = [
   {
     name: 'Singularity ZERO Testnet',
     chain: 'ZERO',
-    network: 'testnet',
     rpc: [ 'https://betaenv.singularity.gold:18545' ],
     faucets: [ 'https://nft.singularity.gold' ],
     nativeCurrency: { name: 'ZERO', symbol: 'tZERO', decimals: 18 },
@@ -3266,7 +3161,6 @@ const chains = [
   {
     name: 'Singularity ZERO Mainnet',
     chain: 'ZERO',
-    network: 'mainnet',
     rpc: [ 'https://zerorpc.singularity.gold' ],
     faucets: [ 'https://zeroscan.singularity.gold' ],
     nativeCurrency: { name: 'ZERO', symbol: 'ZERO', decimals: 18 },
@@ -3286,7 +3180,6 @@ const chains = [
   {
     name: 'MetaDot Mainnet',
     chain: 'MTT',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.metadot.network' ],
     faucets: [],
     nativeCurrency: { name: 'MetaDot Token', symbol: 'MTT', decimals: 18 },
@@ -3298,7 +3191,6 @@ const chains = [
   {
     name: 'MetaDot Testnet',
     chain: 'MTTTest',
-    network: 'devnet',
     rpc: [ 'https://testnet.metadot.network' ],
     faucets: [ 'https://faucet.metadot.network/' ],
     nativeCurrency: { name: 'MetaDot Token TestNet', symbol: 'MTT-test', decimals: 18 },
@@ -3310,7 +3202,6 @@ const chains = [
   {
     name: 'BTCIX Network',
     chain: 'BTCIX',
-    network: 'mainnet',
     rpc: [ 'https://seed.btcix.org/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'BTCIX Network', symbol: 'BTCIX', decimals: 18 },
@@ -3329,7 +3220,6 @@ const chains = [
   {
     name: 'Webchain',
     chain: 'WEB',
-    network: 'mainnet',
     rpc: [ 'https://node1.webchain.network' ],
     faucets: [],
     nativeCurrency: { name: 'Webchain Ether', symbol: 'WEB', decimals: 18 },
@@ -3342,7 +3232,6 @@ const chains = [
   {
     name: 'MintMe.com Coin',
     chain: 'MINTME',
-    network: 'mainnet',
     rpc: [ 'https://node1.mintme.com' ],
     faucets: [],
     nativeCurrency: { name: 'MintMe.com Coin', symbol: 'MINTME', decimals: 18 },
@@ -3354,7 +3243,6 @@ const chains = [
   {
     name: 'Ethersocial Network',
     chain: 'ESN',
-    network: 'mainnet',
     rpc: [ 'https://api.esn.gonspool.com' ],
     faucets: [],
     nativeCurrency: { name: 'Ethersocial Network Ether', symbol: 'ESN', decimals: 18 },
@@ -3367,7 +3255,6 @@ const chains = [
   {
     name: 'GoChain Testnet',
     chain: 'GO',
-    network: 'testnet',
     rpc: [ 'https://testnet-rpc.gochain.io' ],
     faucets: [],
     nativeCurrency: { name: 'GoChain Coin', symbol: 'GO', decimals: 18 },
@@ -3387,7 +3274,6 @@ const chains = [
   {
     name: 'Fusion Mainnet',
     chain: 'FSN',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.anyswap.exchange', 'https://fsn.dev/api' ],
     faucets: [],
     nativeCurrency: { name: 'Fusion', symbol: 'FSN', decimals: 18 },
@@ -3399,7 +3285,6 @@ const chains = [
   {
     name: 'Energi Mainnet',
     chain: 'NRG',
-    network: 'mainnet',
     rpc: [ 'https://nodeapi.energi.network' ],
     faucets: [],
     nativeCurrency: { name: 'Energi', symbol: 'NRG', decimals: 18 },
@@ -3412,7 +3297,6 @@ const chains = [
   {
     name: 'pegglecoin',
     chain: '42069',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'pegglecoin', symbol: 'peggle', decimals: 18 },
@@ -3426,7 +3310,6 @@ const chains = [
     chainId: 42161,
     shortName: 'arb1',
     chain: 'ETH',
-    network: 'mainnet',
     networkId: 42161,
     nativeCurrency: { name: 'Ether', symbol: 'AETH', decimals: 18 },
     rpc: [
@@ -3460,7 +3343,6 @@ const chains = [
     chainId: 42220,
     shortName: 'CELO',
     chain: 'CELO',
-    network: 'Mainnet',
     networkId: 42220,
     nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
     rpc: [ 'https://forno.celo.org', 'wss://forno.celo.org/ws' ],
@@ -3477,7 +3359,6 @@ const chains = [
   {
     name: 'Emerald Paratime Testnet',
     chain: 'Emerald',
-    network: 'testnet',
     icon: 'oasis',
     rpc: [
       'https://testnet.emerald.oasis.dev/',
@@ -3500,7 +3381,6 @@ const chains = [
   {
     name: 'Emerald Paratime Mainnet',
     chain: 'Emerald',
-    network: 'Mainnet',
     icon: 'oasis',
     rpc: [ 'https://emerald.oasis.dev', 'wss://emerald.oasis.dev/ws' ],
     faucets: [],
@@ -3520,7 +3400,6 @@ const chains = [
   {
     name: 'Athereum',
     chain: 'ATH',
-    network: 'athereum',
     rpc: [ 'https://ava.network:21015/ext/evm/rpc' ],
     faucets: [ 'http://athfaucet.ava.network//?address=${ADDRESS}' ],
     nativeCurrency: { name: 'Athereum Ether', symbol: 'ATH', decimals: 18 },
@@ -3532,7 +3411,6 @@ const chains = [
   {
     name: 'Avalanche Fuji Testnet',
     chain: 'AVAX',
-    network: 'testnet',
     rpc: [ 'https://api.avax-test.network/ext/bc/C/rpc' ],
     faucets: [ 'https://faucet.avax-test.network/' ],
     nativeCurrency: { name: 'Avalanche', symbol: 'AVAX', decimals: 18 },
@@ -3551,7 +3429,6 @@ const chains = [
   {
     name: 'Avalanche Mainnet',
     chain: 'AVAX',
-    network: 'mainnet',
     rpc: [ 'https://api.avax.network/ext/bc/C/rpc' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Avalanche', symbol: 'AVAX', decimals: 18 },
@@ -3573,7 +3450,6 @@ const chains = [
     chainId: 44787,
     shortName: 'ALFA',
     chain: 'CELO',
-    network: 'Alfajores',
     networkId: 44787,
     nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
     rpc: [
@@ -3589,7 +3465,6 @@ const chains = [
   {
     name: 'Energi Testnet',
     chain: 'NRG',
-    network: 'testnet',
     rpc: [ 'https://nodeapi.test.energi.network' ],
     faucets: [],
     nativeCurrency: { name: 'Energi', symbol: 'NRG', decimals: 18 },
@@ -3602,7 +3477,6 @@ const chains = [
   {
     name: 'Thinkium Testnet Chain 0',
     chain: 'Thinkium',
-    network: 'testnet',
     rpc: [ 'https://test.thinkiumrpc.net/' ],
     faucets: [ 'https://www.thinkiumdev.net/faucet' ],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3621,7 +3495,6 @@ const chains = [
   {
     name: 'Thinkium Testnet Chain 1',
     chain: 'Thinkium',
-    network: 'testnet',
     rpc: [ 'https://test1.thinkiumrpc.net/' ],
     faucets: [ 'https://www.thinkiumdev.net/faucet' ],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3640,7 +3513,6 @@ const chains = [
   {
     name: 'Thinkium Testnet Chain 2',
     chain: 'Thinkium',
-    network: 'testnet',
     rpc: [ 'https://test2.thinkiumrpc.net/' ],
     faucets: [ 'https://www.thinkiumdev.net/faucet' ],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3659,7 +3531,6 @@ const chains = [
   {
     name: 'Thinkium Testnet Chain 103',
     chain: 'Thinkium',
-    network: 'testnet',
     rpc: [ 'https://test103.thinkiumrpc.net/' ],
     faucets: [ 'https://www.thinkiumdev.net/faucet' ],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3680,7 +3551,6 @@ const chains = [
     chainId: 62320,
     shortName: 'BKLV',
     chain: 'CELO',
-    network: 'Baklava',
     networkId: 62320,
     nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
     rpc: [ 'https://baklava-forno.celo-testnet.org' ],
@@ -3693,7 +3563,6 @@ const chains = [
   {
     name: 'Thinkium Mainnet Chain 0',
     chain: 'Thinkium',
-    network: 'mainnet',
     rpc: [ 'https://proxy.thinkiumrpc.net/' ],
     faucets: [],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3712,7 +3581,6 @@ const chains = [
   {
     name: 'Thinkium Mainnet Chain 1',
     chain: 'Thinkium',
-    network: 'mainnet',
     rpc: [ 'https://proxy1.thinkiumrpc.net/' ],
     faucets: [],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3731,7 +3599,6 @@ const chains = [
   {
     name: 'Thinkium Mainnet Chain 2',
     chain: 'Thinkium',
-    network: 'mainnet',
     rpc: [ 'https://proxy2.thinkiumrpc.net/' ],
     faucets: [],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3750,7 +3617,6 @@ const chains = [
   {
     name: 'Thinkium Mainnet Chain 103',
     chain: 'Thinkium',
-    network: 'mainnet',
     rpc: [ 'https://proxy103.thinkiumrpc.net/' ],
     faucets: [],
     nativeCurrency: { name: 'TKM', symbol: 'TKM', decimals: 18 },
@@ -3769,7 +3635,6 @@ const chains = [
   {
     name: 'Polyjuice Testnet',
     chain: 'CKB',
-    network: 'testnet',
     icon: 'polyjuice',
     rpc: [
       'https://godwoken-testnet-web3-rpc.ckbapp.dev',
@@ -3785,7 +3650,6 @@ const chains = [
   {
     name: 'Energy Web Volta Testnet',
     chain: 'Volta',
-    network: 'testnet',
     rpc: [
       'https://volta-rpc.energyweb.org',
       'wss://volta-rpc.energyweb.org/ws'
@@ -3800,7 +3664,6 @@ const chains = [
   {
     name: 'Firenze test network',
     chain: 'ETH',
-    network: 'testnet',
     rpc: [ 'https://ethnode.primusmoney.com/firenze' ],
     faucets: [],
     nativeCurrency: { name: 'Firenze Ether', symbol: 'FIN', decimals: 18 },
@@ -3812,7 +3675,6 @@ const chains = [
   {
     name: 'Polygon Testnet Mumbai',
     chain: 'Polygon',
-    network: 'testnet',
     rpc: [
       'https://matic-mumbai.chainstacklabs.com',
       'https://rpc-mumbai.maticvigil.com',
@@ -3835,7 +3697,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Root',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://jrpc.mainnet.quarkchain.io:38391/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3847,7 +3708,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 0',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39000/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3867,7 +3727,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 1',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39001/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3887,7 +3746,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 2',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39002/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3907,7 +3765,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 3',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39003/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3927,7 +3784,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 4',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39004/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3947,7 +3803,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 5',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39005/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3967,7 +3822,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 6',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39006/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -3987,7 +3841,6 @@ const chains = [
   {
     name: 'QuarkChain Mainnet Shard 7',
     chain: 'QuarkChain',
-    network: 'mainnet',
     rpc: [ 'http://eth-jrpc.mainnet.quarkchain.io:39007/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4007,7 +3860,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Root',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://jrpc.devnet.quarkchain.io:38391/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4019,7 +3871,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 0',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39900/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4039,7 +3890,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 1',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39901/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4059,7 +3909,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 2',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39902/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4079,7 +3928,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 3',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39903/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4099,7 +3947,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 4',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39904/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4119,7 +3966,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 5',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39905/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4139,7 +3985,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 6',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39906/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4159,7 +4004,6 @@ const chains = [
   {
     name: 'QuarkChain Devnet Shard 7',
     chain: 'QuarkChain',
-    network: 'devnet',
     rpc: [ 'http://eth-jrpc.devnet.quarkchain.io:39907/' ],
     faucets: [],
     nativeCurrency: { name: 'QKC', symbol: 'QKC', decimals: 18 },
@@ -4179,7 +4023,6 @@ const chains = [
   {
     name: 'Akroma',
     chain: 'AKA',
-    network: 'mainnet',
     rpc: [ 'https://remote.akroma.io' ],
     faucets: [],
     nativeCurrency: { name: 'Akroma Ether', symbol: 'AKA', decimals: 18 },
@@ -4192,7 +4035,6 @@ const chains = [
   {
     name: 'Alaya Mainnet',
     chain: 'Alaya',
-    network: 'mainnet',
     rpc: [
       'https://openapi.alaya.network/rpc',
       'wss://openapi.alaya.network/ws'
@@ -4215,7 +4057,6 @@ const chains = [
   {
     name: 'Alaya Dev Testnet',
     chain: 'Alaya',
-    network: 'testnet',
     rpc: [
       'https://devnetopenapi.alaya.network/rpc',
       'wss://devnetopenapi.alaya.network/ws'
@@ -4240,7 +4081,6 @@ const chains = [
   {
     name: 'PlatON Dev Testnet',
     chain: 'PlatON',
-    network: 'testnet',
     rpc: [
       'https://devnetopenapi.platon.network/rpc',
       'wss://devnetopenapi.platon.network/ws'
@@ -4265,7 +4105,6 @@ const chains = [
   {
     name: 'ARTIS sigma1',
     chain: 'ARTIS',
-    network: 'sigma1',
     rpc: [ 'https://rpc.sigma1.artis.network' ],
     faucets: [],
     nativeCurrency: { name: 'ARTIS sigma1 Ether', symbol: 'ATS', decimals: 18 },
@@ -4278,7 +4117,6 @@ const chains = [
   {
     name: 'ARTIS Testnet tau1',
     chain: 'ARTIS',
-    network: 'tau1',
     rpc: [ 'https://rpc.tau1.artis.network' ],
     faucets: [],
     nativeCurrency: { name: 'ARTIS tau1 Ether', symbol: 'tATS', decimals: 18 },
@@ -4290,7 +4128,6 @@ const chains = [
   {
     name: 'Social Smart Chain Mainnet',
     chain: 'SoChain',
-    network: 'mainnet',
     rpc: [ 'https://socialsmartchain.digitalnext.business' ],
     faucets: [],
     nativeCurrency: { name: 'SoChain', symbol: '$OC', decimals: 18 },
@@ -4303,7 +4140,6 @@ const chains = [
   {
     name: 'Polis Testnet',
     chain: 'Sparta',
-    network: 'testnet',
     icon: 'polis',
     rpc: [ 'https://sparta-rpc.polis.tech' ],
     faucets: [ 'https://faucet.polis.tech' ],
@@ -4316,7 +4152,6 @@ const chains = [
   {
     name: 'Polis Mainnet',
     chain: 'Olympus',
-    network: 'mainnet',
     icon: 'polis',
     rpc: [ 'https://rpc.polis.tech' ],
     faucets: [ 'https://faucet.polis.tech' ],
@@ -4327,11 +4162,11 @@ const chains = [
     networkId: 333999
   },
   {
-    name: 'Arbitrum Testnet Rinkeby',
+    name: 'Arbitrum Rinkeby',
+    title: 'Arbitrum Testnet Rinkeby',
     chainId: 421611,
     shortName: 'arb-rinkeby',
     chain: 'ETH',
-    network: 'rinkeby',
     networkId: 421611,
     nativeCurrency: { name: 'Arbitrum Rinkeby Ether', symbol: 'ARETH', decimals: 18 },
     rpc: [
@@ -4356,7 +4191,6 @@ const chains = [
   {
     name: 'Eluvio Content Fabric',
     chain: 'Eluvio',
-    network: 'mainnet',
     rpc: [
       'https://host-76-74-28-226.contentfabric.io/eth/',
       'https://host-76-74-28-232.contentfabric.io/eth/',
@@ -4387,7 +4221,6 @@ const chains = [
   {
     name: 'Etho Protocol',
     chain: 'ETHO',
-    network: 'mainnet',
     rpc: [ 'https://rpc.ether1.org' ],
     faucets: [],
     nativeCurrency: { name: 'Etho Protocol', symbol: 'ETHO', decimals: 18 },
@@ -4407,7 +4240,6 @@ const chains = [
   {
     name: 'Xerom',
     chain: 'XERO',
-    network: 'mainnet',
     rpc: [ 'https://rpc.xerom.org' ],
     faucets: [],
     nativeCurrency: { name: 'Xerom Ether', symbol: 'XERO', decimals: 18 },
@@ -4420,7 +4252,6 @@ const chains = [
     name: 'Kintsugi',
     title: 'Kintsugi merge testnet',
     chain: 'ETH',
-    network: 'testnet',
     rpc: [ 'https://rpc.kintsugi.themerge.dev' ],
     faucets: [ 'https://faucet.kintsugi.themerge.dev' ],
     nativeCurrency: { name: 'kintsugi Ethere', symbol: 'kiETH', decimals: 18 },
@@ -4439,7 +4270,6 @@ const chains = [
   {
     name: 'Musicoin',
     chain: 'MUSIC',
-    network: 'mainnet',
     rpc: [ 'https://mewapi.musicoin.tw' ],
     faucets: [],
     nativeCurrency: { name: 'Musicoin', symbol: 'MUSIC', decimals: 18 },
@@ -4452,7 +4282,6 @@ const chains = [
   {
     name: 'PepChain Churchill',
     chain: 'PEP',
-    network: 'testnet',
     rpc: [ 'https://churchill-rpc.pepchain.io' ],
     faucets: [],
     nativeCurrency: { name: 'PepChain Churchill Ether', symbol: 'TPEP', decimals: 18 },
@@ -4464,7 +4293,6 @@ const chains = [
   {
     name: 'IOLite',
     chain: 'ILT',
-    network: 'mainnet',
     rpc: [ 'https://net.iolite.io' ],
     faucets: [],
     nativeCurrency: { name: 'IOLite Ether', symbol: 'ILT', decimals: 18 },
@@ -4476,7 +4304,6 @@ const chains = [
   {
     name: 'quarkblockchain',
     chain: 'QKI',
-    network: 'mainnet',
     rpc: [ 'https://hz.rpc.qkiscan.cn', 'https://jp.rpc.qkiscan.io' ],
     faucets: [],
     nativeCurrency: {
@@ -4492,7 +4319,6 @@ const chains = [
   {
     name: 'Auxilium Network Mainnet',
     chain: 'AUX',
-    network: 'mainnet',
     rpc: [ 'https://rpc.auxilium.global' ],
     faucets: [],
     nativeCurrency: { name: 'Auxilium coin', symbol: 'AUX', decimals: 18 },
@@ -4505,7 +4331,6 @@ const chains = [
   {
     name: 'Joys Digital Mainnet',
     chain: 'JOYS',
-    network: 'mainnet',
     rpc: [ 'https://node.joys.digital' ],
     faucets: [],
     nativeCurrency: { name: 'JOYS', symbol: 'JOYS', decimals: 18 },
@@ -4517,7 +4342,6 @@ const chains = [
   {
     name: 'Aquachain',
     chain: 'AQUA',
-    network: 'mainnet',
     rpc: [ 'https://c.onical.org', 'https://tx.aquacha.in/api' ],
     faucets: [ 'https://aquacha.in/faucet' ],
     nativeCurrency: { name: 'Aquachain Ether', symbol: 'AQUA', decimals: 18 },
@@ -4530,7 +4354,6 @@ const chains = [
   {
     name: 'Joys Digital TestNet',
     chain: 'TOYS',
-    network: 'testnet',
     rpc: [ 'https://toys.joys.cash/' ],
     faucets: [ 'https://faucet.joys.digital/' ],
     nativeCurrency: { name: 'TOYS', symbol: 'TOYS', decimals: 18 },
@@ -4542,7 +4365,6 @@ const chains = [
   {
     name: 'Gather Mainnet Network',
     chain: 'GTH',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.gather.network' ],
     faucets: [],
     nativeCurrency: { name: 'Gather', symbol: 'GTH', decimals: 18 },
@@ -4561,7 +4383,6 @@ const chains = [
   {
     name: 'Neon EVM DevNet',
     chain: 'Solana',
-    network: 'devnet',
     rpc: [ 'https://proxy.devnet.neonlabs.org/solana' ],
     faucets: [ 'https://neonswap.live/#/get-tokens' ],
     nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
@@ -4573,7 +4394,6 @@ const chains = [
   {
     name: 'Neon EVM MainNet',
     chain: 'Solana',
-    network: 'mainnet',
     rpc: [ 'https://proxy.mainnet.neonlabs.org/solana' ],
     faucets: [],
     nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
@@ -4585,7 +4405,6 @@ const chains = [
   {
     name: 'Neon EVM TestNet',
     chain: 'Solana',
-    network: 'testnet',
     rpc: [ 'https://proxy.testnet.neonlabs.org/solana' ],
     faucets: [],
     nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
@@ -4597,7 +4416,6 @@ const chains = [
   {
     name: 'OneLedger Mainnet',
     chain: 'OLT',
-    network: 'mainnet',
     icon: 'oneledger',
     rpc: [ 'https://mainnet-rpc.oneledger.network' ],
     faucets: [],
@@ -4617,7 +4435,6 @@ const chains = [
   {
     name: 'Gather Tesnet Network',
     chain: 'GTH',
-    network: 'testnet',
     rpc: [ 'https://testnet.gather.network' ],
     faucets: [],
     nativeCurrency: { name: 'Gather', symbol: 'GTH', decimals: 18 },
@@ -4636,7 +4453,6 @@ const chains = [
   {
     name: 'Gather Devnet Network',
     chain: 'GTH',
-    network: 'devnet',
     rpc: [ 'https://devnet.gather.network' ],
     faucets: [],
     nativeCurrency: { name: 'Gather', symbol: 'GTH', decimals: 18 },
@@ -4655,7 +4471,6 @@ const chains = [
   {
     name: 'IPOS Network',
     chain: 'IPOS',
-    network: 'mainnet',
     rpc: [ 'https://rpc.iposlab.com', 'https://rpc2.iposlab.com' ],
     faucets: [],
     nativeCurrency: { name: 'IPOS Network Ether', symbol: 'IPOS', decimals: 18 },
@@ -4667,7 +4482,6 @@ const chains = [
   {
     name: 'Aurora MainNet',
     chain: 'NEAR',
-    network: 'mainnet',
     rpc: [ 'https://mainnet.aurora.dev' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
@@ -4679,7 +4493,6 @@ const chains = [
   {
     name: 'Aurora TestNet',
     chain: 'NEAR',
-    network: 'testnet',
     rpc: [ 'https://testnet.aurora.dev/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
@@ -4691,7 +4504,6 @@ const chains = [
   {
     name: 'Aurora BetaNet',
     chain: 'NEAR',
-    network: 'betanet',
     rpc: [ 'https://betanet.aurora.dev/' ],
     faucets: [],
     nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
@@ -4703,7 +4515,6 @@ const chains = [
   {
     name: 'Harmony Mainnet Shard 0',
     chain: 'Harmony',
-    network: 'mainnet',
     rpc: [ 'https://api.harmony.one' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4722,7 +4533,6 @@ const chains = [
   {
     name: 'Harmony Mainnet Shard 1',
     chain: 'Harmony',
-    network: 'mainnet',
     rpc: [ 'https://s1.api.harmony.one' ],
     faucets: [],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4734,7 +4544,6 @@ const chains = [
   {
     name: 'Harmony Mainnet Shard 2',
     chain: 'Harmony',
-    network: 'mainnet',
     rpc: [ 'https://s2.api.harmony.one' ],
     faucets: [],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4746,7 +4555,6 @@ const chains = [
   {
     name: 'Harmony Mainnet Shard 3',
     chain: 'Harmony',
-    network: 'mainnet',
     rpc: [ 'https://s3.api.harmony.one' ],
     faucets: [],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4758,7 +4566,6 @@ const chains = [
   {
     name: 'Harmony Testnet Shard 0',
     chain: 'Harmony',
-    network: 'testnet',
     rpc: [ 'https://api.s0.b.hmny.io' ],
     faucets: [ 'https://faucet.pops.one' ],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4777,7 +4584,6 @@ const chains = [
   {
     name: 'Harmony Testnet Shard 1',
     chain: 'Harmony',
-    network: 'testnet',
     rpc: [ 'https://api.s1.b.hmny.io' ],
     faucets: [],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4789,7 +4595,6 @@ const chains = [
   {
     name: 'Harmony Testnet Shard 2',
     chain: 'Harmony',
-    network: 'testnet',
     rpc: [ 'https://api.s2.b.hmny.io' ],
     faucets: [],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4801,7 +4606,6 @@ const chains = [
   {
     name: 'Harmony Testnet Shard 3',
     chain: 'Harmony',
-    network: 'testnet',
     rpc: [ 'https://api.s3.b.hmny.io' ],
     faucets: [],
     nativeCurrency: { name: 'ONE', symbol: 'ONE', decimals: 18 },
@@ -4813,7 +4617,6 @@ const chains = [
   {
     name: 'DataHopper',
     chain: 'HOP',
-    network: 'hopnet',
     rpc: [ 'https://23.92.21.121:8545' ],
     faucets: [],
     nativeCurrency: { name: 'DataHoppers', symbol: 'HOP', decimals: 18 },
@@ -4825,7 +4628,6 @@ const chains = [
   {
     name: 'Pirl',
     chain: 'PIRL',
-    network: 'mainnet',
     rpc: [ 'https://wallrpc.pirl.io' ],
     faucets: [],
     nativeCurrency: { name: 'Pirl Ether', symbol: 'PIRL', decimals: 18 },
@@ -4838,7 +4640,6 @@ const chains = [
   {
     name: 'OneLedger Testnet Frankenstein',
     chain: 'OLT',
-    network: 'testnet',
     icon: 'oneledger',
     rpc: [ 'https://frankenstein-rpc.oneledger.network' ],
     faucets: [ 'https://frankenstein-faucet.oneledger.network' ],
@@ -4858,7 +4659,6 @@ const chains = [
   {
     name: 'Palm Testnet',
     chain: 'Palm',
-    network: 'testnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'PALM', symbol: 'PALM', decimals: 18 },
@@ -4870,7 +4670,6 @@ const chains = [
   {
     name: 'Palm Mainnet',
     chain: 'Palm',
-    network: 'mainnet',
     rpc: [],
     faucets: [],
     nativeCurrency: { name: 'PALM', symbol: 'PALM', decimals: 18 },
@@ -4882,7 +4681,6 @@ const chains = [
   {
     name: 'Ntity Mainnet',
     chain: 'Ntity',
-    network: 'mainnet',
     rpc: [ 'https://rpc.ntity.io' ],
     faucets: [],
     nativeCurrency: { name: 'Ntity', symbol: 'NTT', decimals: 18 },
@@ -4903,7 +4701,6 @@ const chains = [
   {
     name: 'Haradev Testnet',
     chain: 'Ntity',
-    network: 'testnet',
     rpc: [ 'https://blockchain.haradev.com' ],
     faucets: [],
     nativeCurrency: { name: 'Ntity Haradev', symbol: 'NTTH', decimals: 18 },
@@ -4924,7 +4721,6 @@ const chains = [
   {
     name: 'Molereum Network',
     chain: 'ETH',
-    network: 'molereum',
     rpc: [ 'https://molereum.jdubedition.com' ],
     faucets: [],
     nativeCurrency: { name: 'Molereum Ether', symbol: 'MOLE', decimals: 18 },
