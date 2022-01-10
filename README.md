@@ -386,4 +386,4 @@ A website presented in EthLisbon 2021, used svelte-web3 (version 2) for building
 
 * The page is live here: https://tradingstrategy.ai/strategy/ethlisbon
 * Source code : https://github.com/tradingstrategy-ai/frontend/blob/master/src/lib/web3/Investor.svelte
-
+* Tutorial: https://tradingstrategy.ai/blog/building-cryptocurrency-website
