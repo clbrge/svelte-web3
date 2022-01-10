@@ -61,7 +61,10 @@ const chains = [
       'https://rinkeby.infura.io/v3/${INFURA_API_KEY}',
       'wss://rinkeby.infura.io/ws/v3/${INFURA_API_KEY}'
     ],
-    faucets: [ 'https://faucet.rinkeby.io' ],
+    faucets: [
+      'http://fauceth.komputing.org?chain=4&address=${ADDRESS}',
+      'https://faucet.rinkeby.io'
+    ],
     nativeCurrency: { name: 'Rinkeby Ether', symbol: 'RIN', decimals: 18 },
     infoURL: 'https://www.rinkeby.io',
     shortName: 'rin',
@@ -86,7 +89,8 @@ const chains = [
       'https://rpc.goerli.mudit.blog/'
     ],
     faucets: [
-      'https://goerli-faucet.slock.it/?address=${ADDRESS}',
+      'http://fauceth.komputing.org?chain=5&address=${ADDRESS}',
+      'https://goerli-faucet.slock.it?address=${ADDRESS}',
       'https://faucet.goerli.mudit.blog'
     ],
     nativeCurrency: { name: 'Görli Ether', symbol: 'GOR', decimals: 18 },
@@ -573,6 +577,7 @@ const chains = [
       'ws://kovan.poa.network:8546'
     ],
     faucets: [
+      'http://fauceth.komputing.org?chain=42&address=${ADDRESS}',
       'https://faucet.kovan.network',
       'https://gitter.im/kovan-testnet/faucet'
     ],
@@ -961,7 +966,7 @@ const chains = [
     title: 'Optimistic Ethereum Testnet Kovan',
     chain: 'ETH',
     rpc: [ 'https://kovan.optimism.io/' ],
-    faucets: [],
+    faucets: [ 'http://fauceth.komputing.org?chain=69&address=${ADDRESS}' ],
     nativeCurrency: { name: 'Kovan Ether', symbol: 'KOR', decimals: 18 },
     explorers: [
       {
@@ -4170,6 +4175,7 @@ const chains = [
     networkId: 421611,
     nativeCurrency: { name: 'Arbitrum Rinkeby Ether', symbol: 'ARETH', decimals: 18 },
     rpc: [
+      'http://fauceth.komputing.org?chain=421611&address=${ADDRESS}',
       'https://rinkeby.arbitrum.io/rpc',
       'wss://rinkeby.arbitrum.io/ws'
     ],
@@ -4253,7 +4259,10 @@ const chains = [
     title: 'Kintsugi merge testnet',
     chain: 'ETH',
     rpc: [ 'https://rpc.kintsugi.themerge.dev' ],
-    faucets: [ 'https://faucet.kintsugi.themerge.dev' ],
+    faucets: [
+      'http://fauceth.komputing.org?chain=1337702&address=${ADDRESS}',
+      'https://faucet.kintsugi.themerge.dev'
+    ],
     nativeCurrency: { name: 'kintsugi Ethere', symbol: 'kiETH', decimals: 18 },
     infoURL: 'https://kintsugi.themerge.dev/',
     shortName: 'kintsugi',

@@ -38,7 +38,7 @@
     "eslint-plugin-svelte3": "^3.3.0",
     "lint-staged": "^12.1.7",
     "prettier-standard": "^16.4.1",
-    "release-it": "^14.11.8",
+    "release-it": "^14.12.1",
     "rollup": "^2.63.0",
     "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-svelte": "^7.1.0",
