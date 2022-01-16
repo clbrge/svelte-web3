@@ -9,6 +9,8 @@
     chainId,
     chainData } from 'svelte-web3'
 
+  import DAI from './contract-stores.js'
+
   import { Balance } from 'svelte-web3/components'
 
   let tipAddress = '0x834356a88C66897FA0A05a61964a91A607956ee3'
@@ -54,9 +56,15 @@
   }
 
   const disconnect = async () => {
+
+    console.log( await $DAI.methods.totalSupply().call() )
+
     await defaultEvmStores.disconnect()
     pending = false
   }
+
+
+  $: DAISupply = $DAI ? $DAI.methods.totalSupply().call() : ''
 
 </script>
 
@@ -99,5 +107,12 @@
 {#if $selectedAccount}
 <p><button class="button is-primary is-light" on:click="{sendTip}">send 0.01 {$chainData.nativeCurrency?.symbol} tip to {tipAddress} (author)</button></p>
 {/if}
+
+{#await DAISupply}
+   pending contract definition
+{:then value}
+  {value}
+{/await}
+
 
 {/if}
