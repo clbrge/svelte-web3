@@ -308,15 +308,22 @@ const chains = [
     ]
   },
   {
-    name: 'ELA-ETH-Sidechain Mainnet',
+    name: 'Elastos Smart Chain',
     chain: 'ETH',
-    rpc: [ 'https://mainrpc.elaeth.io' ],
-    faucets: [],
+    rpc: [ 'https://api.elastos.io/eth' ],
+    faucets: [ 'https://faucet.elastos.org/' ],
     nativeCurrency: { name: 'Elastos', symbol: 'ELA', decimals: 18 },
     infoURL: 'https://www.elastos.org/',
     shortName: 'elaeth',
     chainId: 20,
-    networkId: 20
+    networkId: 20,
+    explorers: [
+      {
+        name: 'elastos eth explorer',
+        url: 'https://eth.elastos.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'ELA-ETH-Sidechain Testnet',
@@ -616,10 +623,10 @@ const chains = [
     nativeCurrency: {
       name: 'Pangolin Network Native Token”',
       symbol: 'PRING',
-      decimals: 9
+      decimals: 18
     },
     infoURL: 'https://darwinia.network/',
-    shortName: 'darwinia',
+    shortName: 'pangolin',
     chainId: 43,
     networkId: 43,
     explorers: [
@@ -635,7 +642,7 @@ const chains = [
     chain: 'crab',
     rpc: [ 'http://crab-rpc.darwinia.network' ],
     faucets: [],
-    nativeCurrency: { name: 'Crab Network Native Token', symbol: 'CRAB', decimals: 9 },
+    nativeCurrency: { name: 'Crab Network Native Token', symbol: 'CRAB', decimals: 18 },
     infoURL: 'https://crab.network/',
     shortName: 'crab',
     chainId: 44,
@@ -644,6 +651,28 @@ const chains = [
       {
         name: 'subscan',
         url: 'https://crab.subscan.io',
+        standard: 'none'
+      }
+    ]
+  },
+  {
+    name: 'Darwinia Pangoro Testnet',
+    chain: 'pangoro',
+    rpc: [ 'http://pangoro-rpc.darwinia.network' ],
+    faucets: [],
+    nativeCurrency: {
+      name: 'Pangoro Network Native Token”',
+      symbol: 'ORING',
+      decimals: 18
+    },
+    infoURL: 'https://darwinia.network/',
+    shortName: 'pangoro',
+    chainId: 45,
+    networkId: 45,
+    explorers: [
+      {
+        name: 'subscan',
+        url: 'https://pangoro.subscan.io',
         standard: 'none'
       }
     ]
@@ -1543,7 +1572,7 @@ const chains = [
     explorers: [
       {
         name: 'Blockmeta',
-        url: 'https://bmc.blockmeta.com',
+        url: 'https://bmctestnet.blockmeta.com',
         standard: 'none'
       }
     ]
@@ -4270,11 +4299,10 @@ const chains = [
     networkId: 421611,
     nativeCurrency: { name: 'Arbitrum Rinkeby Ether', symbol: 'ARETH', decimals: 18 },
     rpc: [
-      'http://fauceth.komputing.org?chain=421611&address=${ADDRESS}',
       'https://rinkeby.arbitrum.io/rpc',
       'wss://rinkeby.arbitrum.io/ws'
     ],
-    faucets: [],
+    faucets: [ 'http://fauceth.komputing.org?chain=421611&address=${ADDRESS}' ],
     infoURL: 'https://arbitrum.io',
     explorers: [
       {
@@ -4810,7 +4838,7 @@ const chains = [
     networkId: 11297108099
   },
   {
-    name: 'Palm Mainnet',
+    name: 'Palm',
     chain: 'Palm',
     rpc: [],
     faucets: [],
