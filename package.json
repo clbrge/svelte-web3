@@ -36,15 +36,14 @@
   },
   "devDependencies": {
     "eslint-plugin-svelte3": "^3.4.0",
-    "lint-staged": "^12.1.7",
+    "lint-staged": "^12.3.1",
     "prettier-standard": "^16.4.1",
-    "release-it": "^14.12.3",
-    "rollup": "^2.64.0",
+    "release-it": "^14.12.4",
+    "rollup": "^2.66.1",
     "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-svelte": "^7.1.0",
-    "sirv-cli": "^2.0.1",
     "svelte": "^3.46.2",
-    "web3": "1.6.1"
+    "web3": "1.7.0"
   },
   "lint-staged": {
     "*": [
