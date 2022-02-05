@@ -1049,6 +1049,27 @@ const chains = [
     ]
   },
   {
+    name: 'IDChain Mainnet',
+    chain: 'IDChain',
+    network: 'mainnet',
+    rpc: [ 'https://idchain.one/rpc/', 'wss://idchain.one/ws/' ],
+    faucets: [],
+    nativeCurrency: { name: 'EIDI', symbol: 'EIDI', decimals: 18 },
+    infoURL: 'https://idchain.one/begin/',
+    shortName: 'idchain',
+    chainId: 74,
+    networkId: 74,
+    icon: 'idchain',
+    explorers: [
+      {
+        name: 'explorer',
+        url: 'https://explorer.idchain.one',
+        icon: 'etherscan',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Mix',
     chain: 'MIX',
     rpc: [ 'https://rpc2.mix-blockchain.org:8647' ],
@@ -3899,6 +3920,44 @@ const chains = [
     infoURL: 'https://docs.celo.org/'
   },
   {
+    name: 'eCredits Mainnet',
+    chain: 'ECS',
+    network: 'mainnet',
+    rpc: [ 'https://rpc.ecredits.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'eCredits', symbol: 'ECS', decimals: 18 },
+    infoURL: 'https://ecredits.com',
+    shortName: 'ecs',
+    chainId: 63000,
+    networkId: 63000,
+    explorers: [
+      {
+        name: 'eCredits MainNet Explorer',
+        url: 'https://explorer.ecredits.com',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'eCredits Testnet',
+    chain: 'ECS',
+    network: 'testnet',
+    rpc: [ 'https://rpc.tst.ecredits.com' ],
+    faucets: [ 'https://faucet.tst.ecredits.com' ],
+    nativeCurrency: { name: 'eCredits', symbol: 'ECS', decimals: 18 },
+    infoURL: 'https://ecredits.com',
+    shortName: 'ecs-testnet',
+    chainId: 63001,
+    networkId: 63001,
+    explorers: [
+      {
+        name: 'eCredits TestNet Explorer',
+        url: 'https://explorer.tst.ecredits.com',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Thinkium Mainnet Chain 0',
     chain: 'Thinkium',
     rpc: [ 'https://proxy.thinkiumrpc.net/' ],
@@ -5111,7 +5170,7 @@ const chains = [
   {
     name: 'Palm Testnet',
     chain: 'Palm',
-    rpc: [],
+    rpc: [ 'https://palm-testnet.infura.io/v3/{INFURA_API_KEY}' ],
     faucets: [],
     nativeCurrency: { name: 'PALM', symbol: 'PALM', decimals: 18 },
     infoURL: 'https://palm.io',
@@ -5122,7 +5181,7 @@ const chains = [
   {
     name: 'Palm',
     chain: 'Palm',
-    rpc: [],
+    rpc: [ 'https://palm-mainnet.infura.io/v3/{INFURA_API_KEY}' ],
     faucets: [],
     nativeCurrency: { name: 'PALM', symbol: 'PALM', decimals: 18 },
     infoURL: 'https://palm.io',
