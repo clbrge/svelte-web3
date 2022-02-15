@@ -366,19 +366,18 @@ if you want to be listed in this section.
 
 ### Svelte basic example (based on rollup template)
 
-Please check [`examples/svelte-app-template-web3` in github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
+Please check [examples/svelte-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
 
 Contains demos to use the default store and multi stores.
 
 ### SvelteKit basic example
 
-Please check [`examples/sveltekit-app-template-web3` in github](https://github.com/clbrge/svelte-web3/tree/master/examples/sveltekit-app-template-web3).
+Please check [examples/sveltekit-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/sveltekit-app-template-web3).
 
 ### Sapper basic example (based on webpack template)
 
-Please check [`examples/sapper-app-template-web3` in github](https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
+Please check [examples/sapper-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
 
-Please check `examples/sapper-app-template-web3` in github.
 
 ### tradingstrategy.ai presented at EthLisbon 2021
 
