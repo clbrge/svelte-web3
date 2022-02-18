@@ -100,7 +100,10 @@ export const createStore = () => {
     try {
       accounts = await eipProvider.request({ method: 'eth_requestAccounts' })
     } catch (e) {
-      console.warn('[svelte-web3] non compliant 1193 provider')
+      // if there are no accounts to store throw error
+      if (eipProvider?.accounts) {
+        throw new Error('[svelte-web3] non compliant 1193 provider')
+      }
       // some provider may store accounts directly like walletconnect
       accounts = eipProvider.accounts
     }
