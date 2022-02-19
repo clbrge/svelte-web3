@@ -1503,6 +1503,28 @@ const chains = [
     ]
   },
   {
+    name: 'Nebula Testnet',
+    chain: 'NTN',
+    icon: 'nebulatestnet',
+    rpc: [
+      'https://testnet.rpc.novanetwork.io:9070',
+      'http://testnet.rpc.novanetwork.io:8545'
+    ],
+    faucets: [],
+    nativeCurrency: { name: 'Nebula X', symbol: 'NBX', decimals: 18 },
+    infoURL: 'https://novanetwork.io',
+    shortName: 'ntn',
+    chainId: 107,
+    networkId: 107,
+    explorers: [
+      {
+        name: 'nebulatestnet',
+        url: 'https://explorer.novanetwork.io',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'ThunderCore Mainnet',
     chain: 'TT',
     rpc: [ 'https://mainnet-rpc.thundercore.com' ],
@@ -3228,10 +3250,17 @@ const chains = [
     rpc: [ 'https://proxy.wegochain.io', 'http://wallet.wegochain.io:7764' ],
     faucets: [],
     nativeCurrency: { name: 'Rubid', symbol: 'RBD', decimals: 18 },
-    infoURL: 'http://wegochain.io',
+    infoURL: 'https://www.wegochain.io',
     shortName: 'rbd',
     chainId: 5869,
-    networkId: 5869
+    networkId: 5869,
+    explorers: [
+      {
+        name: 'wegoscan2',
+        url: 'https://scan2.wegochain.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Pixie Chain Mainnet',
