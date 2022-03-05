@@ -384,17 +384,17 @@ const chains = [
   {
     name: 'Cronos Mainnet Beta',
     chain: 'CRO',
-    rpc: [ 'https://evm-cronos.crypto.org' ],
+    rpc: [ 'https://evm.cronos.org' ],
     faucets: [],
-    nativeCurrency: { name: 'Crypto.org Coin', symbol: 'CRO', decimals: 18 },
-    infoURL: 'https://cronos.crypto.org',
+    nativeCurrency: { name: 'Cronos', symbol: 'CRO', decimals: 18 },
+    infoURL: 'https://cronos.org/',
     shortName: 'cro',
     chainId: 25,
     networkId: 25,
     explorers: [
       {
         name: 'Cronos Explorer',
-        url: 'https://cronos.crypto.org/explorer',
+        url: 'https://cronos.org/explorer',
         standard: 'none'
       }
     ]
@@ -2039,6 +2039,24 @@ const chains = [
     ]
   },
   {
+    name: 'Web3Q Mainnet',
+    chain: 'Web3Q',
+    rpc: [ 'https://mainnet.web3q.io:8545' ],
+    faucets: [],
+    nativeCurrency: { name: 'Web3Q', symbol: 'W3Q', decimals: 18 },
+    infoURL: 'https://web3q.io/home.w3q/',
+    shortName: 'w3q',
+    chainId: 333,
+    networkId: 333,
+    explorers: [
+      {
+        name: 'w3q-mainnet',
+        url: 'https://explorer.mainnet.web3q.io',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Shiden',
     chain: 'SDN',
     rpc: [
@@ -2781,6 +2799,38 @@ const chains = [
     networkId: 1140
   },
   {
+    name: 'Iora Chain',
+    chain: 'IORA',
+    network: 'iorachain',
+    icon: 'iorachain',
+    rpc: [ 'https://dataseed.iorachain.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'Iora', symbol: 'IORA', decimals: 18 },
+    infoURL: 'https://iorachain.com',
+    shortName: 'iora',
+    chainId: 1197,
+    networkId: 1197,
+    explorers: [
+      {
+        name: 'ioraexplorer',
+        url: 'https://explorer.iorachain.com',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'Evanesco Testnet',
+    chain: 'Evanesco Testnet',
+    network: 'avis',
+    rpc: [ 'https://seed5.evanesco.org:8547' ],
+    faucets: [],
+    nativeCurrency: { name: 'AVIS', symbol: 'AVIS', decimals: 18 },
+    infoURL: 'https://evanesco.org/',
+    shortName: 'avis',
+    chainId: 1201,
+    networkId: 1201
+  },
+  {
     name: 'World Trade Technical Chain Mainnet',
     chain: 'WTT',
     rpc: [ 'https://rpc.cadaut.com', 'wss://rpc.cadaut.com/ws' ],
@@ -3079,6 +3129,26 @@ const chains = [
     ]
   },
   {
+    name: 'Evanesco Mainnet',
+    chain: 'EVA',
+    network: 'mainnet',
+    rpc: [ 'https://seed4.evanesco.org:8546' ],
+    faucets: [],
+    nativeCurrency: { name: 'EVA', symbol: 'EVA', decimals: 18 },
+    infoURL: 'https://evanesco.org/',
+    shortName: 'evanesco',
+    chainId: 2213,
+    networkId: 2213,
+    icon: 'evanesco',
+    explorers: [
+      {
+        name: 'Evanesco Explorer',
+        url: 'https://explorer.evanesco.org',
+        standard: 'none'
+      }
+    ]
+  },
+  {
     name: 'Kortho Mainnet',
     chain: 'Kortho Chain',
     rpc: [ 'https://www.kortho-chain.com' ],
@@ -3100,6 +3170,24 @@ const chains = [
     shortName: 'zcrbeach',
     chainId: 3331,
     networkId: 3331
+  },
+  {
+    name: 'Web3Q Testnet',
+    chain: 'Web3Q',
+    rpc: [ 'https://testnet.web3q.io:8545' ],
+    faucets: [],
+    nativeCurrency: { name: 'Web3Q', symbol: 'W3Q', decimals: 18 },
+    infoURL: 'https://web3q.io/home.w3q/',
+    shortName: 'w3q-t',
+    chainId: 3333,
+    networkId: 3333,
+    explorers: [
+      {
+        name: 'w3q-testnet',
+        url: 'https://explorer.testnet.web3q.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Bittex Mainnet',
@@ -3325,6 +3413,58 @@ const chains = [
     ]
   },
   {
+    name: 'Teleport',
+    chain: 'Teleport',
+    rpc: [ 'https://evm-rpc.teleport.network' ],
+    faucets: [],
+    nativeCurrency: { name: 'Tele', symbol: 'TELE', decimals: 18 },
+    infoURL: 'https://teleport.network',
+    shortName: 'teleport',
+    chainId: 8000,
+    networkId: 8000,
+    icon: 'teleport',
+    explorers: [
+      {
+        name: 'Teleport EVM Explorer (Blockscout)',
+        url: 'https://evm-explorer.teleport.network',
+        standard: 'none',
+        icon: 'teleport'
+      },
+      {
+        name: 'Teleport Cosmos Explorer (Big Dipper)',
+        url: 'https://explorer.teleport.network',
+        standard: 'none',
+        icon: 'teleport'
+      }
+    ]
+  },
+  {
+    name: 'Teleport Testnet',
+    chain: 'Teleport',
+    rpc: [ 'https://evm-rpc.testnet.teleport.network' ],
+    faucets: [ 'https://chain-docs.teleport.network/testnet/faucet.html' ],
+    nativeCurrency: { name: 'Tele', symbol: 'TELE', decimals: 18 },
+    infoURL: 'https://teleport.network',
+    shortName: 'teleport-testnet',
+    chainId: 8001,
+    networkId: 8001,
+    icon: 'teleport',
+    explorers: [
+      {
+        name: 'Teleport EVM Explorer (Blockscout)',
+        url: 'https://evm-explorer.testnet.teleport.network',
+        standard: 'none',
+        icon: 'teleport'
+      },
+      {
+        name: 'Teleport Cosmos Explorer (Big Dipper)',
+        url: 'https://explorer.testnet.teleport.network',
+        standard: 'none',
+        icon: 'teleport'
+      }
+    ]
+  },
+  {
     name: 'MDGL Testnet',
     chain: 'MDGL',
     rpc: [ 'https://testnet.mdgl.io' ],
@@ -3446,24 +3586,24 @@ const chains = [
   {
     name: 'Evmos Testnet',
     chain: 'Evmos',
-    rpc: [ 'https://ethereum.rpc.evmos.dev' ],
-    faucets: [ 'https://faucet.evmos.org' ],
-    nativeCurrency: { name: 'Photon', symbol: 'PHOTON', decimals: 18 },
+    rpc: [ 'https://evmos-archive-testnet.api.bdnodes.net:8545' ],
+    faucets: [ 'https://faucet.evmos.dev' ],
+    nativeCurrency: { name: 'test-Evmos', symbol: 'tEVMOS', decimals: 18 },
     infoURL: 'https://evmos.org',
-    shortName: 'evmos-mons',
+    shortName: 'evmos-testnet',
     chainId: 9000,
     networkId: 9000,
     icon: 'evmos',
     explorers: [
       {
         name: 'Evmos EVM Explorer (Blockscout)',
-        url: 'https://evm.evmos.org',
+        url: 'https://evm.evmos.dev',
         standard: 'none',
         icon: 'evmos'
       },
       {
-        name: 'Evmos Cosmos Explorer (Big Dipper)',
-        url: 'https://explorer.evmos.org',
+        name: 'Evmos Cosmos Explorer',
+        url: 'https://explorer.evmos.dev',
         standard: 'none',
         icon: 'evmos'
       }
@@ -3472,7 +3612,7 @@ const chains = [
   {
     name: 'Evmos',
     chain: 'Evmos',
-    rpc: [ 'https://ethereum.rpc.evmos.org' ],
+    rpc: [ 'https://eth.bd.evmos.org:8545' ],
     faucets: [],
     nativeCurrency: { name: 'Evmos', symbol: 'EVMOS', decimals: 18 },
     infoURL: 'https://evmos.org',
@@ -3488,8 +3628,8 @@ const chains = [
         icon: 'evmos'
       },
       {
-        name: 'Evmos Cosmos Explorer (Big Dipper)',
-        url: 'https://explorer.evmos.org',
+        name: 'Evmos Cosmos Explorer (Mintscan)',
+        url: 'https://www.mintscan.io/evmos',
         standard: 'none',
         icon: 'evmos'
       }
@@ -3657,6 +3797,27 @@ const chains = [
     ]
   },
   {
+    name: 'Phoenix Mainnet',
+    chain: 'Phoenix',
+    network: 'mainnet',
+    rpc: [ 'https://rpc.phoenixplorer.com/' ],
+    faucets: [],
+    nativeCurrency: { name: 'Phoenix', symbol: 'PHX', decimals: 18 },
+    infoURL: 'https://cryptophoenix.org/phoenix',
+    shortName: 'Phoenix',
+    chainId: 13381,
+    networkId: 13381,
+    icon: 'phoenix',
+    explorers: [
+      {
+        name: 'phoenixplorer',
+        url: 'https://phoenixplorer.com',
+        icon: 'phoenixplorer',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'MetaDot Mainnet',
     chain: 'MTT',
     rpc: [ 'https://mainnet.metadot.network' ],
@@ -3790,7 +3951,7 @@ const chains = [
     shortName: 'arb1',
     chain: 'ETH',
     networkId: 42161,
-    nativeCurrency: { name: 'Ether', symbol: 'AETH', decimals: 18 },
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
     rpc: [
       'https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}',
       'https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}',
@@ -3906,7 +4067,7 @@ const chains = [
     ]
   },
   {
-    name: 'Avalanche Mainnet',
+    name: 'Avalanche C-Chain',
     chain: 'AVAX',
     rpc: [ 'https://api.avax.network/ext/bc/C/rpc' ],
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
@@ -3915,7 +4076,7 @@ const chains = [
     shortName: 'Avalanche',
     chainId: 43114,
     networkId: 43114,
-    slip44: 9000,
+    slip44: 9005,
     explorers: [
       {
         name: 'snowtrace',
@@ -4938,7 +5099,7 @@ const chains = [
   {
     name: 'Etho Protocol',
     chain: 'ETHO',
-    rpc: [ 'https://rpc.ether1.org' ],
+    rpc: [ 'https://rpc.ethoprotocol.com' ],
     faucets: [],
     nativeCurrency: { name: 'Etho Protocol', symbol: 'ETHO', decimals: 18 },
     infoURL: 'https://ethoprotocol.com',
@@ -4998,6 +5159,25 @@ const chains = [
     chainId: 7762959,
     networkId: 7762959,
     slip44: 184
+  },
+  {
+    name: 'Sepolia',
+    title: 'Ethereum Testnet Sepolia',
+    chain: 'ETH',
+    rpc: [],
+    faucets: [],
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'SEP', decimals: 18 },
+    infoURL: 'https://sepolia.otterscan.io',
+    shortName: 'sep',
+    chainId: 11155111,
+    networkId: 11155111,
+    explorers: [
+      {
+        name: 'otterscan-sepolia',
+        url: 'https://sepolia.otterscan.io',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'PepChain Churchill',
@@ -5393,24 +5573,42 @@ const chains = [
   {
     name: 'Palm Testnet',
     chain: 'Palm',
+    icon: 'palm',
     rpc: [ 'https://palm-testnet.infura.io/v3/{INFURA_API_KEY}' ],
     faucets: [],
     nativeCurrency: { name: 'PALM', symbol: 'PALM', decimals: 18 },
     infoURL: 'https://palm.io',
     shortName: 'tpalm',
     chainId: 11297108099,
-    networkId: 11297108099
+    networkId: 11297108099,
+    explorers: [
+      {
+        name: 'Palm Testnet Explorer',
+        url: 'https://explorer.palm-uat.xyz',
+        standard: 'EIP3091',
+        icon: 'palm'
+      }
+    ]
   },
   {
     name: 'Palm',
     chain: 'Palm',
+    icon: 'palm',
     rpc: [ 'https://palm-mainnet.infura.io/v3/{INFURA_API_KEY}' ],
     faucets: [],
     nativeCurrency: { name: 'PALM', symbol: 'PALM', decimals: 18 },
     infoURL: 'https://palm.io',
     shortName: 'palm',
     chainId: 11297108109,
-    networkId: 11297108109
+    networkId: 11297108109,
+    explorers: [
+      {
+        name: 'Palm Explorer',
+        url: 'https://explorer.palm.io',
+        standard: 'EIP3091',
+        icon: 'palm'
+      }
+    ]
   },
   {
     name: 'Ntity Mainnet',
