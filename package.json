@@ -39,7 +39,7 @@
     "lint-staged": "^12.3.5",
     "prettier-standard": "^16.4.1",
     "release-it": "^14.12.5",
-    "rollup": "^2.69.1",
+    "rollup": "^2.70.0",
     "rollup-plugin-dts": "^4.2.0",
     "rollup-plugin-svelte": "^7.1.0",
     "svelte": "^3.46.4",
