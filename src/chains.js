@@ -292,7 +292,14 @@ const chains = [
     infoURL: 'https://thundercore.com',
     shortName: 'TST',
     chainId: 18,
-    networkId: 18
+    networkId: 18,
+    explorers: [
+      {
+        name: 'ThundercoreTestNetScanner',
+        url: 'https://scan-testnet.thundercore.com',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Songbird Canary-Network',
@@ -1534,7 +1541,14 @@ const chains = [
     shortName: 'TT',
     chainId: 108,
     networkId: 108,
-    slip44: 1001
+    slip44: 1001,
+    explorers: [
+      {
+        name: 'ThundercoreScan',
+        url: 'https://scan.thundercore.com',
+        standard: 'none'
+      }
+    ]
   },
   {
     name: 'Proton Testnet',
@@ -1935,6 +1949,17 @@ const chains = [
     networkId: 256
   },
   {
+    name: 'Setheum',
+    chain: 'Setheum',
+    rpc: [],
+    faucets: [],
+    nativeCurrency: { name: 'Setheum', symbol: 'SETM', decimals: 18 },
+    infoURL: 'https://setheum.xyz',
+    shortName: 'setm',
+    chainId: 258,
+    networkId: 258
+  },
+  {
     name: 'SUR Blockchain Network',
     chain: 'SUR',
     rpc: [ 'https://sur.nilin.org' ],
@@ -2217,6 +2242,45 @@ const chains = [
     chainId: 499,
     networkId: 499,
     slip44: 499
+  },
+  {
+    name: 'Double-A Chain Mainnet',
+    chain: 'AAC',
+    rpc: [ 'https://rpc.acuteangle.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'Acuteangle Native Token', symbol: 'AAC', decimals: 18 },
+    infoURL: 'https://www.acuteangle.com/',
+    shortName: 'aac',
+    chainId: 512,
+    networkId: 512,
+    slip44: 1512,
+    explorers: [
+      {
+        name: 'aacscan',
+        url: 'https://scan.acuteangle.com',
+        standard: 'EIP3091'
+      }
+    ],
+    icon: 'aac'
+  },
+  {
+    name: 'Double-A Chain Testnet',
+    chain: 'AAC',
+    icon: 'aac',
+    rpc: [ 'https://rpc-testnet.acuteangle.com' ],
+    faucets: [ 'https://scan-testnet.acuteangle.com/faucet' ],
+    nativeCurrency: { name: 'Acuteangle Native Token', symbol: 'AAC', decimals: 18 },
+    infoURL: 'https://www.acuteangle.com/',
+    shortName: 'aact',
+    chainId: 513,
+    networkId: 513,
+    explorers: [
+      {
+        name: 'aacscan-testnet',
+        url: 'https://scan-testnet.acuteangle.com',
+        standard: 'EIP3091'
+      }
+    ]
   },
   {
     name: 'Vela1 Chain Mainnet',
@@ -3858,6 +3922,25 @@ const chains = [
     ]
   },
   {
+    name: 'omChain Mainnet',
+    chain: 'OML',
+    icon: 'omlira',
+    rpc: [ 'https://seed.omlira.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'Omlira', symbol: 'OML', decimals: 18 },
+    infoURL: 'https://omlira.com',
+    shortName: 'oml',
+    chainId: 21816,
+    networkId: 21816,
+    explorers: [
+      {
+        name: 'omChain Explorer',
+        url: 'https://explorer.omlira.com',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Webchain',
     chain: 'WEB',
     rpc: [ 'https://node1.webchain.network' ],
@@ -5060,7 +5143,14 @@ const chains = [
     rpc: [ 'https://infragrid.v.network/ethereum/compatible' ],
     faucets: [],
     nativeCurrency: { name: 'VS', symbol: 'VS', decimals: 18 },
-    infoURL: 'https://visionscan.org',
+    infoURL: 'https://www.v.network',
+    explorers: [
+      {
+        name: 'Visionscan',
+        url: 'https://www.visionscan.org',
+        standard: 'EIP3091'
+      }
+    ],
     shortName: 'vision',
     chainId: 888888,
     networkId: 888888,
@@ -5380,47 +5470,47 @@ const chains = [
     networkId: 1122334455
   },
   {
-    name: 'Aurora MainNet',
+    name: 'Aurora Mainnet',
     chain: 'NEAR',
     rpc: [ 'https://mainnet.aurora.dev' ],
     faucets: [],
-    nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://aurora.dev',
     shortName: 'aurora',
     chainId: 1313161554,
     networkId: 1313161554,
     explorers: [
       {
-        name: 'explorer.aurora.dev',
-        url: 'https://explorer.mainnet.aurora.dev',
+        name: 'aurorascan.dev',
+        url: 'https://aurorascan.dev',
         standard: 'EIP3091'
       }
     ]
   },
   {
-    name: 'Aurora TestNet',
+    name: 'Aurora Testnet',
     chain: 'NEAR',
     rpc: [ 'https://testnet.aurora.dev/' ],
     faucets: [],
-    nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://aurora.dev',
     shortName: 'aurora-testnet',
     chainId: 1313161555,
     networkId: 1313161555,
     explorers: [
       {
-        name: 'explorer.aurora.dev',
-        url: 'https://explorer.testnet.aurora.dev',
+        name: 'aurorascan.dev',
+        url: 'https://testnet.aurorascan.dev',
         standard: 'EIP3091'
       }
     ]
   },
   {
-    name: 'Aurora BetaNet',
+    name: 'Aurora Betanet',
     chain: 'NEAR',
     rpc: [ 'https://betanet.aurora.dev/' ],
     faucets: [],
-    nativeCurrency: { name: 'Ether', symbol: 'aETH', decimals: 18 },
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://aurora.dev',
     shortName: 'aurora-betanet',
     chainId: 1313161556,
