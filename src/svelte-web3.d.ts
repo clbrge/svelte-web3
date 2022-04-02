@@ -1,7 +1,6 @@
 import { Readable } from "svelte/store";
 import Web3 from "web3";
 import { provider } from "web3-core";
-import { AbiItem } from "web3-utils";
 import { ContractOptions, Contract } from "web3-eth-contract";
 
 declare module "svelte-web3" {
@@ -119,13 +118,13 @@ declare module "svelte-web3" {
     /**
      * Allows you to create a Svelte derived store of a web3.eth.Contract object instance.
      * It takes the same parameters as a ̀new web3.eth.Contract` call.
-     * @param jsonInterface The contract ABI array
+     * @param jsonInterface The contract ABI
      * @param address The contract address
      * @param options The contract options
      * @returns A Svelte derived store of a web3.eth.Contract object instance
      */
     function makeContractStore(
-        jsonInterface: AbiItem[],
+        jsonInterface: any,
         address?: string,
         options?: ContractOptions
     ): Readable<Contract>;
