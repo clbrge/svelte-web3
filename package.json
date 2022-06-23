@@ -1,6 +1,6 @@
 {
   "name": "svelte-web3",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "web3.js as a collection of stores for Svelte, Sapper or SvelteKit.",
   "license": "MIT",
   "repository": "clbrge/svelte-web3",
