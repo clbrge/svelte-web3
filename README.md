@@ -271,7 +271,6 @@ connected with the Ethereum Mainnet :
 }
 ```
 
-
 You might want to access all chains CAIP-2 data directly without using the
 `chainData` store. In this case, use the getter `allChainsData`, it returns
 the list of all CAIP-2 data available.
@@ -282,6 +281,15 @@ import { allChainsData } from 'svelte-web3'
 console.log( allChainsData )
 ```
 
+Alternatively, You might also use the helper function
+`getChainDataByChainId` that takes the chainId as argument and returns
+CAIP-2 data for that chain.
+
+```js
+import { getChainDataByChainId } from 'svelte-web3'
+
+console.log( getChainDataByChainId(4) )
+```
 
 ## Create contract stores
 
@@ -357,6 +365,17 @@ stores this way :
   ({ web3: web3_A, ...evmStores_A } = makeEvmStores('<id_A>'))
   ({ web3: web3_B, ...evmStores_B } = makeEvmStores('<id_B>'))
 ```
+## FAQ
+
+### *how to auto-connect on page load?*
+
+It is out of scope of this package to implement this function but it
+generally depends on the type of provider you are using and a way to
+store connection information between page loads (for example by using
+localStorage).
+
+
+
 
 ## Examples
 

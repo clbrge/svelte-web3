@@ -278,6 +278,8 @@ loadWeb3()
 
 export { chains as allChainsData }
 
+export const getChainDataByChainId = id => (allChainsData.filter(o => o.chainId === id) || [{}])[0]
+
 export const defaultEvmStores = makeEvmStores('default')
 
 export const connected = allStores.default.connected
