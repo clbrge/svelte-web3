@@ -26,7 +26,7 @@
     }
   },
   "scripts": {
-    "update-chains": "node ./scripts/update-chains.js",
+    "update-chains": "node ./scripts/update-chains.mjs",
     "lint": "prettier-standard --lint 'src/**/*.js'",
     "build": "rollup -c"
   },

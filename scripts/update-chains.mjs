@@ -1,6 +1,6 @@
-const util = require('util')
-const fetch = require('node-fetch')
-const { writeFile } = require('fs/promises')
+import util from 'util'
+import fetch from 'node-fetch'
+import { writeFile } from 'fs/promises'
 
 const run = async () => {
 

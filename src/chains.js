@@ -51,7 +51,7 @@ const chains = [
       'http://fauceth.komputing.org?chain=3&address=${ADDRESS}',
       'https://faucet.ropsten.be?${ADDRESS}'
     ],
-    nativeCurrency: { name: 'Ropsten Ether', symbol: 'ROP', decimals: 18 },
+    nativeCurrency: { name: 'Ropsten Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://github.com/ethereum/ropsten',
     shortName: 'rop',
     chainId: 3,
@@ -78,7 +78,7 @@ const chains = [
       'http://fauceth.komputing.org?chain=4&address=${ADDRESS}',
       'https://faucet.rinkeby.io'
     ],
-    nativeCurrency: { name: 'Rinkeby Ether', symbol: 'RIN', decimals: 18 },
+    nativeCurrency: { name: 'Rinkeby Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://www.rinkeby.io',
     shortName: 'rin',
     chainId: 4,
@@ -107,7 +107,7 @@ const chains = [
       'https://goerli-faucet.slock.it?address=${ADDRESS}',
       'https://faucet.goerli.mudit.blog'
     ],
-    nativeCurrency: { name: 'Görli Ether', symbol: 'GOR', decimals: 18 },
+    nativeCurrency: { name: 'Görli Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://goerli.net/#about',
     shortName: 'gor',
     chainId: 5,
@@ -574,7 +574,7 @@ const chains = [
   {
     name: 'Dxchain Mainnet',
     chain: 'Dxchain',
-    rpc: [ 'https://www.mainnet.dxchain.com' ],
+    rpc: [ 'https://mainnet.dxchain.com' ],
     faucets: [],
     nativeCurrency: { name: 'Dxchain', symbol: 'DX', decimals: 18 },
     infoURL: 'https://www.dxchain.com/',
@@ -640,7 +640,7 @@ const chains = [
       'https://faucet.kovan.network',
       'https://gitter.im/kovan-testnet/faucet'
     ],
-    nativeCurrency: { name: 'Kovan Ether', symbol: 'KOV', decimals: 18 },
+    nativeCurrency: { name: 'Kovan Ether', symbol: 'ETH', decimals: 18 },
     explorers: [
       {
         name: 'etherscan',
@@ -1014,7 +1014,7 @@ const chains = [
     faucets: [],
     nativeCurrency: { name: 'Ellaism Ether', symbol: 'ELLA', decimals: 18 },
     infoURL: 'https://ellaism.org',
-    shortName: 'ella',
+    shortName: 'ellaism',
     chainId: 64,
     networkId: 64,
     slip44: 163
@@ -1094,7 +1094,7 @@ const chains = [
     chain: 'ETH',
     rpc: [ 'https://kovan.optimism.io/' ],
     faucets: [ 'http://fauceth.komputing.org?chain=69&address=${ADDRESS}' ],
-    nativeCurrency: { name: 'Kovan Ether', symbol: 'KOR', decimals: 18 },
+    nativeCurrency: { name: 'Kovan Ether', symbol: 'ETH', decimals: 18 },
     explorers: [
       {
         name: 'etherscan',
@@ -2324,6 +2324,26 @@ const chains = [
     ]
   },
   {
+    name: 'zkSync alpha testnet',
+    chain: 'ETH',
+    rpc: [ 'https://zksync2-testnet.zksync.dev' ],
+    faucets: [ 'https://portal.zksync.io/faucet' ],
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    infoURL: 'https://v2-docs.zksync.io/',
+    shortName: 'zksync-goerli',
+    chainId: 280,
+    networkId: 280,
+    icon: 'ethereum',
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://zksync2-testnet.zkscan.io',
+        icon: 'blockscout',
+        standard: 'EIP3091'
+      }
+    ]
+  },
+  {
     name: 'Boba Network',
     chain: 'ETH',
     rpc: [ 'https://mainnet.boba.network/' ],
@@ -3064,9 +3084,7 @@ const chains = [
     chain: 'PF',
     icon: 'pf',
     network: 'testnet',
-    rpc: [
-      'http://3.212.233.100:9650/ext/bc/2FJX3r1hWwyMWSo12j429g8HTVH1nrC8twatkLgtaCXtRD4GLq/rpc'
-    ],
+    rpc: [ 'https://subnets.avax.network/portal-fantasy/testnet/rpc' ],
     faucets: [],
     nativeCurrency: { name: 'Portal Fantasy Token', symbol: 'PFT', decimals: 18 },
     infoURL: 'https://portalfantasy.io',
@@ -3370,6 +3388,25 @@ const chains = [
     networkId: 999
   },
   {
+    name: 'GTON Mainnet',
+    chain: 'GTON',
+    rpc: [ 'https://rpc.gton.network/' ],
+    faucets: [],
+    nativeCurrency: { name: 'GCD', symbol: 'GCD', decimals: 18 },
+    infoURL: 'https://gton.capital',
+    shortName: 'gton',
+    chainId: 1000,
+    networkId: 1000,
+    explorers: [
+      {
+        name: 'GTON Network Explorer',
+        url: 'https://explorer.gton.network',
+        standard: 'EIP3091'
+      }
+    ],
+    parent: { type: 'L2', chain: 'eip155-1' }
+  },
+  {
     name: 'Klaytn Testnet Baobab',
     chain: 'KLAY',
     rpc: [ 'https://api.baobab.klaytn.net:8651' ],
@@ -3644,8 +3681,8 @@ const chains = [
     ]
   },
   {
-    name: 'OM Chain Mainnet',
-    chain: 'omchain',
+    name: 'OM Platform Mainnet',
+    chain: 'omplatform',
     network: 'mainnet',
     rpc: [ 'https://rpc-cnx.omplatform.com/' ],
     faucets: [],
@@ -5985,6 +6022,30 @@ const chains = [
     }
   },
   {
+    name: 'Arbitrum Nova',
+    chainId: 42170,
+    shortName: 'arb-nova',
+    chain: 'ETH',
+    networkId: 42170,
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpc: [ 'https://nova.arbitrum.io/rpc' ],
+    faucets: [],
+    explorers: [
+      {
+        name: 'Arbitrum Nova Chain Explorer',
+        url: 'https://nova-explorer.arbitrum.io',
+        icon: 'blockscout',
+        standard: 'EIP3091'
+      }
+    ],
+    infoURL: 'https://arbitrum.io',
+    parent: {
+      type: 'L2',
+      chain: 'eip155-1',
+      bridges: [ { url: 'https://bridge.arbitrum.io' } ]
+    }
+  },
+  {
     name: 'Celo Mainnet',
     chainId: 42220,
     shortName: 'CELO',
@@ -6079,7 +6140,7 @@ const chains = [
     faucets: [ 'https://free-online-app.com/faucet-for-eth-evm-chains/' ],
     nativeCurrency: { name: 'Avalanche', symbol: 'AVAX', decimals: 18 },
     infoURL: 'https://www.avax.network/',
-    shortName: 'Avalanche',
+    shortName: 'avax',
     chainId: 43114,
     networkId: 43114,
     slip44: 9005,
@@ -6160,6 +6221,25 @@ const chains = [
     slip44: 49797
   },
   {
+    name: 'GTON Testnet',
+    chain: 'GTON Testnet',
+    rpc: [ 'https://testnet.gton.network/' ],
+    faucets: [],
+    nativeCurrency: { name: 'GCD', symbol: 'GCD', decimals: 18 },
+    infoURL: 'https://gton.capital',
+    shortName: 'tgton',
+    chainId: 50021,
+    networkId: 50021,
+    explorers: [
+      {
+        name: 'GTON Testnet Network Explorer',
+        url: 'https://explorer.testnet.gton.network',
+        standard: 'EIP3091'
+      }
+    ],
+    parent: { type: 'L2', chain: 'eip155-3' }
+  },
+  {
     name: 'DFK Chain',
     chain: 'DFK',
     icon: 'dfk',
@@ -6188,7 +6268,7 @@ const chains = [
     faucets: [ 'http://kururu.finance/faucet?chainId=55555' ],
     nativeCurrency: { name: 'Rei', symbol: 'REI', decimals: 18 },
     infoURL: 'https://reichain.io',
-    shortName: 'rei',
+    shortName: 'reichain',
     chainId: 55555,
     networkId: 55555,
     explorers: [
@@ -6537,7 +6617,7 @@ const chains = [
     network: 'mainnet',
     rpc: [ 'https://geth.mvm.dev' ],
     faucets: [],
-    nativeCurrency: { name: 'Mixin', symbol: 'XIN', decimals: 18 },
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
     infoURL: 'https://mvm.dev',
     shortName: 'mvm',
     chainId: 73927,
@@ -6549,6 +6629,24 @@ const chains = [
         url: 'https://scan.mvm.dev',
         icon: 'mvm',
         standard: 'EIP3091'
+      }
+    ]
+  },
+  {
+    name: 'ResinCoin Mainnet',
+    chain: 'RESIN',
+    rpc: [ 'https://mainnet.resincoin.ml' ],
+    faucets: [],
+    nativeCurrency: { name: 'Ether', symbol: 'RESIN', decimals: 18 },
+    infoURL: 'https://resincoin.ml',
+    shortName: 'resin',
+    chainId: 75000,
+    networkId: 75000,
+    explorers: [
+      {
+        name: 'ResinScan',
+        url: 'https://explorer.resincoin.ml',
+        standard: 'none'
       }
     ]
   },
@@ -7254,7 +7352,7 @@ const chains = [
     shortName: 'arb-rinkeby',
     chain: 'ETH',
     networkId: 421611,
-    nativeCurrency: { name: 'Arbitrum Rinkeby Ether', symbol: 'ARETH', decimals: 18 },
+    nativeCurrency: { name: 'Arbitrum Rinkeby Ether', symbol: 'ETH', decimals: 18 },
     rpc: [ 'https://rinkeby.arbitrum.io/rpc' ],
     faucets: [ 'http://fauceth.komputing.org?chain=421611&address=${ADDRESS}' ],
     infoURL: 'https://arbitrum.io',
@@ -7274,6 +7372,30 @@ const chains = [
       type: 'L2',
       chain: 'eip155-4',
       bridges: [ { url: 'https://bridge.arbitrum.io' } ]
+    }
+  },
+  {
+    name: 'Arbitrum Görli',
+    title: 'Arbitrum Görli Rollup Testnet',
+    chainId: 421613,
+    shortName: 'arb-goerli',
+    chain: 'ETH',
+    networkId: 421613,
+    nativeCurrency: { name: 'Arbitrum Görli Ether', symbol: 'AGOR', decimals: 18 },
+    rpc: [ 'https://goerli-rollup.arbitrum.io/rpc/' ],
+    faucets: [],
+    infoURL: 'https://arbitrum.io/',
+    explorers: [
+      {
+        name: 'Arbitrum Görli Rollup Explorer',
+        url: 'https://goerli-rollup-explorer.arbitrum.io',
+        standard: 'EIP3091'
+      }
+    ],
+    parent: {
+      type: 'L2',
+      chain: 'eip155-5',
+      bridges: [ { url: 'https://bridge.arbitrum.io/' } ]
     }
   },
   {
@@ -7366,6 +7488,17 @@ const chains = [
     chainId: 666666,
     networkId: 666666,
     slip44: 60
+  },
+  {
+    name: '4GoodNetwork',
+    chain: '4GN',
+    rpc: [ 'https://chain.deptofgood.com' ],
+    faucets: [],
+    nativeCurrency: { name: 'APTA', symbol: 'APTA', decimals: 18 },
+    infoURL: 'https://bloqs4good.com',
+    shortName: 'bloqs4good',
+    chainId: 846000,
+    networkId: 846000
   },
   {
     name: 'Vision - Mainnet',
@@ -7701,8 +7834,8 @@ const chains = [
   {
     name: 'Neon EVM DevNet',
     chain: 'Solana',
-    rpc: [ 'https://proxy.devnet.neonlabs.org/solana' ],
-    faucets: [ 'https://neonswap.live/#/get-tokens' ],
+    rpc: [ 'https://devnet.neonevm.org' ],
+    faucets: [ 'https://neonfaucet.org' ],
     icon: 'neon',
     nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
     infoURL: 'https://neon-labs.org',
@@ -7725,7 +7858,7 @@ const chains = [
   {
     name: 'Neon EVM MainNet',
     chain: 'Solana',
-    rpc: [ 'https://proxy.mainnet.neonlabs.org/solana' ],
+    rpc: [ 'https://mainnet.neonevm.org' ],
     faucets: [],
     icon: 'neon',
     nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
@@ -7749,7 +7882,7 @@ const chains = [
   {
     name: 'Neon EVM TestNet',
     chain: 'Solana',
-    rpc: [ 'https://proxy.testnet.neonlabs.org/solana' ],
+    rpc: [ 'https://testnet.neonevm.org' ],
     faucets: [],
     icon: 'neon',
     nativeCurrency: { name: 'Neon', symbol: 'NEON', decimals: 18 },
