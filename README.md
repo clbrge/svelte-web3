@@ -281,14 +281,14 @@ import { allChainsData } from 'svelte-web3'
 console.log( allChainsData )
 ```
 
-Alternatively, You might also use the helper function
-`getChainDataByChainId` that takes the chainId as argument and returns
-CAIP-2 data for that chain.
+Another solution is to use the helper function `getChainDataByChainId`
+that takes the chainId as argument and returns
+the CAIP-2 data or an empty object if not found.
 
 ```js
 import { getChainDataByChainId } from 'svelte-web3'
 
-console.log( getChainDataByChainId(4) )
+console.log( getChainDataByChainId(5) )
 ```
 
 ## Create contract stores
