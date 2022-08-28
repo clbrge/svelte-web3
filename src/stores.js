@@ -46,8 +46,8 @@ export const createStore = () => {
   const { emit, get, subscribe, assign, deleteAll } = proxied()
 
   const switch1193Provider = async ({
-    accounts,
     chainId,
+    accounts,
     addressOrIndex = 0
   }) => {
     // console.log('switch1193Provider', { accounts, chainId }, get('web3'), get('eipProvider'))
@@ -170,7 +170,23 @@ export const createStore = () => {
     setBrowserProvider,
     setProvider,
     disconnect,
-    close: disconnect,
+    subscribe,
+    get
+  }
+}
+
+export const createContractStore = () => {
+  const { emit, get, subscribe, assign, deleteAll } = proxied()
+
+  const attachContract = async (name, address, abi, options) => {
+    assign({
+      [name]: [address, abi, options]
+    })
+    emit()
+  }
+
+  return {
+    attachContract,
     subscribe,
     get
   }
@@ -193,6 +209,8 @@ const subStoreNames = ['web3', 'selectedAccount', 'connected', 'chainId']
 
 export const makeEvmStores = name => {
   const evmStore = (allStores[name] = createStore())
+  const registry = createContractStore()
+  const target = {}
 
   allStores[name].web3 = derived(evmStore, $evmStore => {
     if (!$evmStore.web3) return { utils: Web3.utils, version: Web3.version }
@@ -231,8 +249,23 @@ export const makeEvmStores = name => {
     return 'Unknown'
   })
 
+  allStores[name].contracts = derived(
+    [ evmStore, registry ],
+    ([ $evmStore, $registry ]) => {
+      if (!$evmStore.connected) return target
+      for (let key of Object.keys($registry)) {
+        target[key] = new $evmStore.web3.eth.Contract($registry[key][1], $registry[key][0], $registry[key][2])
+      }
+      return target
+    }
+  )
+
+  // force one subscribtion on $contracts so it's defined via proxy
+  allStores[name].contracts.subscribe(()=>{})
+
   return new Proxy(allStores[name], {
     get: function (internal, property) {
+      if (property === '$contracts') return target
       if (/^\$/.test(property)) {
         // TODO forbid deconstruction !
         property = property.slice(1)
@@ -240,6 +273,7 @@ export const makeEvmStores = name => {
           return allStores[name].get(property)
         throw new Error(`[svelte-web3] no value for store named ${property}`)
       }
+      if (property === 'attachContract') return registry.attachContract
       if (
         [
           'subscribe',
@@ -266,32 +300,33 @@ export const getChainStore = name => {
   return allStores[name]
 }
 
-export const makeContractStore = (abi, address, defaults = {}) =>
-  derived([web3, connected], ([$web3, $connected]) => {
-    if ($connected && $web3.eth) {
-      return new $web3.eth.Contract(abi, address, defaults)
-    }
-    return null
-  })
-
 loadWeb3()
 
 export { chains as allChainsData }
 
-export const getChainDataByChainId = id => (allChainsData.filter(o => o.chainId === id) || [{}])[0]
+export const getChainDataByChainId = id => (chains.filter(o => o.chainId === id) || [{}])[0]
 
 export const defaultEvmStores = makeEvmStores('default')
 
 export const connected = allStores.default.connected
 export const chainId = allStores.default.chainId
-export const evmProviderType = allStores.default.evmProviderType
+export const chainData = allStores.default.chainData
+
 export const selectedAccount = allStores.default.selectedAccount
 export const web3 = allStores.default.web3
-export const chainData = allStores.default.chainData
+
+export const evmProviderType = allStores.default.evmProviderType
+export const contracts = allStores.default.contracts
 
 // TODO spin off dectector
 export const walletType = allStores.default.walletType
 
-// legacy naming
-
-export const defaultChainStore = defaultEvmStores
+// TODO legacy makeContractStore to be removed
+export const makeContractStore = (abi, address, defaults = {}) =>
+ console.warn('makeContractStore is deprecated. Please use teh new $contracts store')
+ derived([web3, connected], ([$web3, $connected]) => {
+    if ($connected && $web3.eth) {
+      return new $web3.eth.Contract(abi, address, defaults)
+    }
+    return null
+  })

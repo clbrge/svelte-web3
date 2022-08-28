@@ -93,17 +93,7 @@
 
 </div>
 
-<hr />
-
-<a class="menu" href="/"> Home </a>
-
-
 <style>
-
-  .content {
-    font-size: 90%;
-    min-height: calc(100vh - 10em);
-  }
 
   select {
     margin-top: 1em;

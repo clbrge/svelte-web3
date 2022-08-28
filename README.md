@@ -64,7 +64,7 @@ import { defaultEvmStores } from 'svelte-web3'
 
 :exclamation: `defaultEvmStores` was named before `defaultChainStore`. The
 former naming has been removed in later versions of
-`svelte-web3` package. Please update your code!
+`svelte-web3` package.
 
 ### Connection with the browser provider (eg wallets like Metamask)
 
@@ -196,6 +196,66 @@ not it's value).
   const { name, chainId } = await $web3.eth.getChainId()
 
   const balance = await $web3.eth.getBalance('0x0000000000000000000000000000000000000000') : ''
+
+```
+
+### Using the contracts store for reactive contract calls
+
+To enjoy the same reactivity as using `$web3` but with a `web3.eth.Contract`
+contract instance, you first need to declare its address and interface. To
+differentiate each `eth.Contract` instance, you also need to define a logical
+name. That's the function `attachContract`:
+
+
+```html
+<script>
+
+  import { defaultEvmStores as evm } from 'svelte-web3'
+
+  // ... 
+
+  evm.attachContract('myContract',<address>, <abi>)
+
+</script>
+```
+
+`attachContract` only needs to be called once and can be called before
+connection since `web3.eth.Contract` instances will only be created when
+a connection becomes available. You may want to reattach new contract
+definition or abi for example when you the current network change. For
+the old definition will be overwritten and instance updated in the
+`contracts` store, simply use the same logical name.
+
+After a contract as be declared, you can use its instance anywhere
+using the `$` notation and the logical name :
+
+```html
+<script>
+
+  import { contracts } from 'svelte-web3'
+
+  // ... 
+
+</script>
+
+
+  {#await $contracts.myContract.methods.totalSupply().call()}
+
+  <span>waiting...</span>
+
+  {:then value}
+
+  <span>result of contract call totalSupply on my contract : { value }   </span>
+
+  {/await}
+
+```
+
+By default, `svelte-web3` build contract instances using the current connection
+options. You may want to overwrite options by passing them as fourth argument.
+
+```js
+  defaultEvmStores.attachContract('myContract', <address>, <abi>, { from: <account>, ... })
 ```
 
 ### Reading stores outside of Svelte files
@@ -292,19 +352,6 @@ import { getChainDataByChainId } from 'svelte-web3'
 console.log( getChainDataByChainId(5) )
 ```
 
-## Create contract stores
-
-The function `makeContractStore` allows you to create a Svelte derived
-store of a `web3.eth.Contract` object instance. It takes the same
-parameters as a ̀new web3.eth.Contract` call:
-
-```js
-makeContractStore(jsonInterface[, address][, options])
-```
-
-This store is also conveniently and automatically updated after
-connection and when the account or chain change.
-
 
 ## Web3 Svelte component [ experimental ]
 
@@ -323,6 +370,19 @@ discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
 <p>balance = <Balance address="0x0000000000000000000000000000000000000000" /></p>
 
 ```
+
+## Create contract stores (deprecated)
+
+The function `makeContractStore` allowed you to create a Svelte derived
+store of a `web3.eth.Contract` object instance. It takes the same
+parameters as a ̀new web3.eth.Contract` call:
+
+```js
+makeContractStore(jsonInterface[, address][, options])
+```
+
+This function will be removed in the next major release of `svelte-web3`.
+Please update your code to use the new $contracts store.
 
 ## Simultaneous multi chain usage
 
@@ -394,16 +454,18 @@ Please check [examples/sveltekit-app-template-web3 on github](https://github.com
 
 ### Svelte basic example (based on rollup template)
 
+:exclamation: This is a legacy example and will be removed in future version of `svelte-web3`.
+
 Please check [examples/svelte-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
 
-This is a legacy example and will be removed in future version of `svelte-web3`.
 
 Contains demos to use the default store and multi stores.
 
 ### Sapper basic example (based on webpack template)
 
+:exclamation: This is a legacy example and will be removed in future version of `svelte-web3`.
+
 Please check [examples/sapper-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
-This is a legacy example and will be removed in future version of `svelte-web3`.
 
 
 ### tradingstrategy.ai presented at EthLisbon 2021

@@ -79,3 +79,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* svelte-web3|ethers */
+
+.content {
+  font-size: 90%;
+  min-height: calc(100vh - 10em);
+}
+
+.menu {
+  display: flex;
+
+}
+
+.menu a {
+  width: 30%;
+}
