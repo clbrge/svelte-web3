@@ -66,7 +66,7 @@ import { defaultEvmStores } from 'svelte-web3'
 former naming has been removed in later versions of
 `svelte-web3` package.
 
-### Connection with the browser provider (eg wallets like Metamask)
+### Connection with the browser provider (eg wallets like MetaMask)
 
 To enable a connection with the current [EIP-1193
 provider](https://eips.ethereum.org/EIPS/eip-1193#appendix-i-consumer-facing-api-documentation)
@@ -428,12 +428,25 @@ stores this way :
 ```
 ## FAQ
 
-### *how to auto-connect on page load?*
+### *What would be the most basic scaffolding to get Svelte + web3 running*
 
-It is out of scope of this package to implement this function but it
-generally depends on the type of provider you are using and a way to
-store connection information between page loads (for example by using
-localStorage).
+Assuming that you already have a working injected provider like MetaMask in your browser:
+
+1. npm create vite@latest myapp -- --template svelte
+2. cd myapp && npm install svelte-web3
+3. add `web3.js` script loading tag inside the `index.html` header (see above)
+4. add this minimal connection code in App.svelte:
+```js
+  import { onMount } from 'svelte'
+  import { defaultEvmStores as evm, selectedAccount, chainId } from 'svelte-web3'
+  onMount( evm.setProvider )
+```
+5. use the stores in the HTML
+```html
+  <p>account: {$selectedAccount} / chainId: {$chainId}</p>
+```
+6. `npm run dev`
+
 
 ### *X doesn't work after `await defaultEvmStores.setProvider()`*
 
@@ -458,6 +471,13 @@ onMount(() => {
   evm.setProvider()
 })
 ```
+
+### *how to auto-connect on page load?*
+
+It is out of scope of this package to implement this function but it
+generally depends on the type of provider you are using and a way to
+store connection information between page loads (for example by using
+localStorage).
 
 
 ## Examples
