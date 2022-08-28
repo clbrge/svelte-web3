@@ -3,7 +3,7 @@
 
 Use the [web3.js library](https://web3js.readthedocs.io/) as a
 collection of [readable Svelte stores](https://svelte.dev/tutorial/readable-stores)
-for Svelte, Sapper or SvelteKit.
+for Svelte or SvelteKit.
 
 If you prefer to use the [ethers.js
 library](https://docs.ethers.io/v5/) to intereact with EVM, you may be
@@ -23,15 +23,15 @@ Discord](https://discord.gg/7yXuwDwaHF).
 npm i svelte-web3
 ```
 
-2. add the web3.js library in the main HTML page (`public/index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in SvelteKit)
+2. add the web3.js library in the main HTML page (`index.html` in Svelte, `src/template.html` in Sapper or `src/app.html` in SvelteKit)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 ```
 
-This step is necessary for now because the Web3.js library doesn't
-play well with bundlers (webpack, vite, snowpack, etc), thus we cannot
-simply add a dependency in package.json.
+This step is necessary for now because the Web3.js library doesn't play well
+with bundlers (Vite, Rollup, Webpack, Snowpack, etc), thus we cannot simply add
+a dependency in package.json.
 
 
 ## Basic usage (default stores connected to one chain)
@@ -51,19 +51,19 @@ import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web
  * web3: store value is a Web3.js instance when connected.
  * selectedAccount: store value is the current selected account (when connected).
  * chainId: store value is the current chainId when connected.
- * chainData: store value is the current blokchain CAIP-2 data (when connected), see below.
+ * chainData: store value is the current blockchain CAIP-2 data (when connected), see below.
 
 For these stores to be useful in your Svelte application, a connection
 to an EVM blockchain first need to established . The abstract helper
 `defaultEvmStores` can be used to initiate the connection and
-automatically instanciate all stores.
+automatically instantiate all stores.
 
 ```js
 import { defaultEvmStores } from 'svelte-web3'
 ```
 
 :exclamation: `defaultEvmStores` was named before `defaultChainStore`. The
-former naming still works but will be removed in later versions of
+former naming has been removed in later versions of
 `svelte-web3` package. Please update your code!
 
 ### Connection with the browser provider (eg wallets like Metamask)
@@ -103,6 +103,7 @@ removed in later versions. Please update your code!
 
 To connect to non injected EIP-1193 providers like :
 
+ * web3-onboard
  * buidler.dev
  * ethers.js
  * eth-provider
@@ -383,25 +384,30 @@ If you are using `svelte-web3` to build an open source Dapp, let us know
 if you want to be listed in this section.
 
 
-### Svelte basic example (based on rollup template)
+### Svelte basic example (using Vite)
 
-Please check [examples/svelte-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
-
-Contains demos to use the default store and multi stores.
+Please check [examples/svelte-vite-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-vite-template-web3).
 
 ### SvelteKit basic example
 
 Please check [examples/sveltekit-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/sveltekit-app-template-web3).
 
+### Svelte basic example (based on rollup template)
+
+Please check [examples/svelte-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
+
+This is a legacy example and will be removed in future version of `svelte-web3`.
+
+Contains demos to use the default store and multi stores.
+
 ### Sapper basic example (based on webpack template)
 
 Please check [examples/sapper-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
+This is a legacy example and will be removed in future version of `svelte-web3`.
 
 
 ### tradingstrategy.ai presented at EthLisbon 2021
 
 A website presented in EthLisbon 2021, used svelte-web3 (version 2) for building the frontend. :
 
-* The page is live here: https://tradingstrategy.ai/strategy/ethlisbon
-* Source code : https://github.com/tradingstrategy-ai/frontend/blob/master/src/lib/web3/Investor.svelte
 * Tutorial: https://tradingstrategy.ai/blog/building-cryptocurrency-website

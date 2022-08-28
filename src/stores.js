@@ -136,7 +136,7 @@ export const createStore = () => {
       return set1193Provider(provider, addressOrIndex)
     init()
     const web3 = new Web3(provider)
-    const chainId = alwaysNumber(await get('web3').eth.getChainId())
+    const chainId = alwaysNumber(await web3.eth.getChainId())
     let accounts = []
     try {
       // not all provider support accounts
@@ -178,7 +178,7 @@ export const createStore = () => {
 
 const allStores = {}
 
-const noData = { rpc: [], faucets: [], nativeCurrency: {} }
+const noData = { rpc: [], explorers: [{}], faucets: [], nativeCurrency: {} }
 
 const getData = id => {
   if (!id || !Web3.utils) return noData
