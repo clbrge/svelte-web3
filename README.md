@@ -435,7 +435,29 @@ generally depends on the type of provider you are using and a way to
 store connection information between page loads (for example by using
 localStorage).
 
+### *X doesn't work after `await defaultEvmStores.setProvider()`*
 
+It's not sufficient to `await` for the `setProvider` to be certain that
+other derived stores have been populated. Instead you should subscribe
+to the needed store and put your code inside the handler.
+
+For example:
+
+on
+
+```js
+import { defaultEvmStores as evm, web3, selectedAccount } from 'svelte-web3'
+
+selectedAccount.subscribe(async $selectedAccount => {
+    if (!$selectedAccount) return
+    // do stuff here
+    // ...
+})
+
+onMount(() => {
+  evm.setProvider()
+})
+```
 
 
 ## Examples

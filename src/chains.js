@@ -5495,22 +5495,23 @@ const chains = [
     networkId: 8029
   },
   {
-    name: 'GeneChain Adenine Testnet',
-    chain: 'GeneChain',
-    rpc: [ 'https://rpc-testnet.genechain.io' ],
-    faucets: [ 'https://faucet.genechain.io' ],
-    nativeCurrency: { name: 'Testnet RNA', symbol: 'tRNA', decimals: 18 },
-    infoURL: 'https://scan-testnet.genechain.io/',
-    shortName: 'GeneChainAdn',
+    name: 'Shardeum Liberty 1.3',
+    chain: 'Shardeum',
+    rpc: [ 'https://liberty10.shardeum.org/' ],
+    faucets: [ 'https://faucet.liberty10.shardeum.org' ],
+    nativeCurrency: { name: 'Shardeum SHM', symbol: 'SHM', decimals: 18 },
+    infoURL: 'https://docs.shardeum.org/',
+    shortName: 'ShardeumSHM',
     chainId: 8080,
     networkId: 8080,
     explorers: [
       {
-        name: 'GeneChain Adenine Testnet Scan',
-        url: 'https://scan-testnet.genechain.io',
+        name: 'Sharedum Scan',
+        url: 'https://explorer.liberty10.shardeum.org',
         standard: 'EIP3091'
       }
-    ]
+    ],
+    redFlags: [ 'reusedChainId' ]
   },
   {
     name: 'Klaytn Mainnet Cypress',
@@ -5541,6 +5542,32 @@ const chains = [
     shortName: 'Kortho',
     chainId: 8285,
     networkId: 8285
+  },
+  {
+    name: 'Toki Network',
+    chain: 'TOKI',
+    rpc: [ 'https://mainnet.buildwithtoki.com/v0/rpc' ],
+    faucets: [],
+    nativeCurrency: { name: 'Toki', symbol: 'TOKI', decimals: 18 },
+    infoURL: 'https://www.buildwithtoki.com',
+    shortName: 'toki',
+    chainId: 8654,
+    networkId: 8654,
+    icon: 'toki',
+    explorers: []
+  },
+  {
+    name: 'Toki Testnet',
+    chain: 'TOKI',
+    rpc: [ 'https://testnet.buildwithtoki.com/v0/rpc' ],
+    faucets: [],
+    nativeCurrency: { name: 'Toki', symbol: 'TOKI', decimals: 18 },
+    infoURL: 'https://www.buildwithtoki.com',
+    shortName: 'toki-testnet',
+    chainId: 8655,
+    networkId: 8655,
+    icon: 'toki',
+    explorers: []
   },
   {
     name: 'TOOL Global Mainnet',
