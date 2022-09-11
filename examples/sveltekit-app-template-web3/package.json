@@ -7,6 +7,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@openzeppelin/contracts": "^4.7.3",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"svelte": "^3.46.0",

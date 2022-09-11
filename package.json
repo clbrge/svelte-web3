@@ -38,11 +38,11 @@
     "eslint-plugin-svelte3": "^4.0.0",
     "lint-staged": "^13.0.3",
     "prettier-standard": "^16.4.1",
-    "release-it": "^15.4.0",
-    "rollup": "^2.78.1",
+    "release-it": "^15.4.1",
+    "rollup": "^2.79.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.49.0",
+    "svelte": "^3.50.1",
     "web3": "1.7.5"
   },
   "lint-staged": {
