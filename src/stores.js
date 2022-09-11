@@ -159,7 +159,10 @@ export const createStore = () => {
     emit()
   }
 
-  const setBrowserProvider = () => setProvider()
+  const setBrowserProvider = () => {
+    console.warn('[svelte-web3] setBrowserProvider is deprecated. Please use setProvider() without argument instead.')
+    return setProvider()
+  }
 
   const disconnect = async () => {
     init()
@@ -323,7 +326,7 @@ export const walletType = allStores.default.walletType
 
 // TODO legacy makeContractStore to be removed
 export const makeContractStore = (abi, address, defaults = {}) =>
- console.warn('makeContractStore is deprecated. Please use teh new $contracts store')
+ console.warn('[svelte-web3] makeContractStore is deprecated. Please use the new $contracts store')
  derived([web3, connected], ([$web3, $connected]) => {
     if ($connected && $web3.eth) {
       return new $web3.eth.Contract(abi, address, defaults)

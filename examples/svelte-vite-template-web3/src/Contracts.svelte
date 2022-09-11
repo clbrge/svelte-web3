@@ -53,7 +53,7 @@
   {:else}
 
     <p>
-      Please first <a href="/setproviders">connect</a>
+      Please first <a href="/setprovider">connect</a>
       connect to the görli network to be able to use this page.
     </p>
 
