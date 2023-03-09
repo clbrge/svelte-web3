@@ -36,14 +36,14 @@
   },
   "devDependencies": {
     "eslint-plugin-svelte3": "^4.0.0",
-    "lint-staged": "^13.1.0",
+    "lint-staged": "^13.1.2",
     "prettier-standard": "^16.4.1",
-    "release-it": "^15.5.1",
-    "rollup": "^2.79.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.55.0",
-    "web3": "1.8.1"
+    "release-it": "^15.7.0",
+    "rollup": "^3.18.0",
+    "rollup-plugin-dts": "^5.2.0",
+    "rollup-plugin-svelte": "^7.1.4",
+    "svelte": "^3.55.1",
+    "web3": "1.8.2"
   },
   "lint-staged": {
     "*": [
