@@ -1,4 +1,3 @@
-
 # svelte-web3
 
 Use the [web3.js library](https://web3js.readthedocs.io/) as a
@@ -33,7 +32,6 @@ This step is necessary for now because the Web3.js library doesn't play well
 with bundlers (Vite, Rollup, Webpack, Snowpack, etc), thus we cannot simply add
 a dependency in package.json.
 
-
 ## Basic usage (default stores connected to one chain)
 
 ### Derived stores
@@ -44,14 +42,20 @@ or the selected account change. You can import them directly in any
 Svelte or JavaScript files :
 
 ```js
-import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
+import {
+  connected,
+  web3,
+  selectedAccount,
+  chainId,
+  chainData
+} from 'svelte-web3'
 ```
 
- * connected: store value is true if a connection has been set up.
- * web3: store value is a Web3.js instance when connected.
- * selectedAccount: store value is the current selected account (when connected).
- * chainId: store value is the current chainId when connected.
- * chainData: store value is the current blockchain CAIP-2 data (when connected), see below.
+- connected: store value is true if a connection has been set up.
+- web3: store value is a Web3.js instance when connected.
+- selectedAccount: store value is the current selected account (when connected).
+- chainId: store value is the current chainId when connected.
+- chainData: store value is the current blockchain CAIP-2 data (when connected), see below.
 
 For these stores to be useful in your Svelte application, a connection
 to an EVM blockchain first need to established . The abstract helper
@@ -83,12 +87,10 @@ Sapper or SvelteKit. Similarly, you cannot use `setProvider` with no
 argument in SSR context.
 
 ```js
-  onMount(
-    () => {
-      // add a test to return in SSR context
-      defaultEvmStores.setProvider()
-    }
-  )
+onMount(() => {
+  // add a test to return in SSR context
+  defaultEvmStores.setProvider()
+})
 ```
 
 `svelte-web3` will automatically update the stores when the network or
@@ -98,17 +100,16 @@ accounts change and remove listeners at disconnection.
 method `setBrowserProvider`. The former naming still works but will be
 removed in later versions. Please update your code!
 
-
 ### Connection with non injected EIP-1193 providers
 
 To connect to non injected EIP-1193 providers like :
 
- * web3-onboard
- * buidler.dev
- * ethers.js
- * eth-provider
- * WalletConnect
- * Web3Modal
+- web3-onboard
+- buidler.dev
+- ethers.js
+- eth-provider
+- WalletConnect
+- Web3Modal
 
 Call `setProvider` on the library abstract helper with the JavaScript provider
 instance object of the library. For example with Web3Modal :
@@ -123,8 +124,8 @@ defaultEvmStores.setProvider(provider)
 accounts change and remove listeners at disconnection.
 
 Please check
- `examples/svelte-app-template-web3/src/Web3Modal.svelte`(https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3/src/Web3Modal.svelte).
- in github for a complete example.
+`examples/svelte-app-template-web3/src/Web3Modal.svelte`(https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3/src/Web3Modal.svelte).
+in github for a complete example.
 
 ### Connection with other Web3 providers (ws, http, ipc, ...)
 
@@ -134,19 +135,25 @@ Web3.providers`, for example :
 
 ```js
 defaultEvmStores.setProvider('https://rinkeby.infura.io/v3/your-api-key')
-// or 
-defaultEvmStores.setProvider('https://eth-mainnet.alchemyapi.io/v2/your-api-key')
-// or 
+// or
+defaultEvmStores.setProvider(
+  'https://eth-mainnet.alchemyapi.io/v2/your-api-key'
+)
+// or
 defaultEvmStores.setProvider('http://localhost:8545')
-// or 
-defaultEvmStores.setProvider(new Web3.providers.WebsocketProvider('ws://localhost:8546'))
-// or 
+// or
+defaultEvmStores.setProvider(
+  new Web3.providers.WebsocketProvider('ws://localhost:8546')
+)
+// or
 var net = require('net')
-defaultEvmStores.setProvider(new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net))
+defaultEvmStores.setProvider(
+  new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net)
+)
 // etc...
 ```
-### Selecting a specific account
 
+### Selecting a specific account
 
 You can also pass `Index` as the second argument of `setProvider()` to
 select another account than the default when possible.
@@ -161,12 +168,9 @@ After a connection has been established, you may import the stores
 anywhere in your application. Most of the time, you should use the `$`
 prefix Svelte notation to access the stores values.
 
-
 ```html
 <script>
-
   import { connected, chainId } from 'svelte-web3'
-
 </script>
 
 {#if !$connected}
@@ -206,16 +210,14 @@ contract instance, you first need to declare its address and interface. To
 differentiate each `eth.Contract` instance, you also need to define a logical
 name. That's the function `attachContract`:
 
-
 ```html
 <script>
 
   import { defaultEvmStores as evm } from 'svelte-web3'
 
-  // ... 
+  // ...
 
   evm.attachContract('myContract',<address>, <abi>)
-
 </script>
 ```
 
@@ -231,24 +233,20 @@ using the `$` notation and the logical name :
 
 ```html
 <script>
-
   import { contracts } from 'svelte-web3'
 
-  // ... 
-
+  // ...
 </script>
 
+{#await $contracts.myContract.methods.totalSupply().call()}
 
-  {#await $contracts.myContract.methods.totalSupply().call()}
+<span>waiting...</span>
 
-  <span>waiting...</span>
+{:then value}
 
-  {:then value}
+<span>result of contract call totalSupply on my contract : { value } </span>
 
-  <span>result of contract call totalSupply on my contract : { value }   </span>
-
-  {/await}
-
+{/await}
 ```
 
 By default, `svelte-web3` build contract instances using the current connection
@@ -266,13 +264,11 @@ values in pure javascript library without subscribing to the store,
 you can use a special getter on the library abstract helper:
 
 ```js
-// this is not a Svelte file but a standard JavaScript file 
+// this is not a Svelte file but a standard JavaScript file
 import { defaultEvmStores } from 'svelte-web3'
 
 if (defaultEvmStores.$selectedAccount) {
-
   // do something if store selectedAccount is non null
-
 }
 ```
 
@@ -300,7 +296,7 @@ This object is extremely useful to build components that reactively
 update all variables elements that depends on the current active chain
 or account.
 
-Below is the CAIP-2 formatted information when the default store is 
+Below is the CAIP-2 formatted information when the default store is
 connected with the Ethereum Mainnet :
 
 ```json
@@ -324,11 +320,13 @@ connected with the Ethereum Mainnet :
   "networkId": 1,
   "slip44": 60,
   "ens": { "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" },
-  "explorers": [{
-    "name": "etherscan",
-    "url": "https://etherscan.io",
-    "standard": "EIP3091"
-  }]
+  "explorers": [
+    {
+      "name": "etherscan",
+      "url": "https://etherscan.io",
+      "standard": "EIP3091"
+    }
+  ]
 }
 ```
 
@@ -339,7 +337,7 @@ the list of all CAIP-2 data available.
 ```js
 import { allChainsData } from 'svelte-web3'
 
-console.log( allChainsData )
+console.log(allChainsData)
 ```
 
 Another solution is to use the helper function `getChainDataByChainId`
@@ -349,19 +347,16 @@ the CAIP-2 data or an empty object if not found.
 ```js
 import { getChainDataByChainId } from 'svelte-web3'
 
-console.log( getChainDataByChainId(5) )
+console.log(getChainDataByChainId(5))
 ```
 
-
 ## Web3 Svelte component [ experimental ]
-
 
 We plan to export generic Svelte components both to demonstrate the use
 of the svelte-web3 library and as resuable and composable best practices
 components. Only a `Balance` component has been implemented for now. You
 are welcome to help define and develop new components by joining our
 discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
-
 
 ```html
   import { Balance } from 'svelte-web3/components'
@@ -387,7 +382,7 @@ Please update your code to use the new $contracts store.
 ## Simultaneous multi chain usage
 
 You can also using the library to create several stores, each
-connected to different providers.  For example, you may want a
+connected to different providers. For example, you may want a
 connection to the same chain througth the browser wallet and
 simultaneously with Infura; or many stores each connected to a
 different chains at the same time.
@@ -395,23 +390,24 @@ different chains at the same time.
 In this case, use the `makeEvmStores` factory function as below :
 
 ```js
-  import { makeEvmStores } from 'svelte-web3'
+import { makeEvmStores } from 'svelte-web3'
 
-  let evmStores, web3, connected, selectedAccount, chainId, chainData
-  ({ web3, connected, selectedAccount, chainId, chainData, ...evmStores } = makeEvmStores('<id>'))
+let evmStores, web3, connected, selectedAccount, chainId, chainData
+;({ web3, connected, selectedAccount, chainId, chainData, ...evmStores } =
+  makeEvmStores('<id>'))
 
-  evmStores.setProvider('https://rpc.slock.it/goerli')
+evmStores.setProvider('https://rpc.slock.it/goerli')
 ```
 
 `<id>` can be an arbitrary name to be able to retrieve the store with the function `getChainStore`
 without reinitializing the conection:
 
-
 ```js
-  import { getChainStore } from 'svelte-web3'
+import { getChainStore } from 'svelte-web3'
 
-  let evmStores, web3, connected, selectedAccount, chainId, chainData
-  ({ web3, connected, selectedAccount, chainId, chainData, ...evmStores } = getChainStore('<id>'))
+let evmStores, web3, connected, selectedAccount, chainId, chainData
+;({ web3, connected, selectedAccount, chainId, chainData, ...evmStores } =
+  getChainStore('<id>'))
 ```
 
 The `web3` store and all other derived stores will work the same way as with the default store.
@@ -421,14 +417,15 @@ If you want to use the different chain stores in the same Svelte file
 stores this way :
 
 ```js
-  let evmStores_A, web3_A, evmStores_B, web3_B
-
-  ({ web3: web3_A, ...evmStores_A } = makeEvmStores('<id_A>'))
+let evmStores_A, web3_A, evmStores_B, web3_B
+;({ web3: web3_A, ...evmStores_A } = makeEvmStores('<id_A>'))(
   ({ web3: web3_B, ...evmStores_B } = makeEvmStores('<id_B>'))
+)
 ```
+
 ## FAQ
 
-### *What would be the most basic scaffolding to get Svelte + web3 running*
+### _What would be the most basic scaffolding to get Svelte + web3 running_
 
 Assuming that you already have a working injected provider like MetaMask in your browser:
 
@@ -436,19 +433,22 @@ Assuming that you already have a working injected provider like MetaMask in your
 2. cd myapp && npm install svelte-web3
 3. add `web3.js` script loading tag inside the `index.html` header (see above)
 4. add this minimal connection code in App.svelte:
+
 ```js
-  import { onMount } from 'svelte'
-  import { defaultEvmStores as evm, selectedAccount, chainId } from 'svelte-web3'
-  onMount( evm.setProvider )
+import { onMount } from 'svelte'
+import { defaultEvmStores as evm, selectedAccount, chainId } from 'svelte-web3'
+onMount(evm.setProvider)
 ```
+
 5. use the stores in the HTML
+
 ```html
-  <p>account: {$selectedAccount} / chainId: {$chainId}</p>
+<p>account: {$selectedAccount} / chainId: {$chainId}</p>
 ```
+
 6. `npm run dev`
 
-
-### *X doesn't work after `await defaultEvmStores.setProvider()`*
+### _X doesn't work after `await defaultEvmStores.setProvider()`_
 
 It's not sufficient to `await` for the `setProvider` to be certain that
 other derived stores have been populated. Instead you should subscribe
@@ -461,10 +461,10 @@ on
 ```js
 import { defaultEvmStores as evm, web3, selectedAccount } from 'svelte-web3'
 
-selectedAccount.subscribe(async $selectedAccount => {
-    if (!$selectedAccount) return
-    // do stuff here
-    // ...
+selectedAccount.subscribe(async ($selectedAccount) => {
+  if (!$selectedAccount) return
+  // do stuff here
+  // ...
 })
 
 onMount(() => {
@@ -472,19 +472,17 @@ onMount(() => {
 })
 ```
 
-### *how to auto-connect on page load?*
+### _how to auto-connect on page load?_
 
 It is out of scope of this package to implement this function but it
 generally depends on the type of provider you are using and a way to
 store connection information between page loads (for example by using
 localStorage).
 
-
 ## Examples
 
 If you are using `svelte-web3` to build an open source Dapp, let us know
 if you want to be listed in this section.
-
 
 ### Svelte basic example (using Vite)
 
@@ -500,7 +498,6 @@ Please check [examples/sveltekit-app-template-web3 on github](https://github.com
 
 Please check [examples/svelte-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/svelte-app-template-web3).
 
-
 Contains demos to use the default store and multi stores.
 
 ### Sapper basic example (based on webpack template)
@@ -509,9 +506,8 @@ Contains demos to use the default store and multi stores.
 
 Please check [examples/sapper-app-template-web3 on github](https://github.com/clbrge/svelte-web3/tree/master/examples/sapper-app-template-web3).
 
-
 ### tradingstrategy.ai presented at EthLisbon 2021
 
 A website presented in EthLisbon 2021, used svelte-web3 (version 2) for building the frontend. :
 
-* Tutorial: https://tradingstrategy.ai/blog/building-cryptocurrency-website
+- Tutorial: https://tradingstrategy.ai/blog/building-cryptocurrency-website

@@ -27,7 +27,7 @@
   },
   "scripts": {
     "update-chains": "node ./scripts/update-chains.mjs",
-    "lint": "prettier-standard --lint 'src/**/*.js'",
+    "format": "prettier --plugin-search-dir . --write .",
     "build": "rollup -c"
   },
   "prettier": "prettier-config-standard",
@@ -47,9 +47,7 @@
     "web3": "1.9.0"
   },
   "lint-staged": {
-    "*": [
-      "prettier-standard --lint"
-    ]
+    "*.{js,json,md}": "prettier --write"
   },
   "release-it": {
     "github": {

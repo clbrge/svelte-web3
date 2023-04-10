@@ -40,7 +40,8 @@ const getWindowEthereum = () => {
 }
 
 // always get chainId as number
-const alwaysNumber = n => Web3.utils.isHex(n) ? Web3.utils.hexToNumber(n) : n
+const alwaysNumber = (n) =>
+  Web3.utils.isHex(n) ? Web3.utils.hexToNumber(n) : n
 
 export const createStore = () => {
   const { emit, get, subscribe, assign, deleteAll } = proxied()
@@ -73,10 +74,11 @@ export const createStore = () => {
     emit()
   }
 
-  const accountsChangedHandler = accounts => switch1193Provider({ accounts })
-  const chainChangedHandler = chainId => switch1193Provider({ chainId: alwaysNumber(chainId) })
+  const accountsChangedHandler = (accounts) => switch1193Provider({ accounts })
+  const chainChangedHandler = (chainId) =>
+    switch1193Provider({ chainId: alwaysNumber(chainId) })
   // TODO better error support ?
-  const disconnectHandler = error => switch1193Provider({ error })
+  const disconnectHandler = (error) => switch1193Provider({ error })
 
   const init = () => {
     loadWeb3()
@@ -160,7 +162,9 @@ export const createStore = () => {
   }
 
   const setBrowserProvider = () => {
-    console.warn('[svelte-web3] setBrowserProvider is deprecated. Please use setProvider() without argument instead.')
+    console.warn(
+      '[svelte-web3] setBrowserProvider is deprecated. Please use setProvider() without argument instead.'
+    )
     return setProvider()
   }
 
@@ -199,7 +203,7 @@ const allStores = {}
 
 const noData = { rpc: [], explorers: [{}], faucets: [], nativeCurrency: {} }
 
-const getData = id => {
+const getData = (id) => {
   if (!id || !Web3.utils) return noData
   if (Web3.utils.isHexStrict(id)) id = Web3.utils.hexToNumber(id)
   for (const data of chains) {
@@ -210,35 +214,35 @@ const getData = id => {
 
 const subStoreNames = ['web3', 'selectedAccount', 'connected', 'chainId']
 
-export const makeEvmStores = name => {
+export const makeEvmStores = (name) => {
   const evmStore = (allStores[name] = createStore())
   const registry = createContractStore()
   const target = {}
 
-  allStores[name].web3 = derived(evmStore, $evmStore => {
+  allStores[name].web3 = derived(evmStore, ($evmStore) => {
     if (!$evmStore.web3) return { utils: Web3.utils, version: Web3.version }
     return $evmStore.web3
   })
 
   allStores[name].selectedAccount = derived(
     evmStore,
-    $evmStore => $evmStore.selectedAccount
+    ($evmStore) => $evmStore.selectedAccount
   )
 
   allStores[name].connected = derived(
     evmStore,
-    $evmStore => $evmStore.connected
+    ($evmStore) => $evmStore.connected
   )
-  allStores[name].chainId = derived(evmStore, $evmStore => $evmStore.chainId)
-  allStores[name].chainData = derived(evmStore, $evmStore =>
+  allStores[name].chainId = derived(evmStore, ($evmStore) => $evmStore.chainId)
+  allStores[name].chainData = derived(evmStore, ($evmStore) =>
     $evmStore.chainId ? getData($evmStore.chainId) : {}
   )
 
   allStores[name].evmProviderType = derived(
     evmStore,
-    $evmStore => $evmStore.evmProviderType
+    ($evmStore) => $evmStore.evmProviderType
   )
-  allStores[name].walletType = derived(evmStore, $evmStore => {
+  allStores[name].walletType = derived(evmStore, ($evmStore) => {
     if (!$evmStore.eipProvider) return null
     if (typeof $evmStore.eipProvider === 'string') return $evmStore.eipProvider
     if ($evmStore.eipProvider.isNiftyWallet) return 'Nifty'
@@ -253,18 +257,22 @@ export const makeEvmStores = name => {
   })
 
   allStores[name].contracts = derived(
-    [ evmStore, registry ],
-    ([ $evmStore, $registry ]) => {
+    [evmStore, registry],
+    ([$evmStore, $registry]) => {
       if (!$evmStore.connected) return target
       for (let key of Object.keys($registry)) {
-        target[key] = new $evmStore.web3.eth.Contract($registry[key][1], $registry[key][0], $registry[key][2])
+        target[key] = new $evmStore.web3.eth.Contract(
+          $registry[key][1],
+          $registry[key][0],
+          $registry[key][2]
+        )
       }
       return target
     }
   )
 
   // force one subscribtion on $contracts so it's defined via proxy
-  allStores[name].contracts.subscribe(()=>{})
+  allStores[name].contracts.subscribe(() => {})
 
   return new Proxy(allStores[name], {
     get: function (internal, property) {
@@ -297,7 +305,7 @@ export const makeEvmStores = name => {
   })
 }
 
-export const getChainStore = name => {
+export const getChainStore = (name) => {
   if (!allStores[name])
     throw new Error(`[svelte-web3] chain store ${name} does not exist`)
   return allStores[name]
@@ -307,7 +315,8 @@ loadWeb3()
 
 export { chains as allChainsData }
 
-export const getChainDataByChainId = id => (chains.filter(o => o.chainId === id) || [{}])[0]
+export const getChainDataByChainId = (id) =>
+  (chains.filter((o) => o.chainId === id) || [{}])[0]
 
 export const defaultEvmStores = makeEvmStores('default')
 
@@ -326,10 +335,12 @@ export const walletType = allStores.default.walletType
 
 // TODO legacy makeContractStore to be removed
 export const makeContractStore = (abi, address, defaults = {}) =>
- console.warn('[svelte-web3] makeContractStore is deprecated. Please use the new $contracts store')
- derived([web3, connected], ([$web3, $connected]) => {
-    if ($connected && $web3.eth) {
-      return new $web3.eth.Contract(abi, address, defaults)
-    }
-    return null
-  })
+  console.warn(
+    '[svelte-web3] makeContractStore is deprecated. Please use the new $contracts store'
+  )
+derived([web3, connected], ([$web3, $connected]) => {
+  if ($connected && $web3.eth) {
+    return new $web3.eth.Contract(abi, address, defaults)
+  }
+  return null
+})
