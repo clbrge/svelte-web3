@@ -24,3 +24,5 @@ We welcome all contributions. Before submitting a pull request, please ensure yo
 2. Provide a clear and concise description of the changes in the PR title and description.
 3. Ensure that your changes do not introduce new linting or test errors.
 4. Update any relevant documentation or tests as necessary.
+
+You are encouraged to join the community on [Discord](https://discord.gg/7yXuwDwaHF) to discuss your PR:
