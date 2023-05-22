@@ -10,7 +10,6 @@
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "svelte": "src/stores.js",
   "types": "dist/svelte-web3.d.ts",
   "exports": {
     "./package.json": "./package.json",
