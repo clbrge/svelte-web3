@@ -350,21 +350,66 @@ import { getChainDataByChainId } from 'svelte-web3'
 console.log(getChainDataByChainId(5))
 ```
 
-## Web3 Svelte component [ experimental ]
+## Web3 Svelte components
 
-We plan to export generic Svelte components both to demonstrate the use
-of the svelte-web3 library and as resuable and composable best practices
-components. Only a `Balance` component has been implemented for now. You
-are welcome to help define and develop new components by joining our
-discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
+`web3-svelte` includes several basic Svelte components designed to simplify
+common tasks when building Ethereum-based applications. These components
+demonstrate how to use the `web3-svelte` library effectively and serve as
+reusable and composable best practices components. Currently, the library
+includes `Balance`, `Identicon`, and `Jazzicon` components. We encourage
+community members to contribute and help develop additional components by
+joining our discussions in our [Discord](https://discord.gg/7yXuwDwaHF).
+
+You can find example usage of these components in the `components` route in the
+examples/sveltekit-app-template-web3 directory.
+
+### Balance Component
+
+The `Balance` component displays the balance of a specified Ethereum address. To
+use the `Balance` component, import it and pass the address as a prop:
 
 ```html
-  import { Balance } from 'svelte-web3/components'
+<script>
+  import { Balance } from 'web3-svelte/components'
 </script>
 
-<p>balance = <Balance address="0x0000000000000000000000000000000000000000" /></p>
-
+<p>Balance: <Balance address="0x0000000000000000000000000000000000000000" /></p>
 ```
+
+### Identicon Component
+
+The `Identicon` component generates a unique identicon (a visual representation
+of an Ethereum address) using the `ethereum-blockies-base64` library. To use the
+`Identicon` component, import it and pass the address as a prop:
+
+```html
+<script>
+  import { Identicon } from 'web3-svelte/components'
+</script>
+
+<Identicon address="0x0000000000000000000000000000000000000000" />
+```
+
+### Jazzicon Component
+
+The `Jazzicon` component generates a unique and colorful identicon using the
+`@metamask/jazzicon` library. To use the `Jazzicon` component, import it and
+pass the address and size (optional) as props:
+
+```html
+<script>
+  import { Jazzicon } from 'web3-svelte/components'
+</script>
+
+<Jazzicon address="0x0000000000000000000000000000000000000000" size={32} />
+```
+
+These components serve as a starting point for building your Ethereum-based
+applications using `web3-svelte`. You can further customize them and create
+additional components according to your application's requirements. By
+leveraging the reactivity and simplicity of Svelte along with the powerful
+features of web3.js, you can create a seamless and efficient user experience
+for your decentralized applications.
 
 ## Create contract stores (deprecated)
 
