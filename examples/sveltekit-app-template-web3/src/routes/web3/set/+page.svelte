@@ -4,8 +4,6 @@
 
 <script>
   import Providers from '$lib/Providers.svelte'
-
-
 </script>
 
 <Providers />

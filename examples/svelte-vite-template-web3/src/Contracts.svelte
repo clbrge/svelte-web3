@@ -58,8 +58,4 @@
 
   {/if}
 
-  {#if false}
-    <button class="button" on:click={exec}>Send 0.01 Gorli ETH to the zero address</button>
-  {/if}
-
 </div>

@@ -31,6 +31,8 @@
   },
   "prettier": "prettier-config-standard",
   "dependencies": {
+    "@metamask/jazzicon": "^2.0.0",
+    "ethereum-blockies-base64": "^1.0.2",
     "svelte": "^3.0.0",
     "svelte-proxied-store": "^2.0.3"
   },

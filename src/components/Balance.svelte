@@ -1,11 +1,11 @@
 <script>
   import { web3, connected, selectedAccount } from '../stores'
 
-  export let address = $selectedAccount
+  export let address // = $selectedAccount
   export let pending = 'pending'
   // todo format + symbol
 
-  $: balance = $connected && address ? $web3.eth.getBalance(address) : ''
+  $: balance = $web3 && $web3.eth && address ? $web3.eth.getBalance(address) : ''
 
 </script>
 

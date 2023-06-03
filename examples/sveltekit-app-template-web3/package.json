@@ -1,5 +1,5 @@
 {
-	"name": "sveltekit-app-template-web3",
+	"name": "new-app",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -7,16 +7,15 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@openzeppelin/contracts": "^4.7.3",
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
-		"svelte": "^3.46.0",
+		"@fontsource/fira-mono": "^4.5.10",
+		"@neoconfetti/svelte": "^1.0.0",
+		"@openzeppelin/contracts": "^4.9.0",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.5.0",
+		"svelte": "^3.54.0",
+		"svelte-highlight": "^7.3.0",
 		"svelte-web3": "file:../../",
-		"vite": "^3.0.8"
+		"vite": "^4.3.0"
 	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.0",
-		"cookie": "^0.4.1"
-	}
+	"type": "module"
 }

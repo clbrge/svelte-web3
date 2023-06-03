@@ -19,6 +19,7 @@
         Localhost4: () => evm.setProvider('http://127.0.0.1:8545', 4),
         LocalhostNull: () => evm.setProvider('http://127.0.0.1:8545', null),
         Gnosis: () => evm.setProvider('https://rpc.gnosischain.com'),
+        Goerli: () => evm.setProvider('https://rpc.goerli.mudit.blog/'),
         Arbitrum: () => evm.setProvider('https://arb1.arbitrum.io/rpc'),
       }
       console.log('[example]', type, handler[type])
@@ -61,6 +62,7 @@
     <option value="Browser">Browser (window.ethereum)</option>
     <option value="Localhost">Localhost (eg ganache or hardhat on http://127.0.0.1:8545)</option>
     <option value="Localhost4">Localhost using account index 4</option>
+    <option value="Goerli">https://rpc.goerli.mudit.blog (RPC)</option>
     <option value="Gnosis">https://rpc.gnosischain.com (RPC)</option>
     <option value="Arbitrum">https://arb1.arbitrum.io/rpc (RPC)</option>
   </select>
