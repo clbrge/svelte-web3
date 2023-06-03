@@ -332,10 +332,3 @@ export const contracts = allStores.default.contracts
 
 // TODO spin off dectector
 export const walletType = allStores.default.walletType
-
-derived([web3, connected], ([$web3, $connected]) => {
-  if ($connected && $web3.eth) {
-    return new $web3.eth.Contract(abi, address, defaults)
-  }
-  return null
-})
