@@ -1,7 +1,7 @@
 <script>
-  import { web3, connected } from 'svelte-web3'
+  import { web3, connected, selectedAccount } from '../stores'
 
-  export let address
+  export let address = $selectedAccount
   export let pending = 'pending'
   // todo format + symbol
 

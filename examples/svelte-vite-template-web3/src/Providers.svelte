@@ -21,8 +21,7 @@
         Gnosis: () => evm.setProvider('https://rpc.gnosischain.com'),
         Arbitrum: () => evm.setProvider('https://arb1.arbitrum.io/rpc'),
       }
-
-      console.log(type, handler[type])
+      console.log('[example]', type, handler[type])
       await handler[type]()
       pending = false
 

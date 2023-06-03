@@ -1,3 +1,5 @@
-import Balance from './Balance.svelte'
+import Balance from "./Balance.svelte";
+import Identicon from "./Identicon.svelte";
+import Jazzicon from "./Jazzicon.svelte";
 
-export { Balance }
+export { Balance, Identicon, Jazzicon };

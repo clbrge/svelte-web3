@@ -17,7 +17,6 @@
 
   <h2>using the '$contracts' store</h2>
 
-
   <p>
     The following code initialize the $contracts store with the ERC20 LINK Token.
     Here we use the #await svelte block to load the token totalSupply of the contract
@@ -53,7 +52,7 @@
   {:else}
 
     <p>
-      Please first <a href="/setprovider">connect</a>
+      Please first <a href="/web3/set">connect</a>
       connect to the görli network to be able to use this page.
     </p>
 
