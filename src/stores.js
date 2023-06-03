@@ -333,11 +333,6 @@ export const contracts = allStores.default.contracts
 // TODO spin off dectector
 export const walletType = allStores.default.walletType
 
-// TODO legacy makeContractStore to be removed
-export const makeContractStore = (abi, address, defaults = {}) =>
-  console.warn(
-    '[svelte-web3] makeContractStore is deprecated. Please use the new $contracts store'
-  )
 derived([web3, connected], ([$web3, $connected]) => {
   if ($connected && $web3.eth) {
     return new $web3.eth.Contract(abi, address, defaults)

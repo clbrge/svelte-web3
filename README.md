@@ -411,18 +411,6 @@ leveraging the reactivity and simplicity of Svelte along with the powerful
 features of web3.js, you can create a seamless and efficient user experience
 for your decentralized applications.
 
-## Create contract stores (deprecated)
-
-The function `makeContractStore` allowed you to create a Svelte derived
-store of a `web3.eth.Contract` object instance. It takes the same
-parameters as a ̀new web3.eth.Contract` call:
-
-```js
-makeContractStore(jsonInterface[, address][, options])
-```
-
-This function will be removed in the next major release of `svelte-web3`.
-Please update your code to use the new $contracts store.
 
 ## Simultaneous multi chain usage
 
