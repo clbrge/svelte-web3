@@ -39,9 +39,8 @@ const getWindowEthereum = () => {
   }
 }
 
-// always get chainId as number
-const alwaysNumber = (n) =>
-  Web3.utils.isHex(n) ? Web3.utils.hexToNumber(n) : n
+// always get chainId as number EDIT: Always as hex
+const alwaysHex = (n) => (Web3.utils.isHex(n) ? n : Web3.utils.toHex(n))
 
 export const createStore = () => {
   const { emit, get, subscribe, assign, deleteAll } = proxied()
@@ -53,7 +52,7 @@ export const createStore = () => {
   }) => {
     // console.log('switch1193Provider', { accounts, chainId }, get('web3'), get('eipProvider'))
     if (!chainId) {
-      chainId = alwaysNumber(await get('web3').eth.getChainId())
+      chainId = alwaysHex(await get('web3').eth.getChainId())
     }
     if (!accounts) {
       accounts = await get('web3').eth.getAccounts()
@@ -76,7 +75,7 @@ export const createStore = () => {
 
   const accountsChangedHandler = (accounts) => switch1193Provider({ accounts })
   const chainChangedHandler = (chainId) =>
-    switch1193Provider({ chainId: alwaysNumber(chainId) })
+    switch1193Provider({ chainId: alwaysHex(chainId) })
   // TODO better error support ?
   const disconnectHandler = (error) => switch1193Provider({ error })
 
@@ -138,7 +137,7 @@ export const createStore = () => {
       return set1193Provider(provider, addressOrIndex)
     init()
     const web3 = new Web3(provider)
-    const chainId = alwaysNumber(await web3.eth.getChainId())
+    const chainId = alwaysHex(await web3.eth.getChainId())
     let accounts = []
     try {
       // not all provider support accounts
