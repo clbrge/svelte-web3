@@ -41,6 +41,7 @@ const getWindowEthereum = () => {
 
 // always get chainId as number EDIT: Always as hex
 const alwaysHex = (n) => (Web3.utils.isHex(n) ? n : Web3.utils.toHex(n))
+// const alwaysHex = (n) => (Web3.utils.isHex(n) ? Web3.utils.hexToNumber(n) : n)
 
 export const createStore = () => {
   const { emit, get, subscribe, assign, deleteAll } = proxied()
@@ -211,7 +212,13 @@ const getData = (id) => {
   return noData
 }
 
-const subStoreNames = ['web3', 'selectedAccount', 'connected', 'chainId']
+const subStoreNames = [
+  'web3',
+  'selectedAccount',
+  'connected',
+  'chainId',
+  'contracts'
+]
 
 export const makeEvmStores = (name) => {
   const evmStore = (allStores[name] = createStore())
