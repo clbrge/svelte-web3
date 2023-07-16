@@ -401,7 +401,7 @@ pass the address and size (optional) as props:
   import { Jazzicon } from 'web3-svelte/components'
 </script>
 
-<Jazzicon address="0x0000000000000000000000000000000000000000" size={32} />
+<Jazzicon address="0x0000000000000000000000000000000000000000" size="{32}" />
 ```
 
 These components serve as a starting point for building your Ethereum-based
@@ -410,7 +410,6 @@ additional components according to your application's requirements. By
 leveraging the reactivity and simplicity of Svelte along with the powerful
 features of web3.js, you can create a seamless and efficient user experience
 for your decentralized applications.
-
 
 ## Simultaneous multi chain usage
 
