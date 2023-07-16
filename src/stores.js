@@ -39,9 +39,8 @@ const getWindowEthereum = () => {
   }
 }
 
-// always get chainId as number EDIT: Always as hex
+// always get chainId as hex (required since web3js 4.x.x)
 const alwaysHex = (n) => (Web3.utils.isHex(n) ? n : Web3.utils.toHex(n))
-// const alwaysHex = (n) => (Web3.utils.isHex(n) ? Web3.utils.hexToNumber(n) : n)
 
 export const createStore = () => {
   const { emit, get, subscribe, assign, deleteAll } = proxied()
